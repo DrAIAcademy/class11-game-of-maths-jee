@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NCERT Class 11 Maths Chapter 5: Linear Inequalities & Number Line | JEE Foundation Sci‑Fi Game</title>
+<style>
+:root{--bg:#050817;--card:#0f1736;--cyan:#00eaff;--green:#35ff9a;--gold:#ffe066;--red:#ff5b7f;--pink:#ff4cf0;--text:#eef8ff;--muted:#aab8d6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 12% 0%,rgba(255,224,102,.14),transparent 24%),radial-gradient(circle at 88% 0%,rgba(255,76,240,.14),transparent 24%),linear-gradient(135deg,#050817,#091638 58%,#160826);color:var(--text);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#00eaff 1px,transparent 1px);background-size:90px 90px,160px 160px;opacity:.13;pointer-events:none}
+.watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-16deg);font-size:clamp(42px,8vw,94px);font-weight:1000;letter-spacing:8px;color:#fff;opacity:.04;border:2px solid rgba(255,255,255,.08);border-radius:22px;padding:18px 30px;pointer-events:none;white-space:nowrap}
+header{position:relative;z-index:5;padding:12px 14px;background:rgba(4,7,22,.86);border-bottom:1px solid rgba(0,234,255,.25)}
+.top{max-width:1240px;margin:auto;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;position:relative;padding-right:138px}
+.logo{position:absolute;right:0;top:0;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 11px;font-weight:950;background:rgba(0,0,0,.28)}
+h1{margin:0;font-size:clamp(22px,3.2vw,38px);line-height:1.05;text-shadow:0 0 18px rgba(0,234,255,.45)}
+.sub{margin:5px 0 0;color:var(--muted);font-size:13px}
+.hud{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid rgba(0,234,255,.28);background:rgba(0,234,255,.08);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}.chip span{color:var(--green)}
+main{position:relative;z-index:2;max-width:1240px;margin:auto;padding:14px}.screen{display:none}.screen.active{display:block}
+.panel{background:linear-gradient(145deg,rgba(16,23,53,.94),rgba(7,11,34,.9));border:1px solid rgba(0,234,255,.22);border-radius:24px;padding:18px;box-shadow:0 22px 70px rgba(0,0,0,.32)}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}.top{padding-right:0;padding-top:30px}.logo{right:0;top:0}}
+.hero{font-size:clamp(31px,6vw,66px);line-height:.96;margin:0 0 12px;font-weight:1000}.glow{color:var(--cyan);text-shadow:0 0 22px rgba(0,234,255,.45)}
+p{line-height:1.55}.muted{color:#dcecff}.card{padding:13px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);border-radius:18px}.card h3{margin:0 0 7px;color:var(--gold)}
+button{border:0;border-radius:14px;padding:12px 15px;font-weight:950;cursor:pointer;touch-action:manipulation;background:linear-gradient(135deg,var(--cyan),var(--green));color:#04101f;font-size:15px}
+button.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:var(--text)}button.gold{background:linear-gradient(135deg,var(--gold),#ff9f1c)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.alert{padding:12px 14px;border-radius:16px;background:rgba(255,224,102,.10);border:1px solid rgba(255,224,102,.24);color:#fff6d9;font-weight:800}
+.char{display:flex;gap:12px;align-items:center;margin-bottom:11px}.avatar{width:62px;height:62px;border-radius:21px;display:grid;place-items:center;font-size:33px;background:rgba(0,234,255,.10);border:1px solid rgba(255,255,255,.15)}
+input{width:100%;padding:13px;border-radius:14px;background:rgba(0,0,0,.25);border:1px solid rgba(0,234,255,.3);color:#fff;font-size:16px}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.mode label{border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px;background:rgba(255,255,255,.06)}.mode label.active{border-color:rgba(0,234,255,.5);background:rgba(0,234,255,.10)}.mode input{width:auto}
+.game{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px}@media(max-width:980px){.game{grid-template-columns:1fr}}
+.board{position:relative;height:min(72vh,690px);min-height:560px;border-radius:28px;overflow:hidden;border:1px solid rgba(0,234,255,.27);background:radial-gradient(circle at 20% 22%,rgba(0,234,255,.16),transparent 27%),radial-gradient(circle at 85% 78%,rgba(255,76,240,.16),transparent 28%),linear-gradient(160deg,#07102d,#130720);box-shadow:inset 0 0 45px rgba(0,234,255,.06),0 20px 60px rgba(0,0,0,.35);touch-action:none}
+.board:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:40px 40px;opacity:.22;pointer-events:none}
+.badge{position:absolute;top:14px;left:14px;z-index:7;padding:9px 12px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.16);font-weight:950}
+.enemy{position:absolute;left:190px;right:18px;top:14px;z-index:7;min-height:42px;max-height:64px;overflow:hidden;border-radius:16px;padding:10px 13px;background:rgba(255,91,127,.13);border:1px solid rgba(255,91,127,.34);color:#ffdbe5;font-weight:950;display:flex;align-items:center;line-height:1.25;pointer-events:none}
+.player{position:absolute;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:33px;transform:translate(-50%,-50%);background:linear-gradient(145deg,rgba(255,224,102,.25),rgba(0,234,255,.2));border:2px solid rgba(255,255,255,.24);box-shadow:0 0 25px rgba(255,224,102,.25);z-index:5;pointer-events:none}
+.crystal{position:absolute;width:182px;min-height:66px;border-radius:19px;padding:10px 12px;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,.22);background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(0,234,255,.08));box-shadow:0 0 22px rgba(0,234,255,.16);font-weight:950;line-height:1.2;z-index:3;cursor:pointer}
+.crystal:before{content:"💎";margin-right:6px}.crystal.correct{border-color:rgba(53,255,154,.55)}.crystal.wrong{border-color:rgba(255,91,127,.45)}.crystal.collected{opacity:0;transform:translate(-50%,-50%) scale(1.6);transition:.3s;pointer-events:none}
+.gate{position:absolute;right:28px;top:58%;transform:translateY(-50%);width:94px;height:164px;border-radius:48px;border:4px solid rgba(255,224,102,.45);background:radial-gradient(circle,rgba(255,224,102,.18),rgba(255,76,240,.08),rgba(0,0,0,.15));box-shadow:0 0 35px rgba(255,224,102,.22);display:grid;place-items:center;font-size:42px;z-index:2;opacity:.58;filter:grayscale(.4)}
+.gate.open{opacity:1;filter:none;border-color:var(--green);box-shadow:0 0 40px rgba(53,255,154,.36)}
+.power{position:absolute;width:62px;height:62px;border-radius:20px;display:grid;place-items:center;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.22);font-size:27px;z-index:3;background:rgba(255,255,255,.08)}.power small{position:absolute;top:50px;white-space:nowrap;font-size:10px;font-weight:900}
+.msg{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);width:min(92%,720px);padding:12px 14px;border-radius:18px;background:rgba(3,8,24,.78);border:1px solid rgba(0,234,255,.25);z-index:6;line-height:1.45}
+.pop{position:absolute;z-index:20;padding:8px 12px;border-radius:999px;background:rgba(53,255,154,.16);border:1px solid rgba(53,255,154,.42);font-weight:1000;transform:translate(-50%,-50%);animation:pop .9s ease-out forwards}@keyframes pop{to{opacity:0;transform:translate(-50%,-140%)}}
+.shock{animation:shock .24s linear 2}@keyframes shock{25%{transform:translate(-6px,3px)}50%{transform:translate(5px,-3px)}75%{transform:translate(-3px,-4px)}}
+.modeBtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.mobileBtns{display:none;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}.mobileBtns.show{display:flex}.mobileBtns button{min-width:58px}
+.side{display:grid;gap:12px}.bar{height:14px;background:rgba(255,255,255,.10);border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));transition:.25s}.progress{height:100%;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));width:0;transition:.25s}
+.list{display:grid;gap:8px}.pill,.weapon{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font-size:13px;line-height:1.35;font-weight:850}.weapon.locked{opacity:.55}.weapon.unlocked{border-color:rgba(53,255,154,.45);background:rgba(53,255,154,.10)}.weapon small{display:block;color:#9fdfff;margin-top:2px}
+.chat{display:grid;grid-template-columns:auto 1fr;gap:9px;margin-bottom:8px}.face{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:rgba(0,234,255,.11);border:1px solid rgba(255,255,255,.12)}.bubble{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);line-height:1.45}.bubble strong{display:block;color:#fff}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.76);display:none;align-items:flex-start;justify-content:center;padding:18px 12px;overflow:auto}.modal.show{display:flex}.modalCard{width:100%;max-width:840px;max-height:92vh;overflow:auto;border-radius:28px;padding:22px;border:1px solid rgba(0,234,255,.36);background:linear-gradient(145deg,#0b1230,#111d47);box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.rank{font-size:clamp(30px,7vw,54px);font-weight:1000;color:var(--gold);line-height:1}.conceptGrid,.reportGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.optionGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.option{min-height:60px;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;font-weight:900}.option.correct{background:rgba(53,255,154,.2);border-color:var(--green)}.option.wrong{background:rgba(255,91,127,.2);border-color:var(--red)}
+.noteSec{margin:12px 0;padding:13px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}.noteSec h3{color:var(--gold);margin:0 0 8px}.noteSec li{line-height:1.6}.bossHP{height:14px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden}.bossFill{height:100%;background:linear-gradient(90deg,var(--red),#ff9f1c,var(--gold));width:100%}.mistake{margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,91,127,.12);border:1px solid rgba(255,91,127,.32);color:#ffe2ea}.confetti{position:fixed;width:10px;height:16px;top:-20px;z-index:120;animation:fall 2s ease-in forwards}@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:0}}
+.footer{padding:18px;text-align:center;color:var(--muted);font-weight:700}.footer a{color:var(--cyan);text-decoration:none}canvas{display:none}
+@media(max-width:820px){.board{height:680px;min-height:680px}.enemy{left:12px;right:12px;top:58px;justify-content:center;text-align:center;font-size:13px}.crystal{width:150px;font-size:13px;min-height:62px}.conceptGrid,.reportGrid,.optionGrid{grid-template-columns:1fr}}
+@media(max-width:520px){main{padding:10px}.panel{padding:14px}.board{height:720px;min-height:720px}.controls button{width:100%}.msg{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="watermark">Dr AI Academy</div>
+<header><div class="top"><div><h1>InequalityVerse: Number Line Defender</h1><p class="sub">NCERT Class 11 Maths Chapter 5: Linear Inequalities & Number Line | JEE Foundation Sci‑Fi Game</p></div><div class="hud"><div class="chip">Cadet: <span id="hudName">Guest</span></div><div class="chip">XP: <span id="xp">0</span></div><div class="chip">Level: <span id="level">1/6</span></div><div class="chip">Energy: <span id="energyText">100%</span></div><div class="chip">Mode: <span id="modeText">Practice</span></div><div class="chip">Control: <span id="controlText">Keyboard</span></div><div class="chip">Hints: <span id="hintsHud">2</span></div><div class="chip">Shield: <span id="shieldHud">0</span></div><label class="chip" style="display:flex;gap:6px;align-items:center"><input id="voiceToggle" type="checkbox" checked style="width:auto"> Voice</label></div><div class="logo">Dr AI Academy</div></div></header>
+<main>
+<section id="home" class="screen active"><div class="grid2"><div class="panel"><h2 class="hero">Enter the <span class="glow">Number Line Arena</span></h2><p class="muted">Move the player, collect correct inequality crystals, avoid fake rules, unlock number-line weapons, and defeat Graph Breaker. This Version 2 focuses on solution sets, open/closed circles, left-right shading, interval notation, and number-line boss battles.</p><div class="grid3"><div class="card"><h3>Game Feel</h3><p>WASD/arrow movement, crystals, gate, power-ups, boss.</p></div><div class="card"><h3>Mobile Fixed</h3><p>Touch controls are optional. Header is not sticky.</p></div><div class="card"><h3>No Restart Bug</h3><p>Scroll or rotate will not restart the level.</p></div></div><div class="alert">Start Level 1: Solution Scanner. Learn number-line representation through a sci-fi mission.</div><div class="controls"><button onclick="openNameModal()">Start Game</button><button class="secondary" onclick="showHelp()">How to Play</button></div></div><div class="panel"><div class="char"><div class="avatar">🤖</div><div><h3>Dr. AI</h3><p class="muted">Guide, hints, and mistake correction.</p></div></div><div class="char"><div class="avatar">🧭</div><div><h3>Number Line Scout</h3><p class="muted">Helps with solution sets, open/closed circles, shading direction, and interval traps.</p></div></div><div class="char"><div class="avatar">👹</div><div><h3>Graph Breaker</h3><p class="muted">Villain who places wrong circles, wrong shading, and fake interval traps.</p></div></div></div></div></section>
+<section id="game" class="screen"><div class="game"><div><div class="board" id="board"><div class="badge" id="badge">Collect 4 crystals</div><div class="enemy" id="enemy">👹 Graph Breaker</div><div class="player" id="player">🧑‍🚀</div><div class="gate" id="gate">🔒</div><div class="msg" id="message">Collect correct crystals to open the boss gate.</div></div><div class="modeBtns"><button class="secondary" id="keyboardBtn" onclick="setControlMode('keyboard')">Keyboard / WASD</button><button class="secondary" id="touchBtn" onclick="setControlMode('touch')">Touch Controls</button></div><div class="mobileBtns" id="mobileControls"><button class="secondary" onpointerdown="mobileMove('up')" onpointerup="mobileMove(null)" onpointercancel="mobileMove(null)">↑</button><button class="secondary" onpointerdown="mobileMove('left')" onpointerup="mobileMove(null)" onpointercancel="mobileMove(null)">←</button><button class="secondary" onpointerdown="mobileMove('down')" onpointerup="mobileMove(null)" onpointercancel="mobileMove(null)">↓</button><button class="secondary" onpointerdown="mobileMove('right')" onpointerup="mobileMove(null)" onpointercancel="mobileMove(null)">→</button></div></div><div class="side"><div class="panel"><div id="subtitle">Level 1 of 6</div><h2 id="levelTitle">Solution Scanner</h2><p id="goal" class="muted">Understand inequality symbols.</p><div class="bar"><div class="fill" id="energyFill"></div></div><p>Progress</p><div class="bar"><div class="progress" id="progressFill"></div></div><div class="controls"><button class="secondary" onclick="restartLevel()">Restart Level</button><button class="secondary" onclick="useHint()">Ask Dr. AI Hint</button><button class="secondary" onclick="openNotebook()">Notebook</button><button class="secondary" onclick="goHome()">Home</button></div></div><div class="panel"><h3 style="color:var(--gold)">Correct crystals needed</h3><div class="list" id="formulaList"></div></div><div class="panel"><h3 style="color:var(--gold)">Unlocked Number-Line Weapons</h3><div class="list" id="weaponList"></div></div><div class="panel"><h3 style="color:var(--gold)">Dr. AI Guide</h3><div id="guideBox"></div></div><div class="panel"><h3 style="color:var(--gold)">Story Dialogue</h3><div id="dialogueBox"></div></div></div></div></section>
+</main>
+<footer class="footer">Copyright © Dr AI Academy &nbsp; <a href="https://courses.draiacademy.com" target="_blank">Learn AI @ Dr AI Academy</a></footer>
+
+<div class="modal" id="nameModal"><div class="modalCard"><div class="rank">Welcome Cadet</div><h2>Enter student name</h2><input id="studentName" placeholder="Student name"><div class="mode"><label id="practiceCard" class="active"><input type="radio" name="mode" value="practice" checked onchange="selectMode()">Practice Mode<p>No boss timer.</p></label><label id="challengeCard"><input type="radio" name="mode" value="challenge" onchange="selectMode()">JEE Challenge<p>30-second boss timer.</p></label></div><div class="alert" style="margin-top:12px">On mobile, landscape gives best arena feel. Vertical also works.</div><div class="controls"><button onclick="startGame()">Start Mission</button><button class="secondary" onclick="closeModal('nameModal')">Cancel</button></div></div></div>
+<div class="modal" id="conceptModal"><div class="modalCard"><div class="rank">Concept Unlock Room</div><h2 id="conceptTitle">Mission Briefing</h2><p id="conceptIntro"></p><div class="conceptGrid" id="conceptCards"></div><div class="alert" id="conceptTip"></div><div class="alert" id="conceptStory"></div><div class="controls"><button onclick="enterArenaAfterConcept()">Enter Arena</button><button class="secondary" onclick="openNotebook()">Open Notebook</button></div></div></div>
+<div class="modal" id="notebookModal"><div class="modalCard"><div style="display:flex;justify-content:space-between;gap:12px;align-items:start"><div><div class="rank">Inequality Notebook</div><h2>JEE Linear Inequalities Quick Revision</h2></div><button class="secondary" onclick="closeModal('notebookModal')">✕ Close</button></div><div id="notebookContent"></div><div class="controls"><button onclick="closeModal('notebookModal')">Back to Game</button></div></div></div>
+<div class="modal" id="bossModal"><div class="modalCard"><div class="rank">Boss Gate</div><h2 id="bossTitle">Graph Breaker Challenge</h2><div><span id="bossRound">Round 1</span> <span id="timer">Timer Off</span></div><p>Graph Breaker HP: <span id="bossHpText">100%</span></p><div class="bossHP"><div class="bossFill" id="bossFill"></div></div><p id="bossQuestion"></p><div class="optionGrid" id="bossOptions"></div><p id="bossFeedback"></p><div id="bossMistake"></div><div class="controls"><button id="bossNext" onclick="nextAfterBoss()" style="display:none">Continue</button><button class="secondary" onclick="openNotebook()">Open Notebook</button><button class="secondary" onclick="closeModal('bossModal')">Back to Arena</button></div></div></div>
+<div class="modal" id="reportModal"><div class="modalCard"><div class="rank">Level Report</div><h2 id="reportTitle">Mission Report</h2><p id="reportIntro"></p><div class="reportGrid"><div class="card"><h3>Accuracy</h3><p id="reportAccuracy"></p></div><div class="card"><h3>Energy</h3><p id="reportEnergy"></p></div><div class="card"><h3>Hints</h3><p id="reportHints"></p></div><div class="card"><h3>Wrong Moves</h3><p id="reportWrong"></p></div><div class="card"><h3>Weak Area</h3><p id="reportWeak"></p></div><div class="card"><h3>Revision</h3><p id="reportRevision"></p></div></div><div class="controls"><button id="reportContinue" onclick="continueAfterReport()">Continue</button><button class="secondary" onclick="closeModal('reportModal')">Close</button></div></div></div>
+<div class="modal" id="winModal"><div class="modalCard"><div class="rank">Quest Complete</div><h2>Dr. AI Number Line Champion Certificate 🎉</h2><p id="finalText"></p><input id="certificateName" value="Number Line Champion"><div class="controls"><button onclick="downloadCertificate()">Download Certificate</button><button class="secondary" onclick="restartGame()">Play Again</button></div></div></div>
+<div class="modal" id="helpModal"><div class="modalCard"><div class="rank">How to Play</div><p>Use Keyboard/WASD mode or Touch Controls mode. Only one mode is active at a time. Move the astronaut to correct inequality crystals. Voice mode is enabled from the top HUD. Collect power-ups and enter the portal after all correct crystals are collected.</p><div class="controls"><button onclick="closeModal('helpModal')">Got it</button></div></div></div>
+<canvas id="certCanvas" width="1600" height="1131"></canvas>
+<script>
+const levels=[
+{
+ title:"Solution Scanner",
+ subtitle:"Level 1 of 6",
+ goal:"Identify which values satisfy a linear inequality.",
+ enemy:"👹 Graph Breaker: I will hide false values inside the solution set!",
+ dialogue:[
+  ["🤖","Dr. AI","A solution of an inequality is any value of x that makes the statement true."],
+  ["📏","Number Line Scout","Test the value by substituting it into the inequality."],
+  ["🛡️","Proof Bot","This is the first step before graphing or interval notation."]
+ ],
+ required:[
+  {text:"x=2 satisfies x<5",correct:true},
+  {text:"x=5 satisfies x≤5",correct:true},
+  {text:"x=6 satisfies x>3",correct:true},
+  {text:"x=-1 satisfies x+2<3",correct:true}
+ ],
+ decoys:[
+  {text:"x=5 satisfies x<5",correct:false},
+  {text:"x=4 satisfies x>7",correct:false},
+  {text:"x=2 satisfies x≥5",correct:false},
+  {text:"x=3 satisfies x+2<3",correct:false}
+ ],
+ bossPool:[
+  {q:"Boss: Which value satisfies x<4?",options:["4","5","3","7"],ans:2,why:"Only 3 is less than 4."},
+  {q:"Boss: Which value satisfies 2x<10?",options:["5","6","4","10"],ans:2,why:"2×4=8, which is less than 10."},
+  {q:"Boss: Which value satisfies x≥-2?",options:["-3","-4","-2","-5"],ans:2,why:"x≥-2 includes -2 and all greater numbers."}
+ ]
+},
+{
+ title:"Open Circle Gate",
+ subtitle:"Level 2 of 6",
+ goal:"Use open circles for strict inequalities.",
+ enemy:"👹 Graph Breaker: I will close the boundary when it should stay open!",
+ dialogue:[
+  ["🤖","Dr. AI","For x<a or x>a, the boundary value is not included."],
+  ["📏","Number Line Scout","Use an open circle for < and >."],
+  ["🛡️","Proof Bot","Strict inequalities exclude equality."]
+ ],
+ required:[
+  {text:"x<3 uses open circle at 3",correct:true},
+  {text:"x>−2 uses open circle at −2",correct:true},
+  {text:"Strict inequalities use open circles",correct:true},
+  {text:"x<5 does not include 5",correct:true}
+ ],
+ decoys:[
+  {text:"x<3 uses closed circle at 3",correct:false},
+  {text:"x>−2 uses closed circle at −2",correct:false},
+  {text:"Strict inequalities use closed circles",correct:false},
+  {text:"x<5 includes 5",correct:false}
+ ],
+ bossPool:[
+  {q:"Boss: Number-line graph of x<7 should have:",options:["Closed circle at 7","Open circle at 7","Closed circle at 0","No circle"],ans:1,why:"x<7 is strict, so boundary 7 is not included."},
+  {q:"Boss: Which inequality uses an open circle?",options:["x≤4","x≥4","x<4","x=4"],ans:2,why:"Strict signs < and > use open circles."},
+  {q:"Boss: x>−1 means:",options:["Open circle at -1, shade right","Closed circle at -1, shade right","Open circle at -1, shade left","Closed circle at -1, shade left"],ans:0,why:"Greater than means right side; strict means open circle."}
+ ]
+},
+{
+ title:"Closed Circle Gate",
+ subtitle:"Level 3 of 6",
+ goal:"Use closed circles for inequalities that include equality.",
+ enemy:"👹 Graph Breaker: I will open the boundary when equality is included!",
+ dialogue:[
+  ["🤖","Dr. AI","For x≤a or x≥a, the boundary value is included."],
+  ["📏","Number Line Scout","Use a closed circle for ≤ and ≥."],
+  ["🛡️","Proof Bot","The equality line under the symbol locks the boundary."]
+ ],
+ required:[
+  {text:"x≤4 uses closed circle at 4",correct:true},
+  {text:"x≥−3 uses closed circle at −3",correct:true},
+  {text:"Slack inequalities use closed circles",correct:true},
+  {text:"x≤8 includes 8",correct:true}
+ ],
+ decoys:[
+  {text:"x≤4 uses open circle at 4",correct:false},
+  {text:"x≥−3 uses open circle at −3",correct:false},
+  {text:"Slack inequalities use open circles",correct:false},
+  {text:"x≤8 excludes 8",correct:false}
+ ],
+ bossPool:[
+  {q:"Boss: Number-line graph of x≥2 should have:",options:["Open circle at 2","Closed circle at 2","No boundary","Open circle at 0"],ans:1,why:"x≥2 includes 2, so use closed circle."},
+  {q:"Boss: Which inequality uses a closed circle?",options:["x<6","x>6","x≤6","x≠6"],ans:2,why:"≤ includes equality, so boundary is closed."},
+  {q:"Boss: x≤−4 means:",options:["Open circle at -4, shade left","Closed circle at -4, shade left","Closed circle at -4, shade right","Open circle at -4, shade right"],ans:1,why:"Less than or equal means left side with closed boundary."}
+ ]
+},
+{
+ title:"Left-Right Shading Battle",
+ subtitle:"Level 4 of 6",
+ goal:"Decide whether to shade left or right on the number line.",
+ enemy:"👹 Graph Breaker: I will send your shading in the wrong direction!",
+ dialogue:[
+  ["🤖","Dr. AI","For x<a or x≤a, shade left. For x>a or x≥a, shade right."],
+  ["📏","Number Line Scout","Think smaller values to the left, greater values to the right."],
+  ["🛡️","Proof Bot","Direction matters as much as open or closed circle."]
+ ],
+ required:[
+  {text:"x<5 shades left",correct:true},
+  {text:"x≤5 shades left",correct:true},
+  {text:"x>−1 shades right",correct:true},
+  {text:"x≥−1 shades right",correct:true}
+ ],
+ decoys:[
+  {text:"x<5 shades right",correct:false},
+  {text:"x≤5 shades right",correct:false},
+  {text:"x>−1 shades left",correct:false},
+  {text:"x≥−1 shades left",correct:false}
+ ],
+ bossPool:[
+  {q:"Boss: x<2 should be shaded:",options:["Left of 2","Right of 2","Only at 2","Both sides"],ans:0,why:"Less than means smaller values, which lie left of 2."},
+  {q:"Boss: x≥-3 should be shaded:",options:["Left of -3","Right of -3","Only -3","Nowhere"],ans:1,why:"Greater than or equal means -3 and values to the right."},
+  {q:"Boss: Which graph description fits x>6?",options:["Open circle at 6, shade right","Closed circle at 6, shade right","Open circle at 6, shade left","Closed circle at 6, shade left"],ans:0,why:"Strict greater than means open circle and right shading."}
+ ]
+},
+{
+ title:"Interval Portal",
+ subtitle:"Level 5 of 6",
+ goal:"Convert number-line solutions into interval notation.",
+ enemy:"👹 Graph Breaker: I will swap brackets and parentheses!",
+ dialogue:[
+  ["🤖","Dr. AI","Use parentheses for excluded endpoints and square brackets for included endpoints."],
+  ["📏","Number Line Scout","Infinity always uses parentheses."],
+  ["🛡️","Proof Bot","Interval notation is a compact way to describe solution sets."]
+ ],
+ required:[
+  {text:"x<3 is (−∞,3)",correct:true},
+  {text:"x≤3 is (−∞,3]",correct:true},
+  {text:"x>2 is (2,∞)",correct:true},
+  {text:"x≥2 is [2,∞)",correct:true}
+ ],
+ decoys:[
+  {text:"x<3 is (−∞,3]",correct:false},
+  {text:"x≤3 is (−∞,3)",correct:false},
+  {text:"x>2 is [2,∞)",correct:false},
+  {text:"x≥2 is (2,∞)",correct:false}
+ ],
+ bossPool:[
+  {q:"Boss: Interval form of x≤5 is:",options:["(-∞,5)","(-∞,5]","[5,∞)","(5,∞)"],ans:1,why:"≤ includes 5, so use square bracket at 5."},
+  {q:"Boss: Interval form of x>−2 is:",options:["(-2,∞)","[-2,∞)","(-∞,-2)","(-∞,-2]"],ans:0,why:"> excludes -2 and goes to infinity."},
+  {q:"Boss: Which is correct for x≥8?",options:["(8,∞)","[8,∞)","(-∞,8]","(-∞,8)"],ans:1,why:"x≥8 includes 8 and shades right."}
+ ]
+},
+{
+ title:"NCERT Exercise Boss",
+ subtitle:"Level 6 of 6",
+ goal:"Solve NCERT-style inequalities and represent the solution.",
+ enemy:"👹 Graph Breaker: This final number-line map mixes algebra, circles, and intervals!",
+ dialogue:[
+  ["🤖","Dr. AI","First solve the inequality, then decide circle, direction, and interval."],
+  ["📏","Number Line Scout","Be careful with sign flip if division by negative appears."],
+  ["🛡️","Proof Bot","This final level connects Version 1 rules with Version 2 graphing."]
+ ],
+ required:[
+  {text:"7x+3<5x+9 ⇒ x<3",correct:true},
+  {text:"3(1−x)<2(x+4) ⇒ x>−1",correct:true},
+  {text:"4x+3<6x+7 ⇒ x>−2",correct:true},
+  {text:"−5x≤−40 ⇒ x≥8",correct:true}
+ ],
+ decoys:[
+  {text:"7x+3<5x+9 ⇒ x>3",correct:false},
+  {text:"3(1−x)<2(x+4) ⇒ x<−1",correct:false},
+  {text:"4x+3<6x+7 ⇒ x<−2",correct:false},
+  {text:"−5x≤−40 ⇒ x≤8",correct:false}
+ ],
+ bossPool:[
+  {q:"Final Boss: Solve 7x+3<5x+9.",options:["x<3","x>3","x≤3","x≥3"],ans:0,why:"2x<6, so x<3."},
+  {q:"Final Boss: Solve 3(1−x)<2(x+4).",options:["x<−1","x>−1","x<1","x>1"],ans:1,why:"3-3x<2x+8 gives -5<5x, so x>-1."},
+  {q:"Final Boss: Solve 4x+3<6x+7.",options:["x<−2","x>−2","x<2","x>2"],ans:1,why:"-2x<4, divide by -2 and reverse, so x>-2."}
+ ]
+}
+];
+const conceptBriefs=[
+ {title:"Level 1: Solution Scanner",intro:"Dr. AI Briefing: A solution is any value that makes the inequality true.",cards:[["Test method","Substitute the value of x"],["Example","x=2 satisfies x<5"],["Boundary check","x=5 satisfies x≤5"],["JEE use","Testing values helps verify options quickly."]],tip:"Dr. AI Tip: Substitute first, judge later."},
+ {title:"Level 2: Open Circle Gate",intro:"Dr. AI Briefing: Strict inequalities use open circles because the boundary is not included.",cards:[["Signs","< and >"],["Circle","Open circle"],["Example","x<3: open circle at 3"],["Meaning","Boundary value is excluded"]],tip:"Dr. AI Tip: No equality line means open circle."},
+ {title:"Level 3: Closed Circle Gate",intro:"Dr. AI Briefing: Slack inequalities use closed circles because equality is included.",cards:[["Signs","≤ and ≥"],["Circle","Closed circle"],["Example","x≤4: closed circle at 4"],["Meaning","Boundary value is included"]],tip:"Dr. AI Tip: Equality line means closed circle."},
+ {title:"Level 4: Left-Right Shading Battle",intro:"Dr. AI Briefing: Less than shades left; greater than shades right.",cards:[["Left","x<a or x≤a"],["Right","x>a or x≥a"],["Memory","Smaller left, greater right"],["Graph skill","Direction + circle decide the full graph"]],tip:"Dr. AI Tip: Sign direction tells shading direction."},
+ {title:"Level 5: Interval Portal",intro:"Dr. AI Briefing: Interval notation uses parentheses for excluded endpoints and brackets for included endpoints.",cards:[["Excluded","Parentheses ( )"],["Included","Brackets [ ]"],["Infinity","Always parenthesis with ∞"],["Example","x≥2 is [2,∞)"]],tip:"Dr. AI Tip: Open circle = parenthesis, closed circle = bracket."},
+ {title:"Level 6: NCERT Exercise Boss",intro:"Dr. AI Briefing: Solve first, then graph using circle and shading rules.",cards:[["Step 1","Solve inequality"],["Step 2","Check sign flip"],["Step 3","Choose open/closed circle"],["Step 4","Shade left or right"]],tip:"Dr. AI Tip: Algebra answer must match number-line representation."}
+];
+const conceptStoryCuts=[
+ ["Graph Breaker","I will hide fake values in your solution set."],
+ ["Graph Breaker","I will close every circle that should remain open."],
+ ["Graph Breaker","I will open every boundary that equality includes."],
+ ["Graph Breaker","I will push your shading in the wrong direction."],
+ ["Graph Breaker","I will swap brackets and parentheses inside the interval portal."],
+ ["Graph Breaker","This final boss mixes algebra and graphing. One mistake breaks the number line."]
+];
+const notebookSections=[
+ ["Solution Set",["A solution makes the inequality true","Test by substituting x","Example: x=2 satisfies x<5","Boundary values matter in ≤ and ≥"]],
+ ["Open Circle",["Use open circle for < and >","Boundary is not included","x<3: open circle at 3","x>−2: open circle at −2"]],
+ ["Closed Circle",["Use closed circle for ≤ and ≥","Boundary is included","x≤4: closed circle at 4","x≥−3: closed circle at −3"]],
+ ["Shading Direction",["x<a and x≤a shade left","x>a and x≥a shade right","Smaller values lie left","Greater values lie right"]],
+ ["Interval Notation",["Open circle → parenthesis","Closed circle → bracket","x<3 → (−∞,3)","x≥2 → [2,∞)"]],
+ ["NCERT Exercise Patterns",["7x+3<5x+9 ⇒ x<3","3(1−x)<2(x+4) ⇒ x>−1","4x+3<6x+7 ⇒ x>−2","−5x≤−40 ⇒ x≥8"]]
+];
+const hintBank=[
+ ["Solution Scanner Hint 1: Substitute the value into the inequality.","Solution Scanner Hint 2: Check boundary carefully when ≤ or ≥ appears."],
+ ["Open Circle Hint 1: < and > use open circles.","Open Circle Hint 2: Strict inequality means boundary excluded."],
+ ["Closed Circle Hint 1: ≤ and ≥ use closed circles.","Closed Circle Hint 2: Equality line means boundary included."],
+ ["Shading Hint 1: Less than shades left.","Shading Hint 2: Greater than shades right."],
+ ["Interval Hint 1: Open circle means parenthesis.","Interval Hint 2: Closed circle means bracket."],
+ ["Exercise Boss Hint 1: Solve algebra first, then graph.","Exercise Boss Hint 2: If you divide by negative, reverse the sign."]
+];
+const weaponMap={
+ "x=2 satisfies x<5":["🔍","Solution Scanner","Tests values quickly."],
+ "x=5 satisfies x≤5":["🔵","Boundary Check","Recognizes included boundary."],
+ "x=6 satisfies x>3":["➡️","Right-Ray Beam","Detects greater values."],
+ "x=-1 satisfies x+2<3":["🧮","Substitution Key","Verifies inequalities by testing x."],
+ "x<3 uses open circle at 3":["⭕","Open Circle Disk","Marks excluded boundaries."],
+ "x>−2 uses open circle at −2":["🌀","Strict Gate","Keeps boundary open."],
+ "Strict inequalities use open circles":["⚡","Strict Spark","Excludes equality."],
+ "x<5 does not include 5":["🚫","Boundary Blocker","Rejects excluded endpoints."],
+ "x≤4 uses closed circle at 4":["🔵","Closed Circle Core","Includes boundary points."],
+ "x≥−3 uses closed circle at −3":["🟢","Inclusion Orb","Locks included endpoints."],
+ "Slack inequalities use closed circles":["🛡️","Slack Shield","Protects equality."],
+ "x≤8 includes 8":["🔒","Endpoint Lock","Keeps boundary in solution."],
+ "x<5 shades left":["⬅️","Left Shade Blade","Sends solutions left."],
+ "x≤5 shades left":["⬅️","Closed Left Ray","Shades left with boundary."],
+ "x>−1 shades right":["➡️","Right Shade Blaster","Sends solutions right."],
+ "x≥−1 shades right":["➡️","Closed Right Ray","Shades right with boundary."],
+ "x<3 is (−∞,3)":["(","Parenthesis Portal","Converts open endpoints."],
+ "x≤3 is (−∞,3]":["]","Bracket Shield","Converts included endpoints."],
+ "x>2 is (2,∞)":["∞","Infinity Ray","Extends solution to infinity."],
+ "x≥2 is [2,∞)":["[","Interval Lock","Opens the correct interval gate."],
+ "7x+3<5x+9 ⇒ x<3":["🎯","NCERT Solver","Solves exercise inequality quickly."],
+ "3(1−x)<2(x+4) ⇒ x>−1":["🚀","Algebra Booster","Handles brackets and signs."],
+ "4x+3<6x+7 ⇒ x>−2":["🔄","Flip Reminder","Catches negative division."],
+ "−5x≤−40 ⇒ x≥8":["🏆","Final Graph Hammer","Defeats sign-flip graph trap."]
+};
+const powers=[{type:"energy",icon:"💚",label:"Energy +10"},{type:"hint",icon:"💡",label:"Extra Hint"},{type:"shield",icon:"🛡️",label:"Shield"},{type:"time",icon:"⏱️",label:"+10s"}];
+let state={name:"Cadet",level:0,xp:0,energy:100,collected:new Set(),gateOpen:false,combo:0,gameMode:"practice",controlMode:"keyboard",hintsLeft:2,shield:0,weapons:[],timeBonus:0,bossRound:0,bossQ:[],bossHP:100,timer:null,timeLeft:30,stats:{correct:0,wrong:0,hints:0,bossCorrect:0,bossWrong:0,weak:"No major weakness detected"}};
+let player={x:85,y:320,speed:4.2},keys={},mobileDir=null,crystals=[],powerups=[],raf=null,currentBoss=null;
+const board=document.getElementById("board"),playerEl=document.getElementById("player");
+function $(id){return document.getElementById(id)}
+
+function voiceOn(){
+  const t = $("voiceToggle");
+  return !t || t.checked;
+}
+function speak(text, mood="good"){
+  if(!voiceOn() || !("speechSynthesis" in window)) return;
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(text).replace(/<[^>]*>/g,""));
+    const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+    const preferred = voices.find(v => /Google UK English Female|Microsoft Aria|Microsoft Sonia|Natural|English/i.test(v.name))
+      || voices.find(v => /^en/i.test(v.lang))
+      || voices[0];
+    if(preferred) u.voice = preferred;
+    u.rate = mood==="bad" ? 0.96 : 1.04;
+    u.pitch = mood==="bad" ? 0.86 : 1.12;
+    u.volume = 0.9;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function gameSound(type="good"){
+  try{
+    const A = window.AudioContext || window.webkitAudioContext;
+    const ctx = new A();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    if(type==="good"){
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + .16);
+    }else if(type==="power"){
+      osc.frequency.setValueAtTime(330, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + .12);
+      osc.frequency.exponentialRampToValueAtTime(990, ctx.currentTime + .24);
+    }else if(type==="boss"){
+      osc.frequency.setValueAtTime(160, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(360, ctx.currentTime + .28);
+    }else{
+      osc.frequency.setValueAtTime(190, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + .18);
+    }
+    gain.gain.setValueAtTime(.001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.08, ctx.currentTime + .02);
+    gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .28);
+    osc.start(); osc.stop(ctx.currentTime + .30);
+  }catch(e){}
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function openNameModal(){$("nameModal").classList.add("show")}function closeModal(id){$(id).classList.remove("show");if(id==="bossModal")stopBossTimer()}function showHelp(){$("helpModal").classList.add("show")}
+function selectMode(){const p=document.querySelector('input[name="mode"][value="practice"]').checked;$("practiceCard").classList.toggle("active",p);$("challengeCard").classList.toggle("active",!p)}
+function getMode(){return document.querySelector('input[name="mode"]:checked')?.value||"practice"}function setControlMode(m){state.controlMode=m;mobileDir=null;$("controlText").textContent=m==="touch"?"Touch":"Keyboard";$("mobileControls").classList.toggle("show",m==="touch");$("keyboardBtn").classList.toggle("gold",m==="keyboard");$("touchBtn").classList.toggle("gold",m==="touch")}
+function startGame(){state.name=$("studentName").value.trim()||"Cadet";state.level=0;state.xp=0;state.energy=100;state.weapons=[];state.gameMode=getMode();closeModal("nameModal");$("home").classList.remove("active");$("game").classList.add("active");setControlMode(state.controlMode);showConceptRoom(0);updateHud();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);speak("Welcome "+state.name+". I am Dr AI. Your Number Line Defender begins now.","good");gameSound("boss")}
+function goHome(){stopBossTimer();cancelAnimationFrame(raf);$("game").classList.remove("active");$("home").classList.add("active")}
+function restartGame(){closeModal("winModal");state.level=0;state.xp=0;state.energy=100;state.weapons=[];$("home").classList.remove("active");$("game").classList.add("active");showConceptRoom(0)}
+function restartLevel(){state.energy=Math.max(50,state.energy);loadLevel(state.level)}
+function showConceptRoom(i){state.level=i;const c=conceptBriefs[i],s=conceptStoryCuts[i];$("conceptTitle").textContent=c.title;$("conceptIntro").textContent=c.intro;$("conceptCards").innerHTML=c.cards.map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("");$("conceptTip").innerHTML=`<b>${c.tip}</b>`;$("conceptStory").innerHTML=`<b>${s[0]}:</b> ${s[1]}`;$("conceptModal").classList.add("show")}
+function enterArenaAfterConcept(){closeModal("conceptModal");loadLevel(state.level);speak("Arena opened. Collect correct inequality crystals and avoid fake rules.","good");gameSound("power")}
+function loadLevel(i){state.level=i;state.collected=new Set();state.gateOpen=false;state.combo=0;state.hintsLeft=2;state.shield=0;state.timeBonus=0;state.stats={correct:0,wrong:0,hints:0,bossCorrect:0,bossWrong:0,weak:"No major weakness detected"};player.x=82;player.y=board.clientHeight/2;document.querySelectorAll(".crystal,.power").forEach(e=>e.remove());const l=levels[i];$("subtitle").textContent=l.subtitle;$("levelTitle").textContent=l.title;$("goal").textContent=l.goal;$("enemy").textContent=l.enemy;$("badge").textContent=`Collect ${l.required.length} crystals`;$("message").innerHTML=`<b>${state.name}</b>, collect all correct inequality crystals. Avoid fake rules.`;$("gate").classList.remove("open");$("gate").textContent="🔒";renderDialogue();renderList();renderWeapons();spawnCrystals();spawnPowers();updateHud();updatePlayer()}
+function renderDialogue(){const l=levels[state.level];$("dialogueBox").innerHTML=l.dialogue.map(d=>`<div class="chat"><div class="face">${d[0]}</div><div class="bubble"><strong>${d[1]}</strong>${d[2]}</div></div>`).join("");$("guideBox").innerHTML=`<div class="chat"><div class="face">🤖</div><div class="bubble"><strong>Dr. AI</strong>${hintBank[state.level][0]}</div></div>`}
+function renderList(){const l=levels[state.level];$("formulaList").innerHTML=l.required.map(r=>`<div class="pill">${state.collected.has(r.text)?"✅":"🔲"} ${r.text}</div>`).join("")}
+function renderWeapons(){if(!state.weapons.length){$("weaponList").innerHTML='<div class="weapon locked">🔒 No weapons unlocked yet<small>Collect correct crystals to unlock number-line weapons.</small></div>';return}$("weaponList").innerHTML=state.weapons.map(w=>`<div class="weapon unlocked">${w.icon} ${w.name}<small>${w.desc}</small></div>`).join("")}
+function spawnCrystals(){crystals=[];const l=levels[state.level],items=shuffle([...l.required,...l.decoys]);const bw=board.clientWidth,bh=board.clientHeight,top=Math.max(150,bh*.24);const pos=[{x:.24,y:top},{x:.52,y:top+6},{x:.75,y:top},{x:.24,y:bh*.47},{x:.53,y:bh*.49},{x:.75,y:bh*.47},{x:.30,y:bh*.72},{x:.62,y:bh*.74}];items.forEach((it,i)=>{const x=Math.min(Math.max(pos[i].x*bw,105),bw-140),y=Math.min(Math.max(pos[i].y,135),bh-95);const e=document.createElement("div");e.className="crystal "+(it.correct?"correct":"wrong");e.textContent=it.text;e.style.left=x+"px";e.style.top=y+"px";board.appendChild(e);e.onclick=ev=>{ev.stopPropagation();if(state.controlMode==="touch"){player.x=x;player.y=y;updatePlayer()}hitCrystal({el:e,x,y,text:it.text,correct:it.correct,active:true})};crystals.push({el:e,x,y,text:it.text,correct:it.correct,active:true})})}
+function spawnPowers(){powerups=[];shuffle([...powers]).slice(0,2).forEach((p,i)=>{const bw=board.clientWidth,bh=board.clientHeight,ps=[{x:105,y:bh*.22},{x:105,y:bh*.78},{x:bw*.84,y:bh*.62}][i];const e=document.createElement("div");e.className="power";e.innerHTML=`${p.icon}<small>${p.label}</small>`;e.style.left=ps.x+"px";e.style.top=ps.y+"px";board.appendChild(e);powerups.push({...p,el:e,x:ps.x,y:ps.y,active:true})})}
+function hitCrystal(c){if(!c.active)return;c.active=false;c.el.classList.add("collected");setTimeout(()=>c.el.style.display="none",300);if(c.correct){state.collected.add(c.text);state.stats.correct++;state.combo++;state.xp+=40+state.combo*10;let extra="";const w=weaponMap[c.text];if(w&&!state.weapons.find(x=>x.name===w[1])){const nw={icon:w[0],name:w[1],desc:w[2]};state.weapons.push(nw);extra=`<br><span style="color:#bfffd9">🔓 Weapon Unlocked: <b>${nw.icon} ${nw.name}</b></span>`;renderWeapons()}pop(`Combo x${state.combo}`,c.x,c.y,true);$("message").innerHTML=`✅ Correct crystal: <b>${c.text}</b>${extra}`;speak("Great move. Correct inequality crystal collected.","good");gameSound("good")}else{state.combo=0;state.stats.wrong++;board.classList.add("shock");setTimeout(()=>board.classList.remove("shock"),520);const corr=getMistake(c.text);if(state.stats.weak==="No major weakness detected")state.stats.weak=corr.replace("Dr. AI Correction: ","");if(state.shield>0){state.shield--;pop("Shield Saved You",c.x,c.y,true);$("message").innerHTML=`🛡️ Shield blocked damage.<br><b>${c.text}</b><br><span style="color:#ffe2ea">${corr}</span>`;speak("Shield blocked the damage.","good");gameSound("power")}else{state.energy=Math.max(0,state.energy-15);pop("-15 Energy",c.x,c.y,false);$("message").innerHTML=`⚠️ Wrong crystal: <b>${c.text}</b><br><span style="color:#ffe2ea">${corr}</span>`;speak(corr,"bad");gameSound("bad")}if(state.energy<=0)setTimeout(()=>{state.energy=50;loadLevel(state.level)},900)}renderList();if(state.collected.size===levels[state.level].required.length)openGate();updateHud()}
+function getMistake(t){
+ if(t.includes("x=5 satisfies x<5"))return"Dr. AI Correction: x<5 is strict, so 5 is not included.";
+ if(t.includes("x=4 satisfies x>7"))return"Dr. AI Correction: 4 is not greater than 7.";
+ if(t.includes("x=2 satisfies x≥5"))return"Dr. AI Correction: 2 is less than 5, so it does not satisfy x≥5.";
+ if(t.includes("x=3 satisfies x+2<3"))return"Dr. AI Correction: 3+2=5, which is not less than 3.";
+ if(t.includes("closed circle at 3")||t.includes("closed circle at −2"))return"Dr. AI Correction: Strict inequalities < and > use open circles.";
+ if(t.includes("Strict inequalities use closed"))return"Dr. AI Correction: Strict inequalities use open circles.";
+ if(t.includes("x<5 includes 5"))return"Dr. AI Correction: x<5 excludes 5.";
+ if(t.includes("open circle at 4")||t.includes("open circle at −3"))return"Dr. AI Correction: ≤ and ≥ include equality, so use closed circles.";
+ if(t.includes("Slack inequalities use open"))return"Dr. AI Correction: Slack inequalities use closed circles.";
+ if(t.includes("x≤8 excludes 8"))return"Dr. AI Correction: x≤8 includes 8.";
+ if(t.includes("shades right")&&(t.includes("x<")||t.includes("x≤")))return"Dr. AI Correction: Less than inequalities shade left.";
+ if(t.includes("shades left")&&(t.includes("x>")||t.includes("x≥")))return"Dr. AI Correction: Greater than inequalities shade right.";
+ if(t.includes("x<3 is (−∞,3]"))return"Dr. AI Correction: x<3 excludes 3, so use (−∞,3).";
+ if(t.includes("x≤3 is (−∞,3)"))return"Dr. AI Correction: x≤3 includes 3, so use (−∞,3].";
+ if(t.includes("x>2 is [2,∞)"))return"Dr. AI Correction: x>2 excludes 2, so use (2,∞).";
+ if(t.includes("x≥2 is (2,∞)"))return"Dr. AI Correction: x≥2 includes 2, so use [2,∞).";
+ if(t.includes("⇒ x>3"))return"Dr. AI Correction: 7x+3<5x+9 gives x<3.";
+ if(t.includes("⇒ x<−1"))return"Dr. AI Correction: 3(1−x)<2(x+4) gives x>−1.";
+ if(t.includes("⇒ x<−2"))return"Dr. AI Correction: 4x+3<6x+7 gives x>−2 after sign flip.";
+ if(t.includes("⇒ x≤8"))return"Dr. AI Correction: −5x≤−40 gives x≥8 after dividing by negative.";
+ return"Dr. AI Correction: This is a fake number-line rule. Check circle, shading, and interval notation.";
+}
+function openGate(){if(state.gateOpen)return;state.gateOpen=true;$("gate").classList.add("open");$("gate").textContent="🌀";$("message").innerHTML="🌀 Gate opened! Move to the portal for boss challenge.";state.xp+=60;speak("Boss gate opened. Move to the portal for the challenge.","good");gameSound("power");updateHud()}
+function updateHud(){$("hudName").textContent=state.name;$("xp").textContent=state.xp;$("level").textContent=(state.level+1)+"/"+levels.length;$("energyText").textContent=Math.max(0,state.energy)+"%";$("modeText").textContent=state.gameMode==="challenge"?"JEE Challenge":"Practice";$("controlText").textContent=state.controlMode==="touch"?"Touch":"Keyboard";$("hintsHud").textContent=state.hintsLeft;$("shieldHud").textContent=state.shield;$("energyFill").style.width=Math.max(0,state.energy)+"%";$("progressFill").style.width=(state.collected.size/levels[state.level].required.length*100)+"%"}
+function updatePlayer(){playerEl.style.left=player.x+"px";playerEl.style.top=player.y+"px"}
+function loop(){if($("game").classList.contains("active")&&!document.querySelector(".modal.show")){let dx=0,dy=0;if(state.controlMode==="keyboard"){if(keys.ArrowUp||keys.w)dy--;if(keys.ArrowDown||keys.s)dy++;if(keys.ArrowLeft||keys.a)dx--;if(keys.ArrowRight||keys.d)dx++}else{if(mobileDir==="up")dy--;if(mobileDir==="down")dy++;if(mobileDir==="left")dx--;if(mobileDir==="right")dx++}if(dx||dy){const len=Math.hypot(dx,dy)||1;player.x+=(dx/len)*player.speed;player.y+=(dy/len)*player.speed;player.x=Math.max(28,Math.min(board.clientWidth-28,player.x));player.y=Math.max(50,Math.min(board.clientHeight-28,player.y));updatePlayer();checkCollisions();checkPowers();checkGate()}}raf=requestAnimationFrame(loop)}
+function checkCollisions(){crystals.forEach(c=>{if(c.active&&Math.hypot(player.x-c.x,player.y-c.y)<65)hitCrystal(c)})}
+function checkPowers(){powerups.forEach(p=>{if(!p.active)return;if(Math.hypot(player.x-p.x,player.y-p.y)<56){p.active=false;p.el.style.display="none";if(p.type==="energy"){state.energy=Math.min(100,state.energy+10);$("message").innerHTML="💚 Energy Orb: +10 energy.";speak("Energy orb collected. Energy restored.","good");gameSound("power")}if(p.type==="hint"){state.hintsLeft++;$("message").innerHTML="💡 Hint Orb: extra hint added.";speak("Hint orb collected. Extra hint unlocked.","good");gameSound("power")}if(p.type==="shield"){state.shield++;$("message").innerHTML="🛡️ Shield Orb: one wrong move blocked.";speak("Shield orb collected. Protection unlocked.","good");gameSound("power")}if(p.type==="time"){state.timeBonus+=10;$("message").innerHTML="⏱️ Time Freeze: boss timer plus ten seconds.";speak("Time freeze collected. Boss timer extended.","good");gameSound("power")}pop(p.label,p.x,p.y,true);updateHud()}})}
+function checkGate(){if(!state.gateOpen)return;const gx=board.clientWidth-75,gy=board.clientHeight*.58;if(Math.hypot(player.x-gx,player.y-gy)<78)showBoss()}
+function mobileMove(d){if(state.controlMode==="touch")mobileDir=d}window.addEventListener("keydown",e=>{if(state.controlMode!=="keyboard")return;keys[e.key]=true;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key))e.preventDefault()},{passive:false});window.addEventListener("keyup",e=>keys[e.key]=false)
+function pop(text,x,y,good=true){const p=document.createElement("div");p.className="pop";p.style.left=x+"px";p.style.top=y+"px";p.style.background=good?"rgba(53,255,154,.16)":"rgba(255,91,127,.18)";p.textContent=text;board.appendChild(p);setTimeout(()=>p.remove(),900)}
+function useHint(){if(state.hintsLeft<=0){$("message").innerHTML="No hints left.";return}const hint=hintBank[state.level][Math.min(2-state.hintsLeft,1)];state.hintsLeft--;state.stats.hints++;$("guideBox").innerHTML=`<div class="chat"><div class="face">🤖</div><div class="bubble"><strong>Dr. AI Hint</strong>${hint}</div></div>`;$("message").innerHTML=`💡 ${hint}`;speak(hint,"good");gameSound("good");updateHud()}
+function openNotebook(){if($("bossModal").classList.contains("show")){$("bossMistake").innerHTML='<div class="mistake"><b>Notebook Locked:</b><br>Boss Battle Mode. Try from memory.</div>';return}$("notebookContent").innerHTML=notebookSections.map(s=>`<div class="noteSec"><h3>${s[0]}</h3><ul>${s[1].map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");$("notebookModal").classList.add("show")}
+function showBoss(){state.bossRound=0;state.bossQ=shuffle([...levels[state.level].bossPool]);state.bossHP=100;renderBoss();$("bossModal").classList.add("show");speak("Boss battle started. Defeat Graph Breaker.","bad");gameSound("boss")}
+function stopBossTimer(){if(state.timer){clearInterval(state.timer);state.timer=null}}function renderBoss(){currentBoss=state.bossQ[state.bossRound];$("bossTitle").textContent=levels[state.level].title+" Boss";$("bossRound").textContent=`Round ${state.bossRound+1} of 3`;$("bossQuestion").textContent=currentBoss.q;$("bossFeedback").textContent="";$("bossMistake").innerHTML="";$("bossNext").style.display="none";$("bossOptions").innerHTML=currentBoss.options.map((o,i)=>`<div class="option" onclick="answerBoss(${i})">${o}</div>`).join("");updateBossHP();startBossTimer()}
+function updateBossHP(){$("bossHpText").textContent=Math.max(0,state.bossHP)+"%";$("bossFill").style.width=Math.max(0,state.bossHP)+"%"}function startBossTimer(){stopBossTimer();if(state.gameMode!=="challenge"){$("timer").textContent="Timer Off";return}state.timeLeft=30+state.timeBonus;$("timer").textContent=`⏱ ${state.timeLeft}s`;state.timer=setInterval(()=>{state.timeLeft--;$("timer").textContent=`⏱ ${state.timeLeft}s`;if(state.timeLeft<=0){stopBossTimer();timeOutBoss()}},1000)}
+function timeOutBoss(){const opts=[...document.querySelectorAll("#bossOptions .option")];opts.forEach(o=>o.style.pointerEvents="none");opts[currentBoss.ans].classList.add("correct");state.energy=Math.max(0,state.energy-10);state.stats.bossWrong++;$("bossFeedback").innerHTML=`⏰ Time up! ${currentBoss.why}`;$("bossNext").textContent=state.bossRound===2?"Complete Boss":"Next Boss Round";$("bossNext").style.display="inline-block";updateHud()}
+function answerBoss(i){stopBossTimer();const opts=[...document.querySelectorAll("#bossOptions .option")];opts.forEach(o=>o.style.pointerEvents="none");if(i===currentBoss.ans){opts[i].classList.add("correct");state.stats.bossCorrect++;state.bossHP=Math.max(0,state.bossHP-34);state.xp+=80;$("bossFeedback").innerHTML=`✅ Correct! ${currentBoss.why}`;speak("Correct. Graph Breaker is taking damage.","good");gameSound("good");confetti(35);updateBossHP()}else{opts[i].classList.add("wrong");opts[currentBoss.ans].classList.add("correct");state.stats.bossWrong++;state.energy=Math.max(0,state.energy-10);$("bossFeedback").innerHTML=`❌ Not correct. ${currentBoss.why}`;$("bossMistake").innerHTML=`<div class="mistake"><b>Dr. AI:</b><br>${currentBoss.why}</div>`;speak("Wrong answer. "+currentBoss.why,"bad");gameSound("bad")}$("bossNext").textContent=state.bossRound===2?"Complete Boss":"Next Boss Round";$("bossNext").style.display="inline-block";updateHud()}
+function nextAfterBoss(){if(state.bossRound<2){state.bossRound++;renderBoss();return}closeModal("bossModal");showReport()}
+function showReport(){const a=state.stats,b=state.stats.correct+a.wrong+a.bossCorrect+a.bossWrong,c=a.correct+a.bossCorrect,acc=b?Math.round(c/b*100):100;$("reportTitle").textContent=levels[state.level].title+" Report";$("reportIntro").textContent=`${state.name}, mission report by Dr. AI.`;$("reportAccuracy").textContent=`${acc}% (${c}/${b})`;$("reportEnergy").textContent=state.energy+"%";$("reportHints").textContent=a.hints+" used";$("reportWrong").textContent=(a.wrong+a.bossWrong)+" wrong moves";$("reportWeak").textContent=a.weak;$("reportRevision").textContent=a.weak==="No major weakness detected"?"Great. Continue to next level.":a.weak;$("reportContinue").textContent=state.level<levels.length-1?"Next Concept Room":"Finish Game";$("reportModal").classList.add("show")}
+function continueAfterReport(){closeModal("reportModal");if(state.level<levels.length-1){state.level++;showConceptRoom(state.level)}else finishGame()}
+function finishGame(){$("finalText").textContent=`Amazing, ${state.name}! You cleared all 6 levels, defeated Graph Breaker, unlocked ${state.weapons.length} number-line weapons, and earned ${state.xp} XP.`;$("certificateName").value=state.name;$("winModal").classList.add("show");speak("Congratulations "+state.name+". You completed the Number Line Defender.","good");gameSound("power");confetti(100)}
+function confetti(n=70){const colors=["#00eaff","#35ff9a","#ffe066","#ff4cf0","#ff5b7f"];for(let i=0;i<n;i++){const d=document.createElement("div");d.className="confetti";d.style.left=Math.random()*100+"vw";d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*0.35+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}}
+function downloadCertificate(){const c=$("certCanvas"),ctx=c.getContext("2d"),w=c.width,h=c.height,name=$("certificateName").value||state.name||"Number Line Champion";const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,"#060918");g.addColorStop(.5,"#0b2452");g.addColorStop(1,"#19051f");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle="#00eaff";ctx.lineWidth=10;ctx.strokeRect(50,50,w-100,h-100);ctx.textAlign="center";ctx.fillStyle="#ffe066";ctx.font="900 54px Arial";ctx.fillText("Dr AI Academy",w/2,170);ctx.fillStyle="#00eaff";ctx.font="900 42px Arial";ctx.fillText("INEQUALITYVERSE NUMBER LINE CERTIFICATE",w/2,245);ctx.fillStyle="#fff";ctx.font="900 68px Arial";ctx.fillText(name,w/2,420);ctx.fillStyle="#35ff9a";ctx.font="900 42px Arial";ctx.fillText("Number Line Defender",w/2,570);ctx.fillStyle="#ffe066";ctx.font="900 30px Arial";ctx.fillText(`XP: ${state.xp} | Energy: ${state.energy}%`,w/2,705);const a=document.createElement("a");a.download="dr-ai-academy-inequalityverse-number-line-defender-certificate.png";a.href=c.toDataURL("image/png");a.click()}
+setControlMode("keyboard");
+</script>
+</body>
+</html>
