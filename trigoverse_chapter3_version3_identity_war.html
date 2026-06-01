@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NCERT Class 11 Maths Chapter 3: Trigonometric Functions | JEE Foundation Sci‑Fi Game</title>
+<style>
+:root{
+  --bg:#050817;
+  --panel:#0f1736;
+  --cyan:#00eaff;
+  --green:#35ff9a;
+  --pink:#ff4cf0;
+  --gold:#ffe066;
+  --orange:#ff9f1c;
+  --red:#ff5b7f;
+  --text:#eef8ff;
+  --muted:#aab8d6;
+  --line:rgba(255,255,255,.14);
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(255,159,28,.14),transparent 25%),
+    radial-gradient(circle at 85% 3%,rgba(255,76,240,.14),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(0,234,255,.13),transparent 35%),
+    linear-gradient(135deg,#040716 0%,#07112e 58%,#12071f 100%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#00eaff 1px,transparent 1px);
+  background-size:85px 85px,160px 160px;
+  background-position:0 0,40px 60px;
+  opacity:.18;
+  animation:stars 55s linear infinite;
+}
+@keyframes stars{to{background-position:900px 500px,-700px 700px}}
+.watermark{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(-16deg);
+  opacity:.045;
+  z-index:0;
+  pointer-events:none;
+  white-space:nowrap;
+  color:#fff;
+  font-size:clamp(42px,8vw,92px);
+  font-weight:950;
+  letter-spacing:8px;
+  border:2px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:18px 30px;
+}
+.app{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  padding:12px 16px;
+  background:linear-gradient(to bottom,rgba(4,7,22,.96),rgba(4,7,22,.80));
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,234,255,.22);
+}
+.topbar{
+  max-width:1240px;
+  margin:auto;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  position:relative;
+  padding-right:148px;
+}
+.header-brand-label{
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:60;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(3,8,24,.74);
+  border:1px solid rgba(255,255,255,.24);
+  color:#fff;
+  font-weight:950;
+  font-size:13px;
+  letter-spacing:.35px;
+  box-shadow:0 8px 22px rgba(0,0,0,.28),0 0 18px rgba(0,234,255,.12);
+  backdrop-filter:blur(10px);
+  white-space:nowrap;
+}
+.brand h1{
+  margin:0;
+  font-size:clamp(21px,3.4vw,39px);
+  line-height:1.05;
+  text-shadow:0 0 18px rgba(0,234,255,.46);
+}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.hud{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,234,255,.08);
+  border:1px solid rgba(0,234,255,.3);
+  font-weight:900;
+  font-size:13px;
+}
+.chip span{color:var(--green)}
+main{
+  max-width:1240px;
+  width:100%;
+  margin:auto;
+  padding:16px;
+}
+.screen{display:none;animation:fade .24s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border-radius:26px;
+  border:1px solid rgba(0,234,255,.22);
+  background:linear-gradient(145deg,rgba(16,23,53,.94),rgba(7,11,34,.88));
+  box-shadow:0 22px 70px rgba(0,0,0,.34),inset 0 0 30px rgba(0,234,255,.03);
+}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:960px){.grid2,.grid3{grid-template-columns:1fr}.topbar{padding-right:0;padding-top:30px}.header-brand-label{top:0;right:0}}
+.hero-title{
+  font-size:clamp(31px,6vw,68px);
+  line-height:.96;
+  margin:0 0 12px;
+  font-weight:1000;
+  letter-spacing:-1.4px;
+}
+.glow{color:var(--cyan);text-shadow:0 0 24px rgba(0,234,255,.42)}
+.story-text{font-size:16.5px;line-height:1.62;color:#deefff;margin:10px 0}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{
+  border:none;
+  border-radius:14px;
+  padding:12px 16px;
+  cursor:pointer;
+  font-weight:950;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  color:#04101f;
+  box-shadow:0 12px 30px rgba(0,234,255,.22);
+  transition:.18s transform,.18s filter,.18s box-shadow;
+  font-size:15px;
+}
+button:hover{transform:translateY(-2px);filter:saturate(1.15);box-shadow:0 16px 40px rgba(0,234,255,.32)}
+button.secondary{background:rgba(255,255,255,.08);color:var(--text);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+button.gold{background:linear-gradient(135deg,var(--gold),var(--orange))}
+button.danger{background:linear-gradient(135deg,var(--red),var(--pink));color:#fff}
+input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:15px;
+  border:1px solid rgba(0,234,255,.3);
+  background:rgba(0,0,0,.25);
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+.info-card{
+  padding:14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.info-card h3{margin:0 0 7px;color:var(--gold)}
+.info-card p{margin:0;color:#d9e9ff;line-height:1.5}
+.scene-alert{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:17px;
+  background:rgba(255,224,102,.10);
+  border:1px solid rgba(255,224,102,.24);
+  color:#fff6d9;
+  line-height:1.55;
+  font-weight:780;
+}
+.character-list{display:grid;gap:12px}
+.character-card{
+  min-height:92px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  border-radius:21px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.avatar{
+  width:64px;
+  height:64px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,234,255,.08));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 0 24px rgba(0,234,255,.12);
+  flex:0 0 auto;
+}
+.character-card h3{margin:0 0 4px;font-size:19px}
+.character-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.game-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:14px;
+  align-items:start;
+}
+@media(max-width:980px){.game-layout{grid-template-columns:1fr}}
+.game-board{
+  position:relative;
+  height:min(72vh,680px);
+  min-height:540px;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(0,234,255,.26);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(0,234,255,.16),transparent 25%),
+    radial-gradient(circle at 82% 78%,rgba(255,76,240,.17),transparent 28%),
+    linear-gradient(160deg,#07102d,#130720);
+  box-shadow:inset 0 0 45px rgba(0,234,255,.06),0 22px 70px rgba(0,0,0,.36);
+}
+.game-board:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:40px 40px;
+  opacity:.22;
+}
+.player{
+  position:absolute;
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:32px;
+  transform:translate(-50%,-50%);
+  background:linear-gradient(145deg,rgba(255,224,102,.25),rgba(0,234,255,.20));
+  border:2px solid rgba(255,255,255,.22);
+  box-shadow:0 0 25px rgba(255,224,102,.28),0 0 30px rgba(0,234,255,.20);
+  z-index:5;
+  user-select:none;
+}
+.crystal{
+  position:absolute;
+  width:170px;
+  min-height:62px;
+  border-radius:20px;
+  padding:10px 12px;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(0,234,255,.08));
+  box-shadow:0 0 22px rgba(0,234,255,.16);
+  color:#fff;
+  font-weight:950;
+  line-height:1.2;
+  z-index:3;
+}
+.crystal:before{
+  content:"💎";
+  margin-right:6px;
+  filter:drop-shadow(0 0 8px rgba(0,234,255,.5));
+}
+.crystal.correct{
+  border-color:rgba(53,255,154,.55);
+  box-shadow:0 0 26px rgba(53,255,154,.24);
+}
+.crystal.wrong{
+  border-color:rgba(255,91,127,.45);
+  box-shadow:0 0 26px rgba(255,91,127,.18);
+}
+.gate{
+  position:absolute;
+  right:32px;
+  top:50%;
+  transform:translateY(-50%);
+  width:96px;
+  height:170px;
+  border-radius:48px;
+  border:4px solid rgba(255,224,102,.45);
+  background:radial-gradient(circle at 50% 50%,rgba(255,224,102,.18),rgba(255,76,240,.08),rgba(0,0,0,.15));
+  box-shadow:0 0 35px rgba(255,224,102,.25),inset 0 0 30px rgba(255,224,102,.12);
+  display:grid;
+  place-items:center;
+  font-size:44px;
+  z-index:2;
+  opacity:.58;
+  filter:grayscale(.4);
+}
+.gate.open{
+  opacity:1;
+  filter:none;
+  border-color:var(--green);
+  box-shadow:0 0 40px rgba(53,255,154,.38),inset 0 0 30px rgba(53,255,154,.18);
+}
+.enemy{
+  position:absolute;
+  left:190px;
+  right:18px;
+  top:14px;
+  transform:none;
+  min-height:40px;
+  max-height:56px;
+  padding:9px 13px;
+  border-radius:16px;
+  background:rgba(255,91,127,.13);
+  border:1px solid rgba(255,91,127,.34);
+  color:#ffdbe5;
+  font-weight:950;
+  line-height:1.25;
+  text-align:left;
+  z-index:7;
+  white-space:normal;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+  pointer-events:none;
+}
+.mini-message{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  width:min(92%,720px);
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(3,8,24,.78);
+  border:1px solid rgba(0,234,255,.25);
+  color:#e7f5ff;
+  z-index:6;
+  line-height:1.45;
+  box-shadow:0 12px 32px rgba(0,0,0,.32);
+}
+.side-panel{
+  display:grid;
+  gap:12px;
+}
+.energy-bar,.progress-bar{
+  height:14px;
+  background:rgba(255,255,255,.10);
+  border-radius:999px;
+  overflow:hidden;
+}
+.energy-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--green));
+  transition:.2s;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));
+  transition:.2s;
+}
+.formula-list{
+  display:grid;
+  gap:8px;
+}
+.formula-pill{
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:#d9e9ff;
+  font-weight:800;
+  font-size:13px;
+}
+.dialogue{
+  display:grid;
+  gap:10px;
+  max-height:260px;
+  overflow:auto;
+}
+.chat{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:9px;
+  align-items:start;
+}
+.chat .face{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(0,234,255,.11);
+  border:1px solid rgba(255,255,255,.12);
+}
+.chat .bubble{
+  padding:10px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  line-height:1.45;
+  color:#e7f5ff;
+}
+.chat strong{color:#fff;display:block;margin-bottom:2px}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.76);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  z-index:80;
+}
+.modal.show{display:flex}
+.modal-card{
+  max-width:780px;
+  width:100%;
+  border-radius:30px;
+  padding:25px;
+  border:1px solid rgba(0,234,255,.36);
+  background:radial-gradient(circle at 10% 0%,rgba(255,224,102,.16),transparent 30%),linear-gradient(145deg,#0b1230,#111d47);
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+.rank{
+  font-size:clamp(32px,7vw,54px);
+  font-weight:1000;
+  color:var(--gold);
+  text-shadow:0 0 24px rgba(255,224,102,.4);
+  line-height:1;
+}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+@media(max-width:640px){.options{grid-template-columns:1fr}}
+.option{
+  min-height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:13px;
+  border-radius:16px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  cursor:pointer;
+  font-weight:900;
+}
+.option:hover{border-color:rgba(0,234,255,.42);background:rgba(0,234,255,.10)}
+.option.correct{background:rgba(53,255,154,.20);border-color:var(--green)}
+.option.wrong{background:rgba(255,91,127,.20);border-color:var(--red)}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;font-weight:700}
+.footer a{color:var(--cyan);text-decoration:none}
+.confetti{position:fixed;width:10px;height:16px;top:-20px;z-index:90;animation:fall 2s ease-in forwards;border-radius:3px}
+@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:0}}
+kbd{
+  display:inline-block;
+  padding:2px 6px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-weight:900;
+}
+.mobile-controls{
+  display:none;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.mobile-controls button{min-width:58px}
+@media(max-width:820px){
+  .mobile-controls{display:flex}
+  .game-board{height:640px;min-height:640px}
+  .crystal{width:145px;font-size:13px}
+}
+
+@media(max-width:820px){
+  .enemy{
+    left:12px;
+    right:12px;
+    top:58px;
+    max-height:70px;
+    font-size:13px;
+    padding:9px 11px;
+    text-align:center;
+    justify-content:center;
+  }
+  .mission-badge{
+    font-size:12px;
+    padding:8px 10px;
+  }
+}
+
+canvas{display:none}
+
+.voice-toggle{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  font-weight:900;
+  user-select:none;
+}
+.voice-toggle input{
+  width:auto;
+  accent-color:#35ff9a;
+}
+.combo-pop{
+  position:absolute;
+  z-index:20;
+  pointer-events:none;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(53,255,154,.16);
+  border:1px solid rgba(53,255,154,.42);
+  color:#dffff0;
+  font-weight:1000;
+  transform:translate(-50%,-50%);
+  animation:popFloat .9s ease-out forwards;
+}
+@keyframes popFloat{
+  0%{opacity:0;transform:translate(-50%,-30%) scale(.85)}
+  20%{opacity:1;transform:translate(-50%,-60%) scale(1.08)}
+  100%{opacity:0;transform:translate(-50%,-110%) scale(1)}
+}
+.shock{
+  animation:shock .24s linear 2;
+}
+@keyframes shock{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-6px,3px)}
+  50%{transform:translate(5px,-3px)}
+  75%{transform:translate(-3px,-4px)}
+}
+.crystal.collected{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(1.7);
+  transition:.32s ease;
+}
+.laser-blast{
+  position:absolute;
+  height:5px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ffe066,#00eaff,#35ff9a);
+  box-shadow:0 0 18px #00eaff;
+  transform-origin:left center;
+  z-index:18;
+  animation:blast .45s ease-out forwards;
+}
+@keyframes blast{
+  from{opacity:0;width:0}
+  25%{opacity:1}
+  to{opacity:0;width:260px}
+}
+.mission-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:7;
+  padding:9px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,.34);
+  border:1px solid rgba(255,255,255,.16);
+  color:#fff;
+  font-weight:950;
+  backdrop-filter:blur(8px);
+}
+
+
+.concept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+@media(max-width:760px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.concept-card h3{margin:0 0 7px;color:var(--gold)}
+.concept-card p{margin:0;color:#dff2ff;line-height:1.55}
+.notebook-btn{position:absolute;left:14px;bottom:14px;z-index:8;padding:9px 12px;border-radius:999px;background:rgba(0,234,255,.12);border:1px solid rgba(0,234,255,.30);color:#eaffff;font-weight:950;cursor:pointer;backdrop-filter:blur(8px)}
+.notebook-btn:hover{background:rgba(0,234,255,.20)}
+.notebook-section{margin:12px 0;padding:13px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+.notebook-section h3{margin:0 0 8px;color:var(--gold)}
+.notebook-section ul{margin:0;padding-left:20px;color:#e7f5ff;line-height:1.6}
+.mistake-box{margin-top:12px;padding:12px 14px;border-radius:16px;background:rgba(255,91,127,.12);border:1px solid rgba(255,91,127,.32);color:#ffe2ea;line-height:1.55}
+.boss-round-pill{display:inline-block;margin-bottom:8px;padding:6px 10px;border-radius:999px;background:rgba(255,224,102,.12);border:1px solid rgba(255,224,102,.28);color:#fff3bf;font-weight:950}
+
+
+.mode-select{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:14px;
+}
+@media(max-width:700px){.mode-select{grid-template-columns:1fr}}
+.mode-card{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  cursor:pointer;
+}
+.mode-card.active{
+  border-color:rgba(0,234,255,.48);
+  background:rgba(0,234,255,.10);
+  box-shadow:0 0 20px rgba(0,234,255,.10);
+}
+.mode-card input{margin-right:8px}
+.mode-card h3{margin:0 0 6px;color:var(--gold)}
+.mode-card p{margin:0;color:#dcecff;line-height:1.45;font-size:14px}
+.hint-note{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(0,234,255,.08);
+  border:1px solid rgba(0,234,255,.24);
+  color:#dff7ff;
+  line-height:1.5;
+}
+.report-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:14px;
+}
+@media(max-width:760px){.report-grid{grid-template-columns:1fr}}
+.report-card{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.13);
+}
+.report-card h3{margin:0 0 7px;color:var(--gold)}
+.report-card p{margin:0;color:#e7f5ff;line-height:1.55}
+.timer-pill{
+  display:inline-block;
+  margin-left:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,91,127,.12);
+  border:1px solid rgba(255,91,127,.30);
+  color:#ffe2ea;
+  font-weight:950;
+}
+.lock-note{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,91,127,.12);
+  border:1px solid rgba(255,91,127,.28);
+  color:#ffe2ea;
+  line-height:1.5;
+}
+
+
+/* Notebook and modal visibility fixes */
+.modal{
+  overflow-y:auto;
+  align-items:flex-start;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.modal-card{
+  max-height:92vh;
+  overflow-y:auto;
+  scrollbar-width:thin;
+}
+#notebookModal .modal-card{
+  max-width:960px;
+  max-height:92vh;
+  overflow-y:auto;
+  position:relative;
+  padding-top:24px;
+}
+#notebookModal .controls{
+  position:sticky;
+  bottom:0;
+  background:linear-gradient(to top,rgba(11,18,48,.98),rgba(11,18,48,.88));
+  padding-top:12px;
+  margin-top:14px;
+  z-index:5;
+}
+.notebook-topbar{
+  position:sticky;
+  top:-1px;
+  z-index:6;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding-bottom:12px;
+  margin-bottom:8px;
+  background:linear-gradient(to bottom,rgba(11,18,48,.98),rgba(11,18,48,.90));
+}
+.notebook-topbar h2{
+  margin:0;
+}
+.notebook-close{
+  border:none;
+  border-radius:999px;
+  padding:9px 12px;
+  cursor:pointer;
+  font-weight:950;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+}
+.notebook-close:hover{
+  background:rgba(255,255,255,.14);
+}
+
+
+/* Game upgrade: weapons, boss health, power-ups */
+.weapon-list{display:grid;gap:8px}
+.weapon-item{
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:#dff3ff;
+  font-weight:850;
+  line-height:1.35;
+}
+.weapon-item small{display:block;color:#9fdfff;font-weight:700;margin-top:2px}
+.weapon-item.locked{opacity:.55;filter:grayscale(.25)}
+.weapon-item.unlocked{
+  border-color:rgba(53,255,154,.45);
+  background:rgba(53,255,154,.10);
+  box-shadow:0 0 18px rgba(53,255,154,.12);
+}
+.boss-health-wrap{margin:10px 0 12px}
+.boss-health-label{
+  display:flex;justify-content:space-between;align-items:center;
+  color:#fff3bf;font-weight:950;font-size:14px;margin-bottom:6px
+}
+.boss-health-bar{
+  height:14px;border-radius:999px;overflow:hidden;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.13)
+}
+.boss-health-fill{
+  height:100%;width:100%;
+  background:linear-gradient(90deg,#ff5b7f,#ff9f1c,#ffe066);
+  transition:.35s ease;
+}
+.powerup{
+  position:absolute;
+  width:64px;height:64px;border-radius:20px;
+  display:grid;place-items:center;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 0 24px rgba(0,234,255,.14);
+  z-index:3;
+  user-select:none;
+  font-size:28px;
+  text-align:center;
+  line-height:1;
+  padding:8px;
+}
+.powerup.energy{background:linear-gradient(145deg,rgba(53,255,154,.18),rgba(255,224,102,.10))}
+.powerup.hint{background:linear-gradient(145deg,rgba(0,234,255,.18),rgba(255,255,255,.08))}
+.powerup.shield{background:linear-gradient(145deg,rgba(255,224,102,.18),rgba(255,159,28,.10))}
+.powerup.time{background:linear-gradient(145deg,rgba(255,76,240,.18),rgba(0,234,255,.08))}
+.powerup-label{
+  position:absolute;top:52px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;font-size:10px;font-weight:900;color:#fff
+}
+.shield-pop{
+  position:absolute;z-index:15;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  padding:10px 14px;border-radius:999px;
+  background:rgba(255,224,102,.18);border:1px solid rgba(255,224,102,.42);
+  color:#fff5ce;font-weight:1000;animation:popFloat .9s ease-out forwards;
+}
+.story-cut{margin-top:10px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+.story-cut strong{color:var(--gold)}
+
+</style>
+</head>
+<body>
+<div class="watermark">Dr AI Academy</div>
+<div class="app">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>TrigoVerse: Identity War</h1>
+      <p>NCERT Class 11 Maths Chapter 3: Trigonometric Functions | JEE Foundation Sci‑Fi Game</p>
+    </div>
+    <div class="hud">
+      <div class="chip">Cadet: <span id="hudName">Guest</span></div>
+      <div class="chip">XP: <span id="xp">0</span></div>
+      <div class="chip">Level: <span id="level">1/8</span></div>
+      <div class="chip">Energy: <span id="energyText">100%</span></div>
+      <div class="chip">Mode: <span id="modeText">Practice</span></div>
+      <div class="chip">Hints: <span id="hintsHud">2</span></div>
+      <div class="chip">Shield: <span id="shieldHud">0</span></div>
+      <label class="voice-toggle"><input id="voiceToggle" type="checkbox" checked/> Voice</label>
+    </div>
+    <div class="header-brand-label">Dr AI Academy</div>
+  </div>
+</header>
+
+<main>
+  <section id="screen-home" class="screen active">
+    <div class="grid2">
+      <div class="panel">
+        <h1 class="hero-title">Play the <span class="glow">Identity Arena</span></h1>
+        <p class="story-text">
+          This is the full playable browser game. Move the character inside sci-fi arenas, collect the correct formula crystals,
+          avoid wrong identities, open the gate, and defeat the boss with a JEE-style question.
+        </p>
+        <div class="grid3">
+          <div class="info-card"><h3>Move</h3><p>Use <kbd>WASD</kbd> or arrow keys. On mobile, use the buttons below the arena.</p></div>
+          <div class="info-card"><h3>Collect</h3><p>Touch the correct formula crystal. Wrong crystals reduce energy.</p></div>
+          <div class="info-card"><h3>Boss</h3><p>After all correct crystals, enter the gate and solve the boss question.</p></div>
+          <div class="info-card"><h3>Voice Feedback</h3><p>Good moves, bad moves and boss battles trigger short voice feedback. You can turn it off from the header.</p></div>
+        </div>
+        <div class="scene-alert" id="homeNote">Enter your name and start Level 1: Mirror Chamber. Dr. AI will guide you through every mission.</div>
+        <div class="controls">
+          <button onclick="openNameModal()">Start Game</button>
+          <button class="secondary" onclick="showHowToPlay()">How to Play</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="character-list">
+          <div class="character-card"><div class="avatar">🤖</div><div><h3>Dr. AI</h3><p>Your guide and mentor. Dr. AI explains the mission, gives hints, and instructs the player step by step.</p></div></div>
+          <div class="character-card"><div class="avatar">🧪</div><div><h3>Formula Ranger</h3><p>Helps you identify correct formula crystals and pattern-based JEE shortcuts.</p></div></div>
+          <div class="character-card"><div class="avatar">🕳️</div><div><h3>Formula Phantom</h3><p>The main villain who places fake identities, confusing traps and boss questions to drain your energy.</p></div></div>
+        </div>
+        <div class="scene-alert" style="background:rgba(255,91,127,.10);border-color:rgba(255,91,127,.25);color:#ffdbe5">
+          Full game includes 8 playable JEE-focused levels with formula crystals, boss battles, XP, energy and certificates.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-game" class="screen">
+    <div class="game-layout">
+      <div>
+        <div class="game-board" id="gameBoard">
+          <div class="mission-badge" id="missionBadge">Collect 3 crystals</div>
+          <div class="enemy" id="enemyLabel">👹 Formula Phantom: Find the true identity!</div>
+          <div class="player" id="player">🧑‍🚀</div>
+          <div class="gate" id="gate">🔒</div>
+          <div class="mini-message" id="messageBox">Collect the correct formula crystals to open the gate.</div>
+        </div>
+        <div class="mobile-controls">
+          <button class="secondary" onpointerdown="mobileMove('up')" onpointerup="mobileMove(null)">↑</button>
+          <button class="secondary" onpointerdown="mobileMove('left')" onpointerup="mobileMove(null)">←</button>
+          <button class="secondary" onpointerdown="mobileMove('down')" onpointerup="mobileMove(null)">↓</button>
+          <button class="secondary" onpointerdown="mobileMove('right')" onpointerup="mobileMove(null)">→</button>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="panel">
+          <div class="episode" id="levelSubtitle">Level 1</div>
+          <h2 id="levelTitle" style="margin:0 0 8px">Mirror Chamber</h2>
+          <p class="story-text" id="levelGoal">Collect odd-even identity crystals.</p>
+          <div class="energy-bar"><div class="energy-fill" id="energyFill"></div></div>
+          <p class="story-text" style="margin-bottom:6px">Progress</p>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="controls">
+            <button class="secondary" onclick="restartLevel()">Restart Level</button>
+            <button class="secondary" onclick="useHint()">Ask Dr. AI Hint</button>
+            <button class="secondary" onclick="openNotebook()">Formula Notebook</button>
+            <button class="secondary" onclick="goHome()">Home</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--gold)">Correct crystals needed</h3>
+          <div class="formula-list" id="formulaList"></div>
+        </div>
+
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--gold)">Unlocked Formula Weapons</h3>
+          <div class="weapon-list" id="weaponList"></div>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--gold)">Dr. AI Guide</h3>
+          <div class="dialogue" id="guideBox">
+            <div class="chat"><div class="face">🤖</div><div class="bubble"><strong>Dr. AI</strong>Read the mission goal first, then collect only the correct formula crystals.</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--gold)">Story Dialogue</h3>
+          <div class="dialogue" id="dialogueBox"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  Copyright © Dr AI Academy &nbsp;
+  <a href="https://courses.draiacademy.com" target="_blank" rel="noopener">Learn AI @ Dr AI Academy</a>
+</footer>
+</div>
+
+<div class="modal" id="nameModal">
+  <div class="modal-card">
+    <div class="rank">Welcome Cadet</div>
+    <h2>What should the team call you?</h2>
+    <p class="story-text">Enter your name to start the playable Identity Arena.</p>
+    <input id="studentNameInput" placeholder="Enter student name"/>
+    <div class="mode-select">
+      <label class="mode-card active" id="modePracticeCard">
+        <input type="radio" name="gameMode" value="practice" checked onchange="selectModeCard()"/>
+        <h3>Practice Mode</h3>
+        <p>No timer in boss battle. Best for learning and revision.</p>
+      </label>
+      <label class="mode-card" id="modeChallengeCard">
+        <input type="radio" name="gameMode" value="challenge" onchange="selectModeCard()"/>
+        <h3>JEE Challenge Mode</h3>
+        <p>30-second timer in each boss round for exam-like pressure.</p>
+      </label>
+    </div>
+    <div class="hint-note">Dr. AI Note: Formula Notebook stays inside the game as an overlay. During boss battle it will remain locked.</div>
+    <div class="controls">
+      <button onclick="startGame()">Start Arena</button>
+      <button class="secondary" onclick="closeModal('nameModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="conceptModal">
+  <div class="modal-card">
+    <div class="rank">Concept Unlock Room</div>
+    <h2 id="conceptTitle">Dr. AI Mission Briefing</h2>
+    <p class="story-text" id="conceptIntro"></p>
+    <div class="concept-grid" id="conceptCards"></div>
+    <div class="scene-alert" id="conceptTip"></div>
+    <div class="story-cut" id="conceptStoryCut"></div>
+    <div class="controls">
+      <button onclick="enterArenaAfterConcept()">Enter Arena</button>
+      <button class="secondary" onclick="openNotebook()">Open Formula Notebook</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="notebookModal">
+  <div class="modal-card">
+    <div class="notebook-topbar">
+      <div>
+        <div class="rank">Formula Notebook</div>
+        <h2>JEE Trigonometry Quick Revision</h2>
+      </div>
+      <button class="notebook-close" onclick="closeModal('notebookModal')">✕ Close</button>
+    </div>
+    <p class="story-text">Use this notebook during levels for revision. During boss battles, try to answer from memory.</p>
+    <div id="notebookContent"></div>
+    <div class="controls">
+      <button onclick="closeModal('notebookModal')">Back to Game</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="bossModal">
+  <div class="modal-card">
+    <div class="rank">Boss Gate</div>
+    <h2 id="bossTitle">Formula Phantom Challenge</h2>
+    <div class="boss-round-pill" id="bossRoundLabel">Round 1</div><div class="timer-pill" id="bossTimerPill">Timer Off</div>
+    <div class="boss-health-wrap"><div class="boss-health-label"><span>Formula Phantom HP</span><span id="bossHpText">100%</span></div><div class="boss-health-bar"><div class="boss-health-fill" id="bossHealthFill"></div></div></div>
+    <p class="story-text" id="bossQuestion"></p>
+    <div class="options" id="bossOptions"></div>
+    <p class="story-text" id="bossFeedback"></p>
+    <div id="bossMistakeBox"></div>
+    <div class="controls">
+      <button id="bossNext" onclick="nextAfterBoss()" style="display:none">Continue</button>
+      <button class="secondary" onclick="closeModal('bossModal')">Back to Arena</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="reportModal">
+  <div class="modal-card">
+    <div class="rank">Level Completion Report</div>
+    <h2 id="reportTitle">Mission Report</h2>
+    <p class="story-text" id="reportIntro"></p>
+    <div class="report-grid">
+      <div class="report-card"><h3>Accuracy</h3><p id="reportAccuracy"></p></div>
+      <div class="report-card"><h3>Energy Remaining</h3><p id="reportEnergy"></p></div>
+      <div class="report-card"><h3>Hints Used</h3><p id="reportHints"></p></div>
+      <div class="report-card"><h3>Wrong Moves</h3><p id="reportWrong"></p></div>
+      <div class="report-card"><h3>Weak Area</h3><p id="reportWeak"></p></div>
+      <div class="report-card"><h3>Suggested Revision</h3><p id="reportRevision"></p></div>
+    </div>
+    <div class="controls">
+      <button id="reportContinueBtn" onclick="continueAfterReport()">Continue</button>
+      <button class="secondary" onclick="closeModal('reportModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="winModal">
+  <div class="modal-card">
+    <div class="rank">Identity Arena Complete</div>
+    <h2>Dr. AI Formula Warrior Championship 🎉</h2>
+    <p class="story-text" id="finalText"></p>
+    <input id="certificateName" value="Formula Warrior"/>
+    <div class="controls">
+      <button onclick="downloadCertificate()">Download Certificate</button>
+      <button class="secondary" onclick="restartGame()">Play Again</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="helpModal">
+  <div class="modal-card">
+    <div class="rank">How to Play</div>
+    <p class="story-text">
+      Move with <kbd>WASD</kbd> or arrow keys. Touch correct formula crystals to collect them.
+      Wrong crystals reduce energy. Once all correct crystals are collected, the gate opens.
+      Enter the gate and answer the boss question.
+    </p>
+    <div class="controls"><button onclick="closeModal('helpModal')">Got it</button></div>
+  </div>
+</div>
+
+<canvas id="certCanvas" width="1600" height="1131"></canvas>
+
+<script>
+const levels = [
+  {
+    title:"Mirror Chamber",
+    subtitle:"Level 1 of 8",
+    goal:"Collect odd-even identity crystals and avoid fake mirror formulas.",
+    enemy:"👹 Formula Phantom: The mirror will confuse your signs!",
+    dialogue:[
+      ["🤖","Dr. AI","Mirror angles are here. Some formulas change sign and some stay the same."],
+      ["🧪","Formula Ranger","Collect sin(-x), cos(-x), and tan(-x) crystals correctly."],
+      ["🛡️","Proof Bot","This level builds the base for sign manipulation in JEE trig."]
+    ],
+    required:[
+      {text:"sin(-x) = -sin x", correct:true},
+      {text:"cos(-x) = cos x", correct:true},
+      {text:"tan(-x) = -tan x", correct:true},
+      {text:"sec(-x) = sec x", correct:true}
+    ],
+    decoys:[
+      {text:"sin(-x) = sin x", correct:false},
+      {text:"cos(-x) = -cos x", correct:false},
+      {text:"tan(-x) = tan x", correct:false},
+      {text:"cosec(-x) = cosec x", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: Which trigonometric function is even?", options:["sin x","cos x","tan x","cosec x"], ans:1, why:"cos(-x)=cos x, so cosine is even."},
+      {q:"JEE Boss: sin(-30°) equals:", options:["1/2","-1/2","√3/2","-√3/2"], ans:1, why:"sin(-30°)=-sin30°=-1/2."},
+      {q:"JEE Boss: cos(-60°) equals:", options:["-1/2","1/2","-√3/2","√3/2"], ans:1, why:"cos is even, so cos(-60°)=cos60°=1/2."}
+    ]
+  },
+  {
+    title:"Quadrant Sign Battle",
+    subtitle:"Level 2 of 8",
+    goal:"Collect correct quadrant sign rules and defeat sign traps.",
+    enemy:"👹 Formula Phantom: I have changed the signs in every quadrant!",
+    dialogue:[
+      ["🧭","Quadrant Ranger","Signs are the fastest way to eliminate wrong JEE options."],
+      ["🤖","Dr. AI","Remember ASTC: All, Sin, Tan, Cos positive in quadrants I, II, III, IV."],
+      ["🛡️","Proof Bot","Use coordinates: sin follows y, cos follows x, tan follows their ratio."]
+    ],
+    required:[
+      {text:"QI: all positive", correct:true},
+      {text:"QII: sin positive", correct:true},
+      {text:"QIII: tan positive", correct:true},
+      {text:"QIV: cos positive", correct:true}
+    ],
+    decoys:[
+      {text:"QII: cos positive", correct:false},
+      {text:"QIII: sin positive", correct:false},
+      {text:"QIV: tan positive", correct:false},
+      {text:"QI: only sin positive", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: sin120° is:", options:["Positive","Negative","Zero","Undefined"], ans:0, why:"120° lies in quadrant II where sine is positive."},
+      {q:"JEE Boss: tan210° is:", options:["Positive","Negative","Zero","Undefined"], ans:0, why:"210° lies in quadrant III where tangent is positive."},
+      {q:"JEE Boss: cos300° is:", options:["Positive","Negative","Zero","Undefined"], ans:0, why:"300° lies in quadrant IV where cosine is positive."}
+    ]
+  },
+  {
+    title:"Fusion Gate",
+    subtitle:"Level 3 of 8",
+    goal:"Collect sine and cosine sum-difference formula crystals.",
+    enemy:"👹 Formula Phantom: The middle signs are your trap!",
+    dialogue:[
+      ["🧪","Formula Ranger","Two angle crystals are fusing: x and y."],
+      ["🤖","Dr. AI","Sine keeps the outside sign. Cosine flips the middle sign."],
+      ["🛡️","Proof Bot","These formulas unlock sin15°, sin75°, cos15° and cos75°."]
+    ],
+    required:[
+      {text:"sin(x+y)=sinx cosy+cosx siny", correct:true},
+      {text:"sin(x-y)=sinx cosy-cosx siny", correct:true},
+      {text:"cos(x+y)=cosx cosy-sinx siny", correct:true},
+      {text:"cos(x-y)=cosx cosy+sinx siny", correct:true}
+    ],
+    decoys:[
+      {text:"sin(x+y)=sinx cosy-cosx siny", correct:false},
+      {text:"sin(x-y)=sinx cosy+cosx siny", correct:false},
+      {text:"cos(x+y)=cosx cosy+sinx siny", correct:false},
+      {text:"cos(x-y)=cosx cosy-sinx siny", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: sin(x+y) equals:", options:["sinx cosy - cosx siny","sinx cosy + cosx siny","cosx cosy - sinx siny","cosx cosy + sinx siny"], ans:1, why:"sin(x+y)=sinx cosy + cosx siny."},
+      {q:"JEE Boss: cos(x-y) equals:", options:["cosx cosy-sinx siny","cosx cosy+sinx siny","sinx cosy-cosx siny","sinx cosy+cosx siny"], ans:1, why:"cos(x-y)=cosx cosy+sinx siny."},
+      {q:"JEE Boss: sin75° should be expanded as:", options:["sin(45°-30°)","sin(45°+30°)","cos(45°-30°)","tan(45°+30°)"], ans:1, why:"75°=45°+30°, so use sin(45°+30°)."}
+    ]
+  },
+  {
+    title:"Tangent Portal",
+    subtitle:"Level 4 of 8",
+    goal:"Collect tangent sum-difference identities and avoid denominator traps.",
+    enemy:"👹 Formula Phantom: Plus above, minus below — or is it?",
+    dialogue:[
+      ["🧪","Formula Ranger","The tangent formulas are fractions. The denominator sign is the danger zone."],
+      ["🤖","Dr. AI","For tan(x+y), top has plus and bottom has minus."],
+      ["🛡️","Proof Bot","For tan(x-y), top has minus and bottom has plus."]
+    ],
+    required:[
+      {text:"tan(x+y)=(tanx+tany)/(1-tanx tany)", correct:true},
+      {text:"tan(x-y)=(tanx-tany)/(1+tanx tany)", correct:true},
+      {text:"tan2x=2tanx/(1-tan²x)", correct:true},
+      {text:"tan45° = 1", correct:true}
+    ],
+    decoys:[
+      {text:"tan(x+y)=(tanx+tany)/(1+tanx tany)", correct:false},
+      {text:"tan(x-y)=(tanx-tany)/(1-tanx tany)", correct:false},
+      {text:"tan2x=2tanx/(1+tan²x)", correct:false},
+      {text:"tan60° = 1", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: Denominator of tan(x+y) is:", options:["1+tanx tany","1-tanx tany","tanx+tany","tanx-tany"], ans:1, why:"tan(x+y)=(tanx+tany)/(1-tanx tany)."},
+      {q:"JEE Boss: tan75° can be written as:", options:["tan(45°+30°)","tan(45°-30°)","tan(60°-45°)","tan(90°-15°)"], ans:0, why:"75°=45°+30°."},
+      {q:"JEE Boss: tan(x-y) denominator is:", options:["1-tanx tany","1+tanx tany","tanx-tany","tanx+tany"], ans:1, why:"tan(x-y)=(tanx-tany)/(1+tanx tany)."}
+    ]
+  },
+  {
+    title:"Double-Angle Reactor",
+    subtitle:"Level 5 of 8",
+    goal:"Collect double-angle power crystals.",
+    enemy:"👹 Formula Phantom: The reactor doubles every angle!",
+    dialogue:[
+      ["🤖","Dr. AI","This reactor needs sin2x, cos2x and tan2x power crystals."],
+      ["🧪","Formula Ranger","cos2x has multiple valid forms. Choose true ones only."],
+      ["🛡️","Proof Bot","Double-angle formulas are high-frequency JEE tools."]
+    ],
+    required:[
+      {text:"sin2x = 2sinx cosx", correct:true},
+      {text:"cos2x = cos²x - sin²x", correct:true},
+      {text:"cos2x = 1 - 2sin²x", correct:true},
+      {text:"tan2x = 2tanx/(1-tan²x)", correct:true}
+    ],
+    decoys:[
+      {text:"sin2x = sinx cosx", correct:false},
+      {text:"cos2x = cos²x + sin²x", correct:false},
+      {text:"cos2x = 1 + 2sin²x", correct:false},
+      {text:"tan2x = 2tanx/(1+tan²x)", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: sin2x equals:", options:["sinx cosx","2sinx cosx","2sin²x","cos²x-sin²x"], ans:1, why:"sin2x = 2sinx cosx."},
+      {q:"JEE Boss: If sinx=3/5, then cos2x equals:", options:["7/25","-7/25","24/25","-24/25"], ans:0, why:"cos2x=1-2sin²x=1-18/25=7/25."},
+      {q:"JEE Boss: Which is a valid form of cos2x?", options:["1+2sin²x","2cos²x-1","2tan²x-1","sin²x+cos²x"], ans:1, why:"cos2x=2cos²x-1."}
+    ]
+  },
+  {
+    title:"Triple-Angle Core",
+    subtitle:"Level 6 of 8",
+    goal:"Collect triple-angle identity crystals.",
+    enemy:"👹 Formula Phantom: Triple frequency means triple danger!",
+    dialogue:[
+      ["🤖","Dr. AI","Triple-angle formulas are powerful but easy to misremember."],
+      ["🧪","Formula Ranger","Look for coefficient patterns: 3 and 4 for sine, 4 and 3 for cosine."],
+      ["🛡️","Proof Bot","Use them carefully in advanced simplification problems."]
+    ],
+    required:[
+      {text:"sin3x = 3sinx - 4sin³x", correct:true},
+      {text:"cos3x = 4cos³x - 3cosx", correct:true},
+      {text:"tan3x=(3tanx-tan³x)/(1-3tan²x)", correct:true},
+      {text:"3×20° = 60°", correct:true}
+    ],
+    decoys:[
+      {text:"sin3x = 3sinx + 4sin³x", correct:false},
+      {text:"cos3x = 3cosx - 4cos³x", correct:false},
+      {text:"tan3x=(3tanx+tan³x)/(1-3tan²x)", correct:false},
+      {text:"3×20° = 80°", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: sin3x equals:", options:["3sinx+4sin³x","3sinx-4sin³x","4sinx-3sin³x","3cosx-4cos³x"], ans:1, why:"sin3x=3sinx-4sin³x."},
+      {q:"JEE Boss: cos3x equals:", options:["4cos³x-3cosx","3cosx-4cos³x","4sin³x-3sinx","3cosx+4cos³x"], ans:0, why:"cos3x=4cos³x-3cosx."},
+      {q:"JEE Boss: If sinx=1/2, then sin3x equals:", options:["1","1/2","0","-1"], ans:0, why:"3(1/2)-4(1/8)=1."}
+    ]
+  },
+  {
+    title:"Transformation Lab",
+    subtitle:"Level 7 of 8",
+    goal:"Collect sum-to-product transformation crystals.",
+    enemy:"👹 Formula Phantom: I turned sums into a maze!",
+    dialogue:[
+      ["🧪","Formula Ranger","When sums of sines and cosines appear, transform them into products."],
+      ["🤖","Dr. AI","These formulas are very useful in proof and simplification questions."],
+      ["🛡️","Proof Bot","Watch the half-angle structure: (C+D)/2 and (C-D)/2."]
+    ],
+    required:[
+      {text:"sinC+sinD=2sin((C+D)/2)cos((C-D)/2)", correct:true},
+      {text:"sinC-sinD=2cos((C+D)/2)sin((C-D)/2)", correct:true},
+      {text:"cosC+cosD=2cos((C+D)/2)cos((C-D)/2)", correct:true},
+      {text:"cosC-cosD=-2sin((C+D)/2)sin((C-D)/2)", correct:true}
+    ],
+    decoys:[
+      {text:"sinC+sinD=2cos((C+D)/2)sin((C-D)/2)", correct:false},
+      {text:"sinC-sinD=2sin((C+D)/2)cos((C-D)/2)", correct:false},
+      {text:"cosC+cosD=2sin((C+D)/2)sin((C-D)/2)", correct:false},
+      {text:"cosC-cosD=2cos((C+D)/2)cos((C-D)/2)", correct:false}
+    ],
+    bossPool:[
+      {q:"JEE Boss: sinC + sinD equals:", options:["2sin((C+D)/2)cos((C-D)/2)","2cos((C+D)/2)sin((C-D)/2)","2cos((C+D)/2)cos((C-D)/2)","-2sin((C+D)/2)sin((C-D)/2)"], ans:0, why:"This is the correct sum-to-product formula for sine addition."},
+      {q:"JEE Boss: cosC - cosD equals:", options:["2cos((C+D)/2)cos((C-D)/2)","-2sin((C+D)/2)sin((C-D)/2)","2sin((C+D)/2)cos((C-D)/2)","2cos((C+D)/2)sin((C-D)/2)"], ans:1, why:"cosC-cosD=-2sin((C+D)/2)sin((C-D)/2)."},
+      {q:"JEE Boss: Which expression triggers sum-to-product?", options:["sin75°+sin15°","l=rθ","tanx=sinx/cosx","cos²x+sin²x"], ans:0, why:"A sum of sines is ideal for sum-to-product conversion."}
+    ]
+  },
+  {
+    title:"Final JEE Boss Arena",
+    subtitle:"Level 8 of 8",
+    goal:"Collect mixed JEE identity crystals and defeat Formula Phantom.",
+    enemy:"👹 Formula Phantom: Final battle. Every formula is mixed!",
+    dialogue:[
+      ["🤖","Dr. AI","Final level: choose formulas by pattern, not by memory alone."],
+      ["🧪","Formula Ranger","Read the expression and identify the transformation type first."],
+      ["🛡️","Proof Bot","This is how JEE questions are solved: classify, transform, simplify."]
+    ],
+    required:[
+      {text:"sin²x+cos²x = 1", correct:true},
+      {text:"1+tan²x = sec²x", correct:true},
+      {text:"1+cot²x = cosec²x", correct:true},
+      {text:"cos2x = 2cos²x - 1", correct:true}
+    ],
+    decoys:[
+      {text:"sin²x-cos²x = 1", correct:false},
+      {text:"1-tan²x = sec²x", correct:false},
+      {text:"1-cot²x = cosec²x", correct:false},
+      {text:"cos2x = 2cos²x + 1", correct:false}
+    ],
+    bossPool:[
+      {q:"Final Boss: Which identity is correct?", options:["sin²x-cos²x=1","sin²x+cos²x=1","tan²x-sec²x=1","cot²x-cosec²x=1"], ans:1, why:"The fundamental identity is sin²x+cos²x=1."},
+      {q:"Final Boss: 1+tan²x equals:", options:["sec²x","cosec²x","cot²x","sin²x"], ans:0, why:"1+tan²x=sec²x."},
+      {q:"Final Boss: 1+cot²x equals:", options:["sec²x","cosec²x","tan²x","cos²x"], ans:1, why:"1+cot²x=cosec²x."},
+      {q:"Final Boss: If cos2x=2cos²x-1, then 2cos²x equals:", options:["cos2x-1","cos2x+1","1-cos2x","2cos2x"], ans:1, why:"cos2x=2cos²x-1, so 2cos²x=cos2x+1."}
+    ]
+  }
+];
+
+
+const conceptBriefs = [
+  {title:"Level 1: Mirror Chamber",intro:"Dr. AI Briefing: Negative-angle identities help you simplify expressions before solving. First decide whether the trig function is odd or even.",cards:[["Even functions","cos(-x)=cos x and sec(-x)=sec x."],["Odd functions","sin(-x), tan(-x), cot(-x), cosec(-x) change sign."],["JEE use","Use this to simplify values like sin(-30°) and cos(-60°)."],["Avoid trap","Do not write cos(-x)=-cos x. Cosine is even."]],tip:"Dr. AI Tip: Mirror angle? First ask: odd or even."},
+  {title:"Level 2: Quadrant Sign Battle",intro:"Dr. AI Briefing: Quadrant signs decide whether the final answer is positive or negative.",cards:[["Quadrant I","All trig functions are positive."],["Quadrant II","sin and cosec are positive."],["Quadrant III","tan and cot are positive."],["Quadrant IV","cos and sec are positive."]],tip:"Dr. AI Tip: Remember ASTC — All, Sin, Tan, Cos."},
+  {title:"Level 3: Fusion Gate",intro:"Dr. AI Briefing: Sum and difference formulas are the core of angle transformation questions.",cards:[["sin(x+y)","sinx cosy + cosx siny"],["sin(x-y)","sinx cosy - cosx siny"],["cos(x+y)","cosx cosy - sinx siny"],["cos(x-y)","cosx cosy + sinx siny"]],tip:"Dr. AI Tip: Sine keeps the outside sign. Cosine flips the middle sign."},
+  {title:"Level 4: Tangent Portal",intro:"Dr. AI Briefing: Tangent formulas are fraction-based. The denominator sign is the common JEE trap.",cards:[["tan(x+y)","(tanx+tany)/(1-tanx tany)"],["tan(x-y)","(tanx-tany)/(1+tanx tany)"],["tan2x","2tanx/(1-tan²x)"],["Shortcut","Plus on top goes with minus below."]],tip:"Dr. AI Tip: Check denominator before selecting the formula."},
+  {title:"Level 5: Double-Angle Reactor",intro:"Dr. AI Briefing: Double-angle formulas are high-frequency JEE tools.",cards:[["sin2x","2sinx cosx"],["cos2x","cos²x - sin²x"],["cos2x alternatives","2cos²x-1 and 1-2sin²x"],["tan2x","2tanx/(1-tan²x)"]],tip:"Dr. AI Tip: Choose cos2x form based on what is given."},
+  {title:"Level 6: Triple-Angle Core",intro:"Dr. AI Briefing: Triple-angle identities require careful coefficients.",cards:[["sin3x","3sinx - 4sin³x"],["cos3x","4cos³x - 3cosx"],["tan3x","(3tanx-tan³x)/(1-3tan²x)"],["Memory pattern","Sine: 3 then 4. Cosine: 4 then 3."]],tip:"Dr. AI Tip: Coefficients 3 and 4 are the key."},
+  {title:"Level 7: Transformation Lab",intro:"Dr. AI Briefing: Sum-to-product formulas help simplify long expressions in proof-style questions.",cards:[["sinC+sinD","2sin((C+D)/2)cos((C-D)/2)"],["sinC-sinD","2cos((C+D)/2)sin((C-D)/2)"],["cosC+cosD","2cos((C+D)/2)cos((C-D)/2)"],["cosC-cosD","-2sin((C+D)/2)sin((C-D)/2)"]],tip:"Dr. AI Tip: Sum or difference of same trig functions? Think sum-to-product."},
+  {title:"Level 8: Final JEE Boss Arena",intro:"Dr. AI Briefing: Final level mixes identities. Classify the expression first, then transform.",cards:[["Pythagorean","sin²x+cos²x=1"],["Tangent identity","1+tan²x=sec²x"],["Cot identity","1+cot²x=cosec²x"],["Double-angle","cos2x=2cos²x-1=1-2sin²x"]],tip:"Dr. AI Tip: Identify the identity family before calculating."}
+];
+
+const notebookSections = [
+  ["Odd-Even Identities",["sin(-x)=-sinx","cos(-x)=cosx","tan(-x)=-tanx","sec(-x)=secx","cosec(-x)=-cosecx"]],
+  ["Quadrant Signs",["QI: all positive","QII: sin, cosec positive","QIII: tan, cot positive","QIV: cos, sec positive"]],
+  ["Sum and Difference",["sin(x+y)=sinx cosy+cosx siny","sin(x-y)=sinx cosy-cosx siny","cos(x+y)=cosx cosy-sinx siny","cos(x-y)=cosx cosy+sinx siny"]],
+  ["Tangent Formulas",["tan(x+y)=(tanx+tany)/(1-tanx tany)","tan(x-y)=(tanx-tany)/(1+tanx tany)","tan2x=2tanx/(1-tan²x)"]],
+  ["Double and Triple Angle",["sin2x=2sinx cosx","cos2x=cos²x-sin²x=2cos²x-1=1-2sin²x","sin3x=3sinx-4sin³x","cos3x=4cos³x-3cosx"]],
+  ["Sum-to-Product",["sinC+sinD=2sin((C+D)/2)cos((C-D)/2)","sinC-sinD=2cos((C+D)/2)sin((C-D)/2)","cosC+cosD=2cos((C+D)/2)cos((C-D)/2)","cosC-cosD=-2sin((C+D)/2)sin((C-D)/2)"]]
+];
+
+function getMistakeExplanation(text){
+  if(text.includes("cos(-x) = -cos")) return "Dr. AI Correction: Cosine is even. Correct formula is cos(-x)=cosx.";
+  if(text.includes("sin(-x) = sin")) return "Dr. AI Correction: Sine is odd. Correct formula is sin(-x)=-sinx.";
+  if(text.includes("tan(-x) = tan")) return "Dr. AI Correction: Tangent is odd. Correct formula is tan(-x)=-tanx.";
+  if(text.includes("QII: cos")) return "Dr. AI Correction: In Quadrant II, sine is positive; cosine is negative.";
+  if(text.includes("QIII: sin")) return "Dr. AI Correction: In Quadrant III, tangent is positive; sine is negative.";
+  if(text.includes("QIV: tan")) return "Dr. AI Correction: In Quadrant IV, cosine is positive; tangent is negative.";
+  if(text.includes("cos(x+y)=cosx cosy+sinx siny")) return "Dr. AI Correction: For cos(x+y), the middle sign is minus.";
+  if(text.includes("tan(x+y)") && text.includes("1+")) return "Dr. AI Correction: tan(x+y) has denominator 1 - tanx tany.";
+  if(text.includes("tan(x-y)") && text.includes("1-")) return "Dr. AI Correction: tan(x-y) has denominator 1 + tanx tany.";
+  if(text.includes("cos2x = cos²x + sin²x")) return "Dr. AI Correction: cos²x+sin²x=1. Correct double-angle formula is cos2x=cos²x-sin²x.";
+  if(text.includes("tan2x") && text.includes("1+tan²x")) return "Dr. AI Correction: tan2x uses denominator 1 - tan²x.";
+  if(text.includes("sin3x = 3sinx +")) return "Dr. AI Correction: sin3x = 3sinx - 4sin³x.";
+  if(text.includes("cos3x = 3cosx")) return "Dr. AI Correction: cos3x = 4cos³x - 3cosx.";
+  return "Dr. AI Correction: This is a fake identity. Compare it with the formula notebook and focus on the sign/denominator pattern.";
+}
+
+function showConceptRoom(idx){
+  state.level = idx;
+  const c = conceptBriefs[idx] || conceptBriefs[0];
+  const story = conceptStoryCuts[idx] || ["Formula Phantom","Prepare yourself."];
+  document.getElementById("conceptTitle").textContent = c.title;
+  document.getElementById("conceptIntro").textContent = c.intro;
+  document.getElementById("conceptCards").innerHTML = c.cards.map(card=>`<div class="concept-card"><h3>${card[0]}</h3><p>${card[1]}</p></div>`).join("");
+  document.getElementById("conceptTip").innerHTML = `<strong>${c.tip}</strong>`;
+  document.getElementById("conceptStoryCut").innerHTML = `<strong>${story[0]}:</strong> ${story[1]}`;
+  document.getElementById("conceptModal").classList.add("show");
+  speakFeedback(`Concept unlock room. ${c.intro}`, "good");
+}
+function enterArenaAfterConcept(){
+  closeModal("conceptModal");
+  state.conceptReady = true;
+  loadLevel(state.level);
+}
+function openNotebook(){
+  if(document.getElementById("bossModal").classList.contains("show")){
+    const msg = "Boss Battle Mode: Formula Notebook is locked. Try from memory.";
+    document.getElementById("bossMistakeBox").innerHTML = `<div class="lock-note"><strong>Notebook Locked:</strong><br>${msg}</div>`;
+    speakFeedback(msg, "bad");
+    return;
+  }
+  const notebookHTML = notebookSections.map(sec=>`<div class="notebook-section"><h3>${sec[0]}</h3><ul>${sec[1].map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+  document.getElementById("notebookContent").innerHTML = notebookHTML;
+  const notebookModal = document.getElementById("notebookModal");
+  notebookModal.classList.add("show");
+  notebookModal.scrollTop = 0;
+  const card = notebookModal.querySelector(".modal-card");
+  if(card){ card.scrollTop = 0; }
+}
+
+let state = {
+  name:"Cadet",
+  level:0,
+  xp:0,
+  energy:100,
+  collected:new Set(),
+  gateOpen:false,
+  bossPassed:false,
+  gameStarted:false,
+  combo:0,
+  voiceReady:false,
+  conceptReady:false,
+  bossRound:0,
+  bossQuestions:[],
+  gameMode:"practice",
+  hintsLeft:2,
+  currentLevelStats:{correct:0,wrong:0,hintsUsed:0,bossCorrect:0,bossWrong:0,weakArea:"No major weakness detected"},
+  bossTimer:null,
+  timeLeft:30,
+  shieldCharges:0,
+  unlockedWeapons:[],
+  bossHP:100,
+  levelTimeBonus:0
+};
+
+let player = {x:90,y:250,speed:4.2};
+let keys = {};
+let mobileDir = null;
+let crystals = [];
+let powerUps = [];
+let animationId = null;
+
+const board = document.getElementById("gameBoard");
+const playerEl = document.getElementById("player");
+
+
+function voiceEnabled(){
+  const t = document.getElementById("voiceToggle");
+  return !t || t.checked;
+}
+function speakFeedback(text, mood="good"){
+  if(!voiceEnabled() || !("speechSynthesis" in window)) return;
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const voices = speechSynthesis.getVoices();
+    const preferred = voices.find(v => /Google UK English Female|Microsoft Aria|Microsoft Sonia|Natural|English/i.test(v.name)) || voices.find(v => /en/i.test(v.lang)) || voices[0];
+    if(preferred) u.voice = preferred;
+    u.rate = mood === "bad" ? 0.98 : 1.03;
+    u.pitch = mood === "bad" ? 0.88 : 1.12;
+    u.volume = 0.9;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function playTone(type="good"){
+  try{
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    if(type==="good"){
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime+0.16);
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.22);
+      osc.start();
+      osc.stop(ctx.currentTime+0.24);
+    }else if(type==="bad"){
+      osc.frequency.setValueAtTime(190, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime+0.18);
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.24);
+      osc.start();
+      osc.stop(ctx.currentTime+0.26);
+    }else{
+      osc.frequency.setValueAtTime(740, ctx.currentTime);
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime+0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.35);
+      osc.start();
+      osc.stop(ctx.currentTime+0.36);
+    }
+  }catch(e){}
+}
+function popText(text, x, y, good=true){
+  const p = document.createElement("div");
+  p.className = "combo-pop";
+  p.style.left = x+"px";
+  p.style.top = y+"px";
+  p.style.background = good ? "rgba(53,255,154,.16)" : "rgba(255,91,127,.18)";
+  p.style.borderColor = good ? "rgba(53,255,154,.42)" : "rgba(255,91,127,.44)";
+  p.textContent = text;
+  board.appendChild(p);
+  setTimeout(()=>p.remove(),900);
+}
+function laserBlast(fromX, fromY, toX, toY){
+  const b = document.createElement("div");
+  b.className = "laser-blast";
+  b.style.left = fromX+"px";
+  b.style.top = fromY+"px";
+  const angle = Math.atan2(toY-fromY, toX-fromX) * 180 / Math.PI;
+  b.style.transform = `rotate(${angle}deg)`;
+  board.appendChild(b);
+  setTimeout(()=>b.remove(),500);
+}
+
+
+
+const weaponMap = {
+  "sin(-x) = -sin x":["⚔️","Mirror Blade","Cuts through negative-angle traps."],
+  "cos(-x) = cos x":["🪞","Cos Shield","Deflects even-function confusion."],
+  "tan(-x) = -tan x":["🗡️","Tangent Dagger","Pierces odd-function sign errors."],
+  "sec(-x) = sec x":["🛡️","Sec Guard","Protects from mirror formula attacks."],
+
+  "QI: all positive":["🌟","Quadrant Beacon","Lights the correct sign route."],
+  "QII: sin positive":["💧","Sine Crest","Channels quadrant-II sine power."],
+  "QIII: tan positive":["🔥","Tangent Pulse","Powers through quadrant-III sign logic."],
+  "QIV: cos positive":["❄️","Cos Ray","Targets quadrant-IV cosine logic."],
+
+  "sin(x+y)=sinx cosy+cosx siny":["🧬","Fusion Blade","Combines two angles into one attack."],
+  "sin(x-y)=sinx cosy-cosx siny":["🌀","Difference Slash","Slices through subtraction traps."],
+  "cos(x+y)=cosx cosy-sinx siny":["💠","Cosine Beam","Breaks middle-sign confusion."],
+  "cos(x-y)=cosx cosy+sinx siny":["🌌","Return Arc","Controls the plus-sign return path."],
+
+  "tan(x+y)=(tanx+tany)/(1-tanx tany)":["🚀","Tangent Blaster","Destroys denominator traps."],
+  "tan(x-y)=(tanx-tany)/(1+tanx tany)":["🎯","Portal Sniper","Targets difference-form errors."],
+  "tan2x=2tanx/(1-tan²x)":["⚡","Double Bolt","Amplifies tangent into a twin strike."],
+  "tan45° = 1":["🔹","Unit Strike","Stabilizes classic tangent values."],
+
+  "sin2x = 2sinx cosx":["☄️","Double Beam","Fires a two-angle energy burst."],
+  "cos2x = cos²x - sin²x":["🛰️","Reactor Blade","Balances sine and cosine energy."],
+  "cos2x = 1 - 2sin²x":["🌙","Sine Drain","Pulls power from the sine field."],
+
+  "sin3x = 3sinx - 4sin³x":["🐉","Triple Strike","Launches a triple-angle combo."],
+  "cos3x = 4cos³x - 3cosx":["🪐","Phantom Breaker","Smashes cube-form cosine traps."],
+  "tan3x=(3tanx-tan³x)/(1-3tan²x)":["💥","Tri-Blast","Unleashes the triple-tangent burst."],
+
+  "sinC+sinD=2sin((C+D)/2)cos((C-D)/2)":["🔄","Transformation Cannon","Converts sums into products."],
+  "sinC-sinD=2cos((C+D)/2)sin((C-D)/2)":["🎼","Echo Splitter","Separates sine differences cleanly."],
+  "cosC+cosD=2cos((C+D)/2)cos((C-D)/2)":["🪄","Cos Harmony","Unites cosine waves."],
+  "cosC-cosD=-2sin((C+D)/2)sin((C-D)/2)":["🌋","Phantom Crusher","Collapses false cosine gaps."],
+
+  "sin²x+cos²x = 1":["👑","Identity Crown","Master key of the final arena."],
+  "1+tan²x = sec²x":["📐","Sec Matrix","Locks the tangent-secant route."],
+  "1+cot²x = cosec²x":["🧿","Cosec Rune","Secures cot-cosec conversions."],
+  "cos2x = 2cos²x - 1":["🛸","Final Beam","Finishes the last formula chamber."]
+};
+
+const conceptStoryCuts = [
+  ["Formula Phantom","I have reversed every angle in this chamber. Let us see if you can survive the mirror."],
+  ["Formula Phantom","Every quadrant hides a sign trap. One mistake and your logic collapses."],
+  ["Formula Phantom","Two angles are merging. Your memory will break before my gate does."],
+  ["Formula Phantom","Denominator signs will destroy your confidence."],
+  ["Formula Phantom","The reactor doubles every angle. Can your formulas keep up?"],
+  ["Formula Phantom","Triple-angle power is too unstable for you to control."],
+  ["Formula Phantom","I turned clean expressions into a maze of transformations."],
+  ["Formula Phantom","This final arena mixes every identity. Your chapter mastery ends here."]
+];
+
+const powerUpTemplates = [
+  {type:"energy", icon:"💚", label:"Energy +10"},
+  {type:"hint", icon:"💡", label:"Extra Hint"},
+  {type:"shield", icon:"🛡️", label:"Shield"},
+  {type:"time", icon:"⏱️", label:"+10s Boss Time"}
+];
+
+const hintBank = [
+  ["Mirror Chamber Hint 1: For a negative angle, first decide if the function is odd or even.","Mirror Chamber Hint 2: Cosine is even, while sine and tangent are odd."],
+  ["Quadrant Sign Hint 1: Use ASTC quadrant logic.","Quadrant Sign Hint 2: In QII sine is positive; in QIV cosine is positive."],
+  ["Fusion Gate Hint 1: Sine keeps the outer sign.","Fusion Gate Hint 2: Cosine flips the middle sign."],
+  ["Tangent Portal Hint 1: Check the denominator sign carefully.","Tangent Portal Hint 2: Plus in numerator pairs with minus in denominator for tan(x+y)."],
+  ["Double-Angle Hint 1: sin2x always becomes 2sinx cosx.","Double-Angle Hint 2: Choose the best form of cos2x based on the given information."],
+  ["Triple-Angle Hint 1: Watch the coefficients 3 and 4 carefully.","Triple-Angle Hint 2: For sine use 3sinx - 4sin³x."],
+  ["Transformation Lab Hint 1: Look for sum or difference of same trig functions.","Transformation Lab Hint 2: Sum-to-product uses half-sum and half-difference."],
+  ["Final Boss Hint 1: Identify the identity family first.","Final Boss Hint 2: Fundamental identities often unlock the final step."]
+];
+
+function selectModeCard(){
+  const practice = document.querySelector('input[name="gameMode"][value="practice"]').checked;
+  document.getElementById("modePracticeCard").classList.toggle("active", practice);
+  document.getElementById("modeChallengeCard").classList.toggle("active", !practice);
+}
+
+function getSelectedMode(){
+  const checked = document.querySelector('input[name="gameMode"]:checked');
+  return checked ? checked.value : "practice";
+}
+
+function getRevisionSuggestion(levelIdx, weakArea){
+  if(weakArea && weakArea !== "No major weakness detected"){
+    return weakArea;
+  }
+  const revisions = [
+    "Revise odd-even identities and negative angles.",
+    "Revise quadrant signs using ASTC.",
+    "Revise sin(x±y) and cos(x±y) sign patterns.",
+    "Revise tan(x±y) denominator signs.",
+    "Revise double-angle identities, especially cos2x forms.",
+    "Revise triple-angle coefficients 3 and 4.",
+    "Revise sum-to-product transformations.",
+    "Revise fundamental identities and mixed transformations."
+  ];
+  return revisions[levelIdx] || "Revise the level formulas once more.";
+}
+
+function openNameModal(){document.getElementById("nameModal").classList.add("show");setTimeout(()=>document.getElementById("studentNameInput").focus(),80)}
+function closeModal(id){
+  const el = document.getElementById(id);
+  if(el){ el.classList.remove("show"); }
+  if(id==="bossModal"){ stopBossTimer(); }
+}
+function showHowToPlay(){document.getElementById("helpModal").classList.add("show")}
+function goHome(){stopBossTimer();cancelAnimationFrame(animationId);document.getElementById("screen-game").classList.remove("active");document.getElementById("screen-home").classList.add("active")}
+
+function renderWeapons(){
+  const box = document.getElementById("weaponList");
+  if(!box) return;
+  if(!state.unlockedWeapons.length){
+    box.innerHTML = '<div class="weapon-item locked">🔒 No weapons unlocked yet<small>Collect correct formula crystals to unlock powerful formula weapons.</small></div>';
+    return;
+  }
+  box.innerHTML = state.unlockedWeapons.map(w => `
+    <div class="weapon-item unlocked">${w.icon} ${w.name}<small>${w.desc}</small></div>
+  `).join("");
+}
+
+function updateBossHealth(){
+  document.getElementById("bossHpText").textContent = `${Math.max(0,state.bossHP)}%`;
+  document.getElementById("bossHealthFill").style.width = `${Math.max(0,state.bossHP)}%`;
+}
+
+function spawnPowerUps(){
+  powerUps = [];
+  const pool = shuffle([...powerUpTemplates]);
+  const selected = pool.slice(0, 2);
+  const bw = board.clientWidth;
+  const bh = board.clientHeight;
+  const positions = [
+    {x:98, y:bh*0.22},
+    {x:102, y:bh*0.78},
+    {x:bw*0.83, y:bh*0.60}
+  ];
+  selected.forEach((item, i) => {
+    const pos = positions[i] || positions[0];
+    const el = document.createElement("div");
+    el.className = `powerup ${item.type}`;
+    el.style.left = pos.x + "px";
+    el.style.top = pos.y + "px";
+    el.innerHTML = `${item.icon}<div class="powerup-label">${item.label}</div>`;
+    board.appendChild(el);
+    powerUps.push({...item, el, x:pos.x, y:pos.y, active:true});
+  });
+}
+
+function handlePowerUpEffect(p){
+  p.active = false;
+  p.el.style.display = "none";
+  if(p.type === "energy"){
+    state.energy = Math.min(100, state.energy + 10);
+    document.getElementById("messageBox").innerHTML = "💚 Energy Orb collected! +10 energy restored.";
+    speakFeedback("Energy orb collected. Energy restored.", "good");
+    playTone("good");
+  }else if(p.type === "hint"){
+    state.hintsLeft += 1;
+    document.getElementById("messageBox").innerHTML = "💡 Hint Orb collected! Dr. AI can give one extra hint.";
+    speakFeedback("Hint orb collected. Extra hint unlocked.", "good");
+    playTone("good");
+  }else if(p.type === "shield"){
+    state.shieldCharges += 1;
+    document.getElementById("messageBox").innerHTML = "🛡️ Shield Orb collected! One wrong move can now be blocked.";
+    speakFeedback("Shield orb collected. Protection unlocked.", "good");
+    playTone("good");
+  }else if(p.type === "time"){
+    state.levelTimeBonus += 10;
+    document.getElementById("messageBox").innerHTML = "⏱️ Time Freeze collected! Next boss rounds get +10 seconds in challenge mode.";
+    speakFeedback("Time freeze collected. Boss timer extended.", "good");
+    playTone("good");
+  }
+  popText(p.label, p.x, p.y, true);
+  updateHud();
+}
+
+function checkPowerUpCollisions(){
+  powerUps.forEach(p => {
+    if(!p.active) return;
+    const dist = Math.hypot(player.x - p.x, player.y - p.y);
+    if(dist < 56){
+      handlePowerUpEffect(p);
+    }
+  });
+}
+
+function startGame(){
+  const n = document.getElementById("studentNameInput").value.trim();
+  state.name = n || "Cadet";
+  state.level=0; state.xp=0; state.energy=100; state.collected=new Set(); state.gateOpen=false; state.bossPassed=false; state.hintsLeft=2; state.currentLevelStats={correct:0,wrong:0,hintsUsed:0,bossCorrect:0,bossWrong:0,weakArea:"No major weakness detected"}; state.shieldCharges=0; state.unlockedWeapons=[]; state.levelTimeBonus=0; state.bossHP=100; state.gameStarted=true; state.gameMode=getSelectedMode();
+  closeModal("nameModal");
+  document.getElementById("screen-home").classList.remove("active");
+  document.getElementById("screen-game").classList.add("active");
+  showConceptRoom(0);
+  updateHud();
+  speakFeedback(`Welcome ${state.name}. I am Dr. AI. First unlock the concept room, then enter the arena.`, "good");
+  requestAnimationFrame(loop);
+}
+
+function restartGame(){
+  stopBossTimer();
+  closeModal("winModal");
+  state.level=0; state.xp=0; state.energy=100; state.collected=new Set(); state.gateOpen=false; state.bossPassed=false; state.hintsLeft=2; state.currentLevelStats={correct:0,wrong:0,hintsUsed:0,bossCorrect:0,bossWrong:0,weakArea:"No major weakness detected"}; state.shieldCharges=0; state.unlockedWeapons=[]; state.levelTimeBonus=0; state.bossHP=100;
+  document.getElementById("screen-home").classList.remove("active");
+  document.getElementById("screen-game").classList.add("active");
+  showConceptRoom(0);
+}
+
+function restartLevel(){
+  stopBossTimer();
+  state.energy = Math.max(50,state.energy);
+  loadLevel(state.level);
+}
+
+function loadLevel(idx){
+  state.level = idx;
+  state.collected = new Set();
+  state.gateOpen = false;
+  state.bossPassed = false;
+  state.combo = 0;
+  state.hintsLeft = 2;
+  state.shieldCharges = 0;
+  state.levelTimeBonus = 0;
+  state.currentLevelStats = {correct:0,wrong:0,hintsUsed:0,bossCorrect:0,bossWrong:0,weakArea:"No major weakness detected"};
+  player.x = 80; player.y = board.clientHeight/2;
+  document.querySelectorAll(".crystal,.powerup").forEach(c=>c.remove());
+  const lvl = levels[idx];
+  document.getElementById("levelTitle").textContent = lvl.title;
+  document.getElementById("levelSubtitle").textContent = lvl.subtitle;
+  document.getElementById("levelGoal").textContent = lvl.goal;
+  document.getElementById("enemyLabel").textContent = lvl.enemy;
+  document.getElementById("missionBadge").textContent = `Collect ${lvl.required.length} crystals`;
+  document.getElementById("messageBox").innerHTML = `<strong>${state.name}</strong>, collect all correct formula crystals. Avoid fake formulas.`;
+  document.getElementById("gate").classList.remove("open");
+  document.getElementById("gate").textContent = "🔒";
+  renderDialogue();
+  renderFormulaList();
+  renderWeapons();
+  spawnCrystals();
+  spawnPowerUps();
+  updateHud();
+  updatePlayer();
+  if(state.gameStarted) speakFeedback(`${lvl.title}. ${lvl.goal}`, "good");
+}
+
+function renderDialogue(){
+  const lvl = levels[state.level];
+  document.getElementById("dialogueBox").innerHTML = lvl.dialogue.map(d => `
+    <div class="chat"><div class="face">${d[0]}</div><div class="bubble"><strong>${d[1]}</strong>${d[2]}</div></div>
+  `).join("");
+  const guideHints = [
+    "Use odd-even logic first. If the angle is negative, decide whether the function is odd or even.",
+    "Use ASTC carefully. First identify the quadrant, then the sign.",
+    "For sine, the outside sign stays the same. For cosine, the middle sign flips.",
+    "In tangent formulas, the denominator sign is the common trap. Check it twice.",
+    "cos 2x has multiple forms. Choose the form that fits the known value.",
+    "For triple-angle identities, watch the coefficients 3 and 4 carefully.",
+    "If you see sums or differences of sines/cosines, think sum-to-product.",
+    "Final boss tip: identify the identity family first, then simplify."
+  ];
+  const guideText = guideHints[state.level] || "Collect the correct crystal and watch the signs carefully.";
+  const guideBox = document.getElementById("guideBox");
+  if(guideBox){
+    guideBox.innerHTML = `<div class="chat"><div class="face">🤖</div><div class="bubble"><strong>Dr. AI</strong>${guideText}</div></div>`;
+  }
+}
+
+function renderFormulaList(){
+  const lvl = levels[state.level];
+  document.getElementById("formulaList").innerHTML = lvl.required.map((r,i)=>`
+    <div class="formula-pill" id="formula-${i}">${state.collected.has(r.text) ? "✅" : "🔲"} ${r.text}</div>
+  `).join("");
+}
+
+function spawnCrystals(){
+  crystals = [];
+  const lvl = levels[state.level];
+  const items = shuffle([...lvl.required, ...lvl.decoys]);
+  const bw = board.clientWidth;
+  const bh = board.clientHeight;
+  const topY = Math.max(150, bh*0.23);
+  const positions = [
+    {x:bw*0.24,y:topY},{x:bw*0.50,y:topY+6},{x:bw*0.74,y:topY},
+    {x:bw*0.25,y:bh*0.45},{x:bw*0.55,y:bh*0.47},{x:bw*0.76,y:bh*0.45},
+    {x:bw*0.30,y:bh*0.72},{x:bw*0.62,y:bh*0.74}
+  ];
+  items.forEach((item,i)=>{
+    const pos = positions[i] || {x:220+i*110,y:160+i*35};
+    const x = Math.min(Math.max(pos.x,105), bw-150);
+    const y = Math.min(Math.max(pos.y,135), bh-90);
+    const el = document.createElement("div");
+    el.className = "crystal " + (item.correct ? "correct" : "wrong");
+    el.textContent = item.text;
+    el.style.left = x+"px";
+    el.style.top = y+"px";
+    board.appendChild(el);
+    el.addEventListener("click",()=>{
+      player.x = x;
+      player.y = y;
+      updatePlayer();
+      checkCollisions();
+    });
+    crystals.push({el,x,y,text:item.text,correct:item.correct,active:true});
+  });
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function updateHud(){
+  document.getElementById("hudName").textContent = state.name;
+  document.getElementById("xp").textContent = state.xp;
+  document.getElementById("level").textContent = (state.level+1)+"/"+levels.length;
+  document.getElementById("energyText").textContent = Math.max(0,state.energy)+"%";
+  document.getElementById("modeText").textContent = state.gameMode === "challenge" ? "JEE Challenge" : "Practice";
+  document.getElementById("hintsHud").textContent = state.hintsLeft;
+  document.getElementById("shieldHud").textContent = state.shieldCharges;
+  document.getElementById("energyFill").style.width = Math.max(0,state.energy)+"%";
+  const req = levels[state.level]?.required.length || 1;
+  document.getElementById("progressFill").style.width = (state.collected.size/req*100)+"%";
+}
+
+function updatePlayer(){
+  playerEl.style.left = player.x+"px";
+  playerEl.style.top = player.y+"px";
+}
+
+function loop(){
+  if(!document.getElementById("screen-game").classList.contains("active")){
+    animationId = requestAnimationFrame(loop);
+    return;
+  }
+  let dx=0,dy=0;
+  if(keys["ArrowUp"]||keys["w"]||mobileDir==="up") dy-=1;
+  if(keys["ArrowDown"]||keys["s"]||mobileDir==="down") dy+=1;
+  if(keys["ArrowLeft"]||keys["a"]||mobileDir==="left") dx-=1;
+  if(keys["ArrowRight"]||keys["d"]||mobileDir==="right") dx+=1;
+  if(dx!==0 || dy!==0){
+    const len = Math.hypot(dx,dy) || 1;
+    player.x += (dx/len)*player.speed;
+    player.y += (dy/len)*player.speed;
+    const margin=28;
+    player.x = Math.max(margin, Math.min(board.clientWidth-margin, player.x));
+    player.y = Math.max(margin+20, Math.min(board.clientHeight-margin, player.y));
+    updatePlayer();
+    checkCollisions();
+    checkPowerUpCollisions();
+    checkGate();
+  }
+  animationId = requestAnimationFrame(loop);
+}
+
+function checkCollisions(){
+  crystals.forEach(c=>{
+    if(!c.active) return;
+    const dist = Math.hypot(player.x-c.x, player.y-c.y);
+    if(dist < 64){
+      c.active=false;
+      c.el.style.display="none";
+      if(c.correct){
+        if(!state.collected.has(c.text)){
+          state.collected.add(c.text);
+          state.currentLevelStats.correct++;
+          state.combo++;
+          state.xp += 40 + state.combo*10;
+          c.el.classList.add("collected");
+          popText(`Great move! Combo x${state.combo}`, c.x, c.y, true);
+          laserBlast(player.x, player.y, c.x, c.y);
+          playTone("good");
+          speakFeedback(`Great move ${state.name}. Correct identity collected. Combo ${state.combo}.`, "good");
+          let weaponText = "";
+          const weaponData = weaponMap[c.text];
+          if(weaponData && !state.unlockedWeapons.find(w => w.name === weaponData[1])){
+            const w = {icon:weaponData[0], name:weaponData[1], desc:weaponData[2]};
+            state.unlockedWeapons.push(w);
+            renderWeapons();
+            weaponText = `<br><span style="color:#bfffd9">🔓 Weapon Unlocked: <strong>${w.icon} ${w.name}</strong></span>`;
+            speakFeedback(`${w.name} unlocked.`, "good");
+          }
+          document.getElementById("messageBox").innerHTML = `✅ Great move! Correct crystal collected: <strong>${c.text}</strong>${weaponText}`;
+        }
+      }else{
+        state.combo = 0;
+        state.currentLevelStats.wrong++;
+        board.classList.add("shock");
+        setTimeout(()=>board.classList.remove("shock"),520);
+        const correction = getMistakeExplanation(c.text);
+        if(state.currentLevelStats.weakArea === "No major weakness detected"){
+          state.currentLevelStats.weakArea = correction.replace("Dr. AI Correction: ","");
+        }
+        if(state.shieldCharges > 0){
+          state.shieldCharges--;
+          const shield = document.createElement("div");
+          shield.className = "shield-pop";
+          shield.textContent = "🛡️ Shield blocked the damage!";
+          board.appendChild(shield);
+          setTimeout(()=>shield.remove(),900);
+          popText("Shield Saved You!", c.x, c.y, true);
+          playTone("good");
+          speakFeedback("Shield activated. No damage taken.", "good");
+          document.getElementById("messageBox").innerHTML = `🛡️ Wrong crystal touched: <strong>${c.text}</strong><br><span style="color:#ffe2ea">${correction}</span><br><span style="color:#fff2a8">Shield charge consumed. No energy lost.</span>`;
+        }else{
+          state.energy = Math.max(0,state.energy-15);
+          popText("Bad move! -15 energy", c.x, c.y, false);
+          playTone("bad");
+          document.getElementById("messageBox").innerHTML = `⚠️ Bad move! Fake identity. Energy reduced. <strong>${c.text}</strong><br><span style="color:#ffe2ea">${correction}</span>`;
+          speakFeedback(correction, "bad");
+        }
+        if(state.energy<=0){
+          speakFeedback(`Energy depleted. Restarting this level.`, "bad");
+          document.getElementById("messageBox").innerHTML = `Energy depleted. Restarting this level with 50% energy.`;
+          setTimeout(()=>{state.energy=50;loadLevel(state.level)},900);
+        }
+      }
+      renderFormulaList();
+      if(state.collected.size === levels[state.level].required.length){
+        openGate();
+      }
+      updateHud();
+    }
+  });
+}
+
+function openGate(){
+  state.gateOpen = true;
+  const gate = document.getElementById("gate");
+  gate.classList.add("open");
+  gate.textContent = "🌀";
+  document.getElementById("messageBox").innerHTML = `🌀 Gate opened! Excellent run. Enter the gate on the right side for the boss challenge.`;
+  playTone("gate");
+  speakFeedback(`Excellent. Gate opened. Move to the portal for the boss challenge.`, "good");
+  state.xp += 60;
+  updateHud();
+}
+
+function checkGate(){
+  if(!state.gateOpen) return;
+  const gateX = board.clientWidth - 80;
+  const gateY = board.clientHeight/2;
+  if(Math.hypot(player.x-gateX, player.y-gateY)<78){
+    showBoss();
+  }
+}
+
+let currentBoss = null;
+function buildBossQuestions(){
+  const pool = levels[state.level].bossPool || [levels[state.level].boss];
+  const shuffled = shuffle([...pool]);
+  return [shuffled[0] || pool[0], shuffled[1] || pool[0], shuffled[2] || pool[pool.length-1] || pool[0]];
+}
+function stopBossTimer(){
+  if(state.bossTimer){
+    clearInterval(state.bossTimer);
+    state.bossTimer = null;
+  }
+}
+function startBossTimer(){
+  stopBossTimer();
+  if(state.gameMode !== "challenge"){
+    document.getElementById("bossTimerPill").textContent = "Timer Off";
+    return;
+  }
+  state.timeLeft = 30 + state.levelTimeBonus;
+  document.getElementById("bossTimerPill").textContent = `⏱ ${state.timeLeft}s`;
+  state.bossTimer = setInterval(()=>{
+    state.timeLeft--;
+    document.getElementById("bossTimerPill").textContent = `⏱ ${state.timeLeft}s`;
+    if(state.timeLeft <= 0){
+      stopBossTimer();
+      handleBossTimeout();
+    }
+  },1000);
+}
+function handleBossTimeout(){
+  const boss = currentBoss || state.bossQuestions[state.bossRound];
+  const opts = [...document.querySelectorAll("#bossOptions .option")];
+  opts.forEach(o=>o.style.pointerEvents="none");
+  if(opts[boss.ans]) opts[boss.ans].classList.add("correct");
+  state.currentLevelStats.bossWrong++;
+  if(state.currentLevelStats.weakArea === "No major weakness detected"){
+    state.currentLevelStats.weakArea = "Timed boss question pressure needs more practice.";
+  }
+  document.getElementById("bossFeedback").innerHTML = `⏰ Time up! ${boss.why}`;
+  document.getElementById("bossMistakeBox").innerHTML = `<div class="mistake-box"><strong>Dr. AI Mistake Analysis:</strong><br>Under pressure, focus on quick formula recall. ${boss.why}</div>`;
+  playTone("bad");
+  speakFeedback("Time up. Focus on faster recall.", "bad");
+  state.energy = Math.max(0,state.energy-10);
+  if(state.bossRound === state.bossQuestions.length-1){
+    document.getElementById("bossNext").textContent = "Complete Boss";
+  }else{
+    document.getElementById("bossNext").textContent = "Next Boss Round";
+  }
+  document.getElementById("bossNext").style.display = "inline-block";
+  updateHud();
+}
+function showBoss(){
+  state.bossRound = 0;
+  state.bossQuestions = buildBossQuestions();
+  state.bossHP = 100;
+  updateBossHealth();
+  renderBossRound();
+  document.getElementById("bossModal").classList.add("show");
+}
+function renderBossRound(){
+  currentBoss = state.bossQuestions[state.bossRound];
+  const boss = currentBoss;
+  document.getElementById("bossTitle").textContent = levels[state.level].title + " Boss";
+  document.getElementById("bossRoundLabel").textContent = `Round ${state.bossRound+1} of ${state.bossQuestions.length}`;
+  document.getElementById("bossQuestion").textContent = boss.q;
+  document.getElementById("bossFeedback").textContent = "";
+  document.getElementById("bossMistakeBox").innerHTML = "";
+  document.getElementById("bossNext").style.display = "none";
+  document.getElementById("bossOptions").innerHTML = boss.options.map((o,i)=>`<div class="option" onclick="answerBoss(${i})">${o}</div>`).join("");
+  updateBossHealth();
+  startBossTimer();
+  speakFeedback(`Boss round ${state.bossRound+1}. ${boss.q}`, "good");
+}
+function answerBoss(i){
+  stopBossTimer();
+  const boss = currentBoss || state.bossQuestions[state.bossRound];
+  const opts = [...document.querySelectorAll("#bossOptions .option")];
+  opts.forEach(o=>o.style.pointerEvents="none");
+  if(i===boss.ans){
+    opts[i].classList.add("correct");
+    document.getElementById("bossFeedback").innerHTML = `✅ Correct! ${boss.why}`;
+    document.getElementById("bossMistakeBox").innerHTML = "";
+    playTone("good");
+    speakFeedback(`Correct answer. Boss shield damaged.`, "good");
+    state.currentLevelStats.bossCorrect++;
+    state.bossHP = Math.max(0, state.bossHP - 34);
+    updateBossHealth();
+    state.xp += 80;
+    confetti();
+  }else{
+    opts[i].classList.add("wrong");
+    opts[boss.ans].classList.add("correct");
+    const chosen = boss.options[i];
+    const correction = getMistakeExplanation(chosen) + " " + boss.why;
+    document.getElementById("bossFeedback").innerHTML = `❌ Not correct. ${boss.why}`;
+    document.getElementById("bossMistakeBox").innerHTML = `<div class="mistake-box"><strong>Dr. AI Mistake Analysis:</strong><br>${correction}</div>`;
+    playTone("bad");
+    speakFeedback(`Not correct. ${correction}`, "bad");
+    state.currentLevelStats.bossWrong++;
+    if(state.currentLevelStats.weakArea === "No major weakness detected"){
+      state.currentLevelStats.weakArea = correction.replace("Dr. AI Correction: ","");
+    }
+    state.energy = Math.max(0,state.energy-10);
+  }
+  if(state.bossRound === state.bossQuestions.length-1){
+    state.bossPassed = true;
+    document.getElementById("bossNext").textContent = "Complete Boss";
+  }else{
+    document.getElementById("bossNext").textContent = "Next Boss Round";
+  }
+  document.getElementById("bossNext").style.display = "inline-block";
+  updateHud();
+}
+function showLevelReport(){
+  const totalAttempts = state.currentLevelStats.correct + state.currentLevelStats.wrong + state.currentLevelStats.bossCorrect + state.currentLevelStats.bossWrong;
+  const totalCorrect = state.currentLevelStats.correct + state.currentLevelStats.bossCorrect;
+  const accuracy = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 100;
+  const weak = state.currentLevelStats.weakArea || "No major weakness detected";
+  document.getElementById("reportTitle").textContent = levels[state.level].title + " Report";
+  document.getElementById("reportIntro").textContent = `${state.name}, here is your mission report prepared by Dr. AI. Weapons unlocked this level set up your next battle with Formula Phantom.`;
+  document.getElementById("reportAccuracy").textContent = `${accuracy}% (${totalCorrect}/${totalAttempts} correct decisions)`;
+  document.getElementById("reportEnergy").textContent = `${Math.max(0,state.energy)}%`;
+  document.getElementById("reportHints").textContent = `${state.currentLevelStats.hintsUsed} used`;
+  document.getElementById("reportWrong").textContent = `${state.currentLevelStats.wrong + state.currentLevelStats.bossWrong} wrong move(s)`;
+  document.getElementById("reportWeak").textContent = weak;
+  document.getElementById("reportRevision").textContent = getRevisionSuggestion(state.level, weak);
+  document.getElementById("reportContinueBtn").textContent = state.level < levels.length-1 ? "Next Concept Room" : "Finish Game";
+  document.getElementById("reportModal").classList.add("show");
+}
+function continueAfterReport(){
+  closeModal("reportModal");
+  if(state.level < levels.length-1){
+    state.level++;
+    state.conceptReady = false;
+    showConceptRoom(state.level);
+  }else{
+    finishGame();
+  }
+}
+function nextAfterBoss(){
+  if(state.bossRound < state.bossQuestions.length-1){
+    state.bossRound++;
+    renderBossRound();
+    return;
+  }
+  stopBossTimer();
+  closeModal("bossModal");
+  showLevelReport();
+}
+function finishGame(){
+  const final = `Amazing, ${state.name}! You cleared all 8 JEE-focused playable levels, defeated Formula Phantom, unlocked ${state.unlockedWeapons.length} formula weapons, and earned ${state.xp} XP.`;
+  document.getElementById("finalText").textContent = final;
+  document.getElementById("certificateName").value = state.name || "Formula Warrior";
+  document.getElementById("winModal").classList.add("show");
+  speakFeedback(`Congratulations ${state.name}. Identity Arena complete.`, "good");
+  confetti();
+}
+
+
+function useHint(){
+  if(state.hintsLeft <= 0){
+    const msg = "No hints left in this level.";
+    document.getElementById("messageBox").innerHTML = msg;
+    speakFeedback(msg, "bad");
+    return;
+  }
+  const hints = hintBank[state.level] || ["Read the mission goal carefully.","Focus on the sign pattern."];
+  const hintIndex = 2 - state.hintsLeft;
+  const hint = hints[Math.min(hintIndex, hints.length-1)];
+  state.hintsLeft--;
+  state.currentLevelStats.hintsUsed++;
+  const guideBox = document.getElementById("guideBox");
+  if(guideBox){
+    guideBox.innerHTML = `<div class="chat"><div class="face">🤖</div><div class="bubble"><strong>Dr. AI Hint</strong>${hint}</div></div>`;
+  }
+  document.getElementById("messageBox").innerHTML = `💡 ${hint}`;
+  speakFeedback(hint, "good");
+  updateHud();
+}
+
+function mobileMove(dir){mobileDir=dir}
+
+window.addEventListener("keydown",e=>{
+  keys[e.key]=true;
+  if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)) e.preventDefault();
+});
+window.addEventListener("keyup",e=>{keys[e.key]=false});
+
+window.addEventListener("resize",()=>{
+  if(state.gameStarted) loadLevel(state.level);
+});
+
+function confetti(){
+  const colors=["#00eaff","#35ff9a","#ffe066","#ff4cf0","#ff5b7f","#ff9f1c"];
+  for(let i=0;i<80;i++){
+    const d=document.createElement("div");
+    d.className="confetti";
+    d.style.left=Math.random()*100+"vw";
+    d.style.background=colors[Math.floor(Math.random()*colors.length)];
+    d.style.animationDelay=Math.random()*0.35+"s";
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),2300);
+  }
+}
+
+function downloadCertificate(){
+  const canvas=document.getElementById("certCanvas"),ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height;
+  const name=document.getElementById("certificateName").value || state.name || "Formula Warrior";
+  const grd=ctx.createLinearGradient(0,0,w,h);
+  grd.addColorStop(0,"#060918");grd.addColorStop(.48,"#0b2452");grd.addColorStop(1,"#19051f");
+  ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);
+  for(let i=0;i<180;i++){ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;ctx.beginPath();ctx.arc(Math.random()*w,Math.random()*h,Math.random()*2.2,0,Math.PI*2);ctx.fill();}
+  ctx.strokeStyle="#00eaff";ctx.lineWidth=10;ctx.strokeRect(50,50,w-100,h-100);
+  ctx.strokeStyle="#ffe066";ctx.lineWidth=4;ctx.strokeRect(78,78,w-156,h-156);
+  ctx.textAlign="center";
+  ctx.fillStyle="rgba(255,255,255,.08)";
+  ctx.font="900 108px Arial";
+  ctx.save();ctx.translate(w/2,h/2);ctx.rotate(-.18);ctx.fillText("Dr AI Academy",0,0);ctx.restore();
+  ctx.fillStyle="#ffe066";ctx.font="900 54px Arial";ctx.fillText("Dr AI Academy",w/2,170);
+  ctx.fillStyle="#00eaff";ctx.font="900 42px Arial";ctx.fillText("TRIGOVERSE CERTIFICATE",w/2,245);
+  ctx.fillStyle="#eaf6ff";ctx.font="28px Arial";ctx.fillText("This certifies that",w/2,330);
+  ctx.fillStyle="#fff";ctx.font="900 68px Arial";ctx.fillText(name,w/2,420);
+  ctx.fillStyle="#d9e9ff";ctx.font="30px Arial";ctx.fillText("has completed",w/2,500);
+  ctx.fillStyle="#35ff9a";ctx.font="900 42px Arial";ctx.fillText("Identity War",w/2,570);
+  ctx.fillStyle="#ffe066";ctx.font="900 30px Arial";ctx.fillText(`XP: ${state.xp}   |   Energy: ${state.energy}%`,w/2,705);
+  ctx.fillStyle="#d9e9ff";ctx.font="24px Arial";ctx.fillText("Copyright © Dr AI Academy",w/2,790);
+  ctx.fillStyle="#00eaff";ctx.font="24px Arial";ctx.fillText("Learn AI @ Dr AI Academy",w/2,830);
+  const link=document.createElement("a");
+  link.download="dr-ai-academy-trigoverse-playable-arena-certificate.png";
+  link.href=canvas.toDataURL("image/png");
+  link.click();
+}
+</script>
+</body>
+</html>
