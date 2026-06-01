@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NCERT Class 11 Maths Chapter 3: Trigonometric Functions | JEE Foundation Sci‑Fi Game - Version 2</title>
+<style>
+:root{
+  --bg:#050817;
+  --panel:#0f1736;
+  --panel2:#17224e;
+  --line:rgba(255,255,255,.14);
+  --cyan:#00eaff;
+  --green:#35ff9a;
+  --pink:#ff4cf0;
+  --gold:#ffe066;
+  --orange:#ff9f1c;
+  --red:#ff5b7f;
+  --text:#eef8ff;
+  --muted:#aab8d6;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(255,159,28,.15),transparent 25%),
+    radial-gradient(circle at 84% 2%,rgba(255,76,240,.15),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(0,234,255,.14),transparent 35%),
+    linear-gradient(135deg,#040716 0%,#07112e 58%,#12071f 100%);
+}
+body:before,body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px),
+    radial-gradient(#00eaff 1px,transparent 1px),
+    radial-gradient(#ffe066 1px,transparent 1px);
+  background-size:82px 82px,155px 155px,260px 260px;
+  background-position:0 0,35px 60px,120px 140px;
+  opacity:.22;
+  animation:drift 48s linear infinite;
+}
+body:after{opacity:.10;filter:blur(.6px);animation-duration:72s}
+@keyframes drift{to{background-position:950px 420px,-700px 650px,620px -480px}}
+.watermark{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(-16deg);
+  opacity:.05;
+  z-index:0;
+  pointer-events:none;
+  white-space:nowrap;
+  color:#fff;
+  font-size:clamp(42px,8vw,92px);
+  font-weight:950;
+  letter-spacing:8px;
+  border:2px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:18px 30px;
+}
+.app{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:12px 16px;
+  background:linear-gradient(to bottom,rgba(4,7,22,.96),rgba(4,7,22,.78));
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,234,255,.22);
+}
+.topbar{
+  max-width:1240px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.brand h1{
+  margin:0;
+  font-size:clamp(21px,3.5vw,40px);
+  line-height:1.05;
+  text-shadow:0 0 18px rgba(0,234,255,.46);
+}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.hud{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,234,255,.08);
+  border:1px solid rgba(0,234,255,.3);
+  font-weight:900;
+  font-size:13px;
+}
+.chip span{color:var(--green)}
+main{
+  width:100%;
+  max-width:1240px;
+  margin:auto;
+  padding:16px;
+}
+.screen{display:none;animation:fade .24s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border-radius:26px;
+  border:1px solid rgba(0,234,255,.22);
+  background:linear-gradient(145deg,rgba(16,23,53,.94),rgba(7,11,34,.88));
+  box-shadow:0 22px 70px rgba(0,0,0,.34),inset 0 0 30px rgba(0,234,255,.03);
+}
+.panel:before{
+  content:"";
+  position:absolute;
+  right:-140px;
+  top:-140px;
+  width:310px;
+  height:310px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,234,255,.17),transparent 65%);
+  pointer-events:none;
+}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;align-items:stretch}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:920px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+.hero-title{
+  font-size:clamp(32px,6vw,70px);
+  line-height:.96;
+  margin:0 0 12px;
+  font-weight:1000;
+  letter-spacing:-1.4px;
+}
+.glow{color:var(--cyan);text-shadow:0 0 24px rgba(0,234,255,.42)}
+.story-text{font-size:16.5px;line-height:1.62;color:#deefff;margin:10px 0}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{
+  border:none;
+  border-radius:14px;
+  padding:12px 16px;
+  cursor:pointer;
+  font-weight:950;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  color:#04101f;
+  box-shadow:0 12px 30px rgba(0,234,255,.22);
+  transition:.18s transform,.18s filter,.18s box-shadow;
+  font-size:15px;
+}
+button:hover{transform:translateY(-2px);filter:saturate(1.15);box-shadow:0 16px 40px rgba(0,234,255,.32)}
+button.secondary{background:rgba(255,255,255,.08);color:var(--text);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+button.gold{background:linear-gradient(135deg,var(--gold),var(--orange))}
+.adventure-hud{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media(max-width:760px){.adventure-hud{grid-template-columns:1fr}}
+.adventure-tile{
+  padding:12px;
+  border-radius:17px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.adventure-tile strong{display:block;color:var(--gold);margin-bottom:4px}
+.scene-alert{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:17px;
+  background:rgba(255,224,102,.10);
+  border:1px solid rgba(255,224,102,.24);
+  color:#fff6d9;
+  line-height:1.55;
+  font-weight:780;
+}
+
+.character-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  position:relative;
+  z-index:1;
+}
+.character-card{
+  min-height:96px;
+  align-items:center;
+}
+.character-card div:last-child{
+  min-width:0;
+}
+.character-card h3{
+  word-break:normal;
+  overflow-wrap:break-word;
+}
+.character-card p{
+  overflow-wrap:break-word;
+}
+
+.character-card{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  border-radius:21px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.character-card h3{margin:0 0 4px;font-size:19px}
+.character-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.avatar{
+  width:68px;
+  height:68px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  font-size:36px;
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,234,255,.08));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 0 24px rgba(0,234,255,.12);
+  flex:0 0 auto;
+}
+.map{display:grid;gap:10px;margin-top:12px}
+.node{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.11);
+  cursor:pointer;
+  transition:.18s;
+}
+.node:hover,.node.active{border-color:rgba(0,234,255,.5);background:rgba(0,234,255,.105)}
+.node.done{border-color:rgba(53,255,154,.55);background:rgba(53,255,154,.08)}
+.node-num{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  color:var(--cyan);
+  background:rgba(0,234,255,.11);
+  font-weight:1000;
+  flex:0 0 auto;
+}
+.scene-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:16px}
+@media(max-width:960px){.scene-wrap{grid-template-columns:1fr}}
+.comic-panel{
+  min-height:440px;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(circle at 30% 22%,rgba(0,234,255,.18),transparent 28%),
+    radial-gradient(circle at 70% 72%,rgba(255,76,240,.15),transparent 28%),
+    linear-gradient(165deg,#081331,#130826);
+}
+.orbit{
+  position:absolute;
+  width:270px;height:270px;
+  border-radius:50%;
+  border:2px dashed rgba(0,234,255,.38);
+  left:50%;top:42%;
+  transform:translate(-50%,-50%);
+}
+.orbit:before{
+  content:"";
+  position:absolute;
+  inset:28px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.08);
+}
+.ray{
+  position:absolute;
+  left:50%;top:42%;
+  width:135px;height:5px;
+  background:linear-gradient(90deg,var(--gold),var(--cyan));
+  transform-origin:left center;
+  transform:rotate(-35deg);
+  box-shadow:0 0 18px rgba(0,234,255,.7);
+  animation:raySpin 5s ease-in-out infinite alternate;
+}
+@keyframes raySpin{to{transform:rotate(220deg)}}
+.arc{
+  position:absolute;
+  left:50%;top:42%;
+  width:160px;height:160px;
+  border-radius:50%;
+  border-top:6px solid var(--pink);
+  border-right:6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-left:6px solid transparent;
+  transform:translate(-50%,-50%) rotate(-20deg);
+  filter:drop-shadow(0 0 10px rgba(255,76,240,.65));
+}
+.core{
+  position:absolute;
+  left:50%;top:42%;
+  transform:translate(-50%,-50%);
+  font-size:84px;
+  filter:drop-shadow(0 0 22px rgba(255,224,102,.45));
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{50%{transform:translate(-50%,-57%) rotate(2deg)}}
+.character-stage{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:16px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+@media(max-width:500px){.character-stage{grid-template-columns:1fr}}
+.stage-card{
+  padding:9px;
+  border-radius:17px;
+  background:rgba(0,0,0,.36);
+  border:1px solid rgba(255,255,255,.16);
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.stage-card .avatar{width:52px;height:52px;border-radius:17px;font-size:28px}
+.stage-card strong{display:block;font-size:13px}
+.stage-card span{font-size:12px;color:var(--muted)}
+.dialogue-side{display:flex;flex-direction:column;justify-content:space-between}
+.episode{color:var(--gold);font-weight:1000;letter-spacing:.5px;margin-bottom:7px}
+.dialogue-side h2{margin:0 0 12px;font-size:clamp(26px,4vw,44px);line-height:1.08}
+.chat-log{display:grid;gap:12px;max-height:340px;overflow:auto;padding-right:4px}
+.chat-bubble{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.mini-avatar{
+  width:42px;height:42px;
+  border-radius:15px;
+  background:rgba(0,234,255,.1);
+  border:1px solid rgba(255,255,255,.14);
+  display:grid;place-items:center;
+  font-size:22px;font-weight:900;
+}
+.bubble{padding:13px 15px;border-radius:21px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.13)}
+.bubble strong{display:block;margin-bottom:4px}
+.bubble p{margin:0;color:#e6f4ff;line-height:1.58;font-size:15.8px}
+.friend-box{
+  margin-top:12px;
+  padding:13px 14px;
+  border-radius:17px;
+  background:rgba(0,234,255,.09);
+  border:1px solid rgba(0,234,255,.23);
+  line-height:1.5;
+}
+.friend-box strong{color:var(--cyan)}
+.training-card{
+  padding:15px;
+  border-radius:21px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+.training-card h3{margin:0 0 8px;color:var(--gold)}
+.training-card p{margin:0;color:#d9e9ff;line-height:1.55}
+.concept-deep{display:grid;gap:12px;margin-top:14px}
+.deep-card{padding:15px;border-radius:20px;background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.13)}
+.deep-card h3{margin:0 0 8px;color:var(--cyan)}
+.deep-card p{margin:0;color:#e7f5ff;line-height:1.62}
+.pyq-card{
+  margin-top:14px;
+  padding:15px;
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,224,102,.12),rgba(255,76,240,.08));
+  border:1px solid rgba(255,224,102,.28);
+}
+.pyq-card h3{margin:0 0 8px;color:var(--gold)}
+.pyq-card p{margin:0;color:#e8f5ff;line-height:1.55}
+.progress{height:12px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));transition:.3s}
+.action-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:950px){.action-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.action-strip{grid-template-columns:1fr}}
+.action-card{
+  padding:12px;
+  min-height:82px;
+  border-radius:17px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(0,234,255,.04));
+  border:1px solid rgba(255,255,255,.13);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.action-card b{color:var(--gold)}
+.action-card span{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}
+.question{font-size:clamp(21px,3vw,31px);font-weight:1000;line-height:1.25;margin:10px 0}
+.hint{color:var(--muted);line-height:1.5}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}
+@media(max-width:700px){.options{grid-template-columns:1fr}}
+.option{
+  min-height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:14px;
+  border-radius:17px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  cursor:pointer;
+  font-weight:850;
+  transition:.16s;
+}
+.option:hover{background:rgba(0,234,255,.12);border-color:rgba(0,234,255,.45);transform:translateY(-2px)}
+.option.correct{background:rgba(53,255,154,.22);border-color:var(--green)}
+.option.wrong{background:rgba(255,91,127,.22);border-color:var(--red)}
+.feedback{
+  display:none;
+  margin-top:14px;
+  padding:14px;
+  border-radius:18px;
+  background:rgba(0,0,0,.24);
+  border:1px solid rgba(255,255,255,.12);
+  line-height:1.55;
+}
+.feedback.show{display:block}
+details{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:13px;
+  margin:10px 0;
+}
+summary{cursor:pointer;font-weight:950}
+.solution{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#d9e9ff;line-height:1.55}
+.badge-tag{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--gold);color:#071025;font-weight:950;font-size:11px;margin-left:6px}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;font-weight:700}
+.footer a{color:var(--cyan);text-decoration:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal.show{display:flex}
+.modal-card{
+  max-width:740px;
+  width:100%;
+  border-radius:30px;
+  padding:25px;
+  border:1px solid rgba(0,234,255,.36);
+  background:radial-gradient(circle at 10% 0%,rgba(255,224,102,.16),transparent 30%),linear-gradient(145deg,#0b1230,#111d47);
+  box-shadow:0 30px 90px rgba(0,0,0,.55);
+}
+.rank{font-size:clamp(34px,7vw,56px);font-weight:1000;color:var(--gold);text-shadow:0 0 24px rgba(255,224,102,.4);line-height:1}
+input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:15px;
+  border:1px solid rgba(0,234,255,.3);
+  background:rgba(0,0,0,.25);
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+.confetti{position:fixed;width:10px;height:16px;top:-20px;z-index:80;animation:fall 2s ease-in forwards;border-radius:3px}
+@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:0}}
+canvas{display:none}
+
+@media(max-width:520px){
+  .character-card{
+    padding:12px;
+    gap:10px;
+  }
+  .character-card .avatar{
+    width:58px;
+    height:58px;
+    font-size:30px;
+    border-radius:18px;
+  }
+  .character-card h3{
+    font-size:17px;
+  }
+  .character-card p{
+    font-size:13px;
+  }
+}
+
+
+
+
+
+.header-brand-label{
+  position:absolute;
+  top:8px;
+  right:12px;
+  z-index:60;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(3,8,24,.72);
+  border:1px solid rgba(255,255,255,.24);
+  color:#ffffff;
+  font-weight:950;
+  font-size:13px;
+  letter-spacing:.35px;
+  box-shadow:0 8px 22px rgba(0,0,0,.28),0 0 18px rgba(0,234,255,.12);
+  backdrop-filter:blur(10px);
+  white-space:nowrap;
+}
+header{position:sticky}
+.topbar{position:relative;padding-right:148px}
+@media(max-width:760px){
+  .topbar{padding-right:0;padding-top:30px}
+  .header-brand-label{
+    top:6px;
+    right:8px;
+    font-size:12px;
+    padding:6px 10px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="watermark">Dr AI Academy</div>
+<div class="app">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>TrigoVerse: Unit Circle & Graph Arena</h1>
+      <p>NCERT Class 11 Maths Chapter 3: Trigonometric Functions | JEE Foundation Sci‑Fi Game</p>
+    </div>
+    <div class="hud">
+      <div class="chip">Cadet: <span id="hudName">Guest</span></div>
+      <div class="chip">XP: <span id="xp">0</span></div>
+      <div class="chip">Mission: <span id="episodeChip">1/6</span></div>
+      <div class="chip">Accuracy: <span id="accuracy">0%</span></div>
+      <div class="chip">Keys: <span id="keys">0</span>/6</div>
+      <div class="chip">Core Energy: <span id="energy">100%</span></div>
+    </div>
+    <div class="header-brand-label">Dr AI Academy</div>
+  </div>
+</header>
+
+<main>
+  <section id="screen-home" class="screen active">
+    <div class="grid2">
+      <div class="panel">
+        <h1 class="hero-title">Enter the <span class="glow">Unit Circle Arena</span></h1>
+        <p class="story-text">
+          Phase Lord has captured the Unit Circle and scattered trig signals across six dangerous zones:
+          quadrantal values, six trigonometric functions, quadrant signs, domain-range traps, graph waves and periodic time-loops.
+          Your mission is to master the second foundation layer of NCERT Class 11 Trigonometric Functions for JEE.
+        </p>
+        <div class="adventure-hud">
+          <div class="adventure-tile"><strong>JEE Foundation</strong>Built from NCERT Chapter 3 theory and Exercise 3.1 style questions.</div>
+          <div class="adventure-tile"><strong>User Friendly</strong>Large cards, clear buttons, readable panels and mobile-friendly layout.</div>
+          <div class="adventure-tile"><strong>Adventure Flow</strong>Story → Concept → Mission → Key → Certificate.</div>
+        </div>
+        <div class="scene-alert" id="homeFriendNote">
+          Hi Cadet! Start the mission, enter your name, and repair the Unit Circle Core step by step.
+        </div>
+        <div class="controls">
+          <button onclick="openNameModal()">Start Game</button>
+          <button class="secondary" onclick="goToScreen('screen-map')">Mission Map</button>
+          <button class="secondary" onclick="goToScreen('screen-practice')">Exercise Practice</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="character-list">
+          <div class="character-card"><div class="avatar">⭕</div><div><h3>Unit Circle Guardian</h3><p>Explains sin, cos and quadrantal values visually.</p></div></div>
+          <div class="character-card"><div class="avatar">🧭</div><div><h3>Quadrant Ranger</h3><p>Helps students remember signs in all four quadrants.</p></div></div>
+          <div class="character-card"><div class="avatar">📈</div><div><h3>Graph Sage</h3><p>Guides wave graphs, domain, range and periodicity.</p></div></div>
+        </div>
+        <div class="scene-alert" style="margin-top:16px;background:rgba(255,91,127,.10);border-color:rgba(255,91,127,.25);color:#ffdbe5">
+          <strong>Villain:</strong> Phase Lord hides wrong signs, forbidden angles, broken graphs and periodic traps.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-map" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <h2>Mission Map: 6 Unit Circle & Graph Keys</h2>
+        <p class="story-text">Complete all six missions to unlock the Unit Circle Commander certificate.</p>
+        <div class="map" id="missionMap"></div>
+        <div class="controls">
+          <button onclick="goToScreen('screen-story')">Continue Mission</button>
+          <button class="secondary" onclick="goToScreen('screen-home')">Home</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>What this game covers</h2>
+        <div class="grid3">
+          <div class="training-card"><h3>Unit Circle</h3><p>sin and cos as coordinates of a moving point.</p></div>
+          <div class="training-card"><h3>Signs & Domains</h3><p>Quadrant signs, forbidden angles and range logic.</p></div>
+          <div class="training-card"><h3>Graphs</h3><p>sin, cos, tan and periodic wave recognition.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-story" class="screen">
+    <div class="scene-wrap">
+      <div class="comic-panel">
+        <div class="orbit"></div>
+        <div class="ray"></div>
+        <div class="arc"></div>
+        <div class="core" id="sceneIcon">🧭</div>
+        <div class="character-stage">
+          <div class="stage-card"><div class="avatar">🧭</div><div><strong>Unit Guardian</strong><span>Circle Guide</span></div></div>
+          <div class="stage-card"><div class="avatar">⭕</div><div><strong>Unit Guardian</strong><span>Circle Guide</span></div></div>
+          <div class="stage-card"><div class="avatar">⚡</div><div><strong>Graph Sage</strong><span>Wave Mentor</span></div></div>
+        </div>
+      </div>
+      <div class="panel dialogue-side">
+        <div>
+          <div class="episode" id="episodeLabel">Mission 1 of 6</div>
+          <h2 id="sceneTitle">The Broken Compass</h2>
+          <div class="chat-log" id="chatLog"></div>
+          <div class="friend-box" id="friendGuideStory"><strong>Guide:</strong> Read the conversation. The concept clue is hidden inside it.</div>
+        </div>
+        <div class="controls">
+          <button onclick="nextStory()">Continue Story</button>
+          <button class="secondary" onclick="goToScreen('screen-training')">Go to Concept</button>
+          <button class="secondary" onclick="goToScreen('screen-map')">Map</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-training" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="trainingEpisode">Concept Chamber</div>
+        <h2 id="trainingTitle">Concept Training</h2>
+        <p class="story-text" id="trainingText"></p>
+        <div class="friend-box" id="friendGuideTraining"><strong>Guide:</strong> Understand the rule, then use it in the mission.</div>
+        <div class="grid3" id="trainingCards"></div>
+        <div class="concept-deep" id="conceptDeep"></div>
+        <div class="controls">
+          <button onclick="startChallenge()">Start Mission Challenge</button>
+          <button class="secondary" onclick="goToScreen('screen-story')">Back to Story</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Graph Sage's JEE Tip</h2>
+        <p class="story-text" id="jeeTip"></p>
+        <div class="pyq-card">
+          <h3>NCERT Exercise Battle</h3>
+          <p id="storyPyq"></p>
+        </div>
+        <div class="progress"><div id="episodeProgress"></div></div>
+        <p class="story-text">Complete this mission to unlock the next Trigo Key.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-challenge" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="challengeEpisode">Mission Challenge</div>
+        <h2 id="challengeTitle">Challenge</h2>
+        <div class="friend-box" id="friendGuideChallenge"><strong>Guide:</strong> Read carefully, identify the formula, then answer.</div>
+        <div class="action-strip">
+          <div class="action-card"><b>Scan</b><span>Read angle, unit and given values.</span></div>
+          <div class="action-card"><b>Convert</b><span>Degree ↔ radian or arc formula.</span></div>
+          <div class="action-card"><b>Calculate</b><span>Use NCERT rule step by step.</span></div>
+          <div class="action-card"><b>Unlock</b><span>Earn XP and repair Trigo Core.</span></div>
+        </div>
+        <div id="challengeArea"></div>
+        <div class="controls">
+          <button id="nextBtn" onclick="nextQuestion()" style="display:none">Next Challenge</button>
+          <button class="secondary" onclick="restartEpisode()">Restart Mission</button>
+          <button class="secondary" onclick="goToScreen('screen-training')">Concept Training</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Mission Status</h2>
+        <div class="map" id="sideMap"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-practice" class="screen">
+    <div class="panel">
+      <h2>Unit Circle & Graph Practice Bank with Solutions</h2>
+      <p class="story-text">Practice quadrantal values, six trigonometric functions, quadrant signs, domain-range, graphs and periodicity.</p>
+      <div id="practiceList"></div>
+      <div class="controls">
+        <button class="secondary" onclick="goToScreen('screen-home')">Home</button>
+        <button onclick="goToScreen('screen-map')">Mission Map</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  Copyright © Dr AI Academy &nbsp;
+  <a href="https://courses.draiacademy.com" target="_blank" rel="noopener">Learn AI @ Dr AI Academy</a>
+</footer>
+</div>
+
+<div class="modal" id="nameModal">
+  <div class="modal-card">
+    <div class="rank">Welcome Angle Circle Guide</div>
+    <h2>What should the team call you?</h2>
+    <p class="story-text">Enter your name so TrigoVerse can personalize your mission.</p>
+    <input id="playerNameInput" placeholder="Enter student name"/>
+    <div class="controls">
+      <button onclick="savePlayerName()">Start My Mission</button>
+      <button class="secondary" onclick="document.getElementById('nameModal').classList.remove('show')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="missionModal">
+  <div class="modal-card">
+    <div class="rank">Trigo Key Unlocked!</div>
+    <h2 id="missionModalTitle">Mission Complete</h2>
+    <p class="story-text" id="missionModalText"></p>
+    <input id="studentName" value="Cadet" placeholder="Student name for certificate"/>
+    <div class="controls">
+      <button onclick="downloadCertificate(false)">Download Mission Certificate</button>
+      <button class="secondary" onclick="continueAfterMission()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="winModal">
+  <div class="modal-card">
+    <div class="rank">Trigo Core Restored</div>
+    <h2>Angle Circle Guide Championship Complete 🎉</h2>
+    <p class="story-text" id="finalText"></p>
+    <input id="championName" value="Cadet" placeholder="Student name for championship certificate"/>
+    <div class="controls">
+      <button onclick="downloadCertificate(true)">Download Championship Certificate</button>
+      <button class="secondary" onclick="resetGame()">Play Again</button>
+      <button class="secondary" onclick="goToScreen('screen-practice');document.getElementById('winModal').classList.remove('show')">Practice Bank</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="certCanvas" width="1600" height="1131"></canvas>
+
+<script>
+const episodes = [
+  {
+    icon:"⭕", key:"Quadrantal Key", title:"The Axis Gate", concept:"Quadrantal Angles",
+    dialogue:[
+      ["⭕","Unit Circle Guardian","The Unit Circle has four axis gates: 0, π/2, π and 3π/2."],
+      ["🧭","Quadrant Ranger","At these angles, the point lies exactly on an axis."],
+      ["📈","Graph Sage","That makes sin and cos values easy: read the coordinates."],
+      ["👤","You","So at π/2, the point is (0,1), therefore sin is 1 and cos is 0."],
+      ["⭕","Unit Circle Guardian","Correct. Unlock the Axis Gate."]
+    ],
+    training:"On the unit circle, cos x is the x-coordinate and sin x is the y-coordinate. At quadrantal angles, the point lies on the axes: 0, π/2, π, 3π/2 and 2π.",
+    cards:[
+      ["0 or 2π","Point (1,0): cos=1, sin=0."],
+      ["π/2","Point (0,1): cos=0, sin=1."],
+      ["π","Point (−1,0): cos=−1, sin=0."]
+    ],
+    deep:[
+      ["Why it matters","Quadrantal values are the checkpoints for graphs, signs and periodicity."],
+      ["NCERT connection","NCERT defines sin and cos using point P(a,b) on the unit circle."],
+      ["JEE angle","Fast recall of these values prevents mistakes in identities and graph questions."]
+    ],
+    tip:"Read coordinates: cos = x-coordinate, sin = y-coordinate.",
+    pyq:"NCERT-style: If x=π, point is (−1,0), so cosπ=−1 and sinπ=0.",
+    q:[
+      {q:"sin(π/2) equals:", options:["0","1","−1","Not defined"], ans:1, why:"At π/2, point is (0,1), so sin=1."},
+      {q:"cos(π) equals:", options:["1","0","−1","Not defined"], ans:2, why:"At π, point is (−1,0), so cosπ=−1."},
+      {q:"sin(0) equals:", options:["0","1","−1","π"], ans:0, why:"At 0, point is (1,0), so sin=0."},
+      {q:"cos(3π/2) equals:", options:["0","1","−1","Not defined"], ans:0, why:"At 3π/2, point is (0,−1), so cos=0."}
+    ],
+    win:"The Axis Gate is unlocked. You can read quadrantal values."
+  },
+  {
+    icon:"⚙️", key:"Six Functions Key", title:"The Six-Signal Reactor", concept:"Six Trigonometric Functions",
+    dialogue:[
+      ["⭕","Unit Circle Guardian","The reactor has six signals: sin, cos, tan, cot, sec and cosec."],
+      ["🧭","Quadrant Ranger","sin and cos are core signals. Others come from ratios and reciprocals."],
+      ["📈","Graph Sage","tan x = sin x / cos x, and cot x = cos x / sin x."],
+      ["👤","You","So sec and cosec are reciprocals of cos and sin."],
+      ["⭕","Unit Circle Guardian","Exactly. Power the six-signal reactor."]
+    ],
+    training:"The six trigonometric functions are sin x, cos x, tan x, cot x, sec x and cosec x. tan x = sin x/cos x, cot x = cos x/sin x, sec x = 1/cos x and cosec x = 1/sin x where defined.",
+    cards:[
+      ["tan x","sin x / cos x"],
+      ["sec x","1 / cos x"],
+      ["cosec x","1 / sin x"]
+    ],
+    deep:[
+      ["Why it matters","Most domain restrictions come from division by zero in reciprocal or quotient functions."],
+      ["NCERT connection","After defining sin and cos, NCERT defines the remaining trigonometric functions."],
+      ["JEE angle","Before solving any trig expression, check whether denominator becomes zero."]
+    ],
+    tip:"If sin x or cos x is zero, some related functions become undefined.",
+    pyq:"NCERT-style: tan x is not defined where cos x = 0; cot x is not defined where sin x = 0.",
+    q:[
+      {q:"tan x equals:", options:["cos x / sin x","sin x / cos x","1 / sin x","1 / cos x"], ans:1, why:"tan x = sin x / cos x."},
+      {q:"sec x equals:", options:["1/sin x","1/cos x","sin x/cos x","cos x/sin x"], ans:1, why:"sec x is reciprocal of cos x."},
+      {q:"cosec x equals:", options:["1/sin x","1/cos x","sin x/cos x","cos x/sin x"], ans:0, why:"cosec x is reciprocal of sin x."},
+      {q:"cot x equals:", options:["sin x/cos x","cos x/sin x","1/cos x","1/sin x"], ans:1, why:"cot x = cos x / sin x."}
+    ],
+    win:"The Six-Signal Reactor is stable. You know the six trigonometric functions."
+  },
+  {
+    icon:"🧭", key:"Sign Key", title:"The Quadrant Sign Battle", concept:"Signs of Trigonometric Functions",
+    dialogue:[
+      ["🧭","Quadrant Ranger","Phase Lord has changed signs in all four quadrants."],
+      ["⭕","Unit Circle Guardian","Use coordinates: sin follows y-coordinate, cos follows x-coordinate."],
+      ["📈","Graph Sage","tan is positive when sin and cos have the same sign."],
+      ["👤","You","So signs depend on the quadrant of the angle."],
+      ["🧭","Quadrant Ranger","Correct. Win the quadrant battle."]
+    ],
+    training:"In quadrant I, all trigonometric functions are positive. In quadrant II, sin and cosec are positive. In quadrant III, tan and cot are positive. In quadrant IV, cos and sec are positive.",
+    cards:[
+      ["Quadrant I","All positive."],
+      ["Quadrant II","sin and cosec positive."],
+      ["Quadrant III","tan and cot positive."],
+      ["Quadrant IV","cos and sec positive."]
+    ],
+    deep:[
+      ["Coordinate logic","sin uses y-coordinate and cos uses x-coordinate."],
+      ["NCERT connection","NCERT gives signs of trigonometric functions in all four quadrants."],
+      ["JEE angle","Sign errors are one of the most common mistakes in trig simplification."]
+    ],
+    tip:"Remember ASTC: All, Sin, Tan, Cos positive by quadrants I, II, III, IV.",
+    pyq:"NCERT-style: In quadrant II, sin is positive but cos and tan are negative.",
+    q:[
+      {q:"In quadrant I, which functions are positive?", options:["Only sin","Only cos","All","Only tan"], ans:2, why:"All trigonometric functions are positive in quadrant I."},
+      {q:"In quadrant II, which function is positive?", options:["cos","sin","tan","sec"], ans:1, why:"sin and cosec are positive in quadrant II."},
+      {q:"In quadrant III, which function is positive?", options:["sin","cos","tan","sec"], ans:2, why:"tan and cot are positive in quadrant III."},
+      {q:"In quadrant IV, which function is positive?", options:["sin","cos","tan","cosec"], ans:1, why:"cos and sec are positive in quadrant IV."},
+      {q:"sin 120° is:", options:["Positive","Negative","Zero","Undefined"], ans:0, why:"120° lies in quadrant II where sin is positive."}
+    ],
+    win:"The quadrant battle is won. You can identify signs."
+  },
+  {
+    icon:"🚫", key:"Domain Range Key", title:"The Forbidden-Angle Maze", concept:"Domain and Range",
+    dialogue:[
+      ["📈","Graph Sage","This maze has forbidden angles where some trig functions are not defined."],
+      ["⭕","Unit Circle Guardian","tan x fails when cos x = 0."],
+      ["🧭","Quadrant Ranger","cot x and cosec x fail when sin x = 0."],
+      ["👤","You","So domain restrictions come from division by zero."],
+      ["📈","Graph Sage","Exactly. Escape the maze by avoiding forbidden angles."]
+    ],
+    training:"The domain and range of trigonometric functions depend on where the functions are defined. tan x and sec x are undefined where cos x=0. cot x and cosec x are undefined where sin x=0.",
+    cards:[
+      ["sin, cos","Domain: R; Range: [−1,1]."],
+      ["tan","Undefined when cos x=0."],
+      ["sec, cosec","Range excludes values between −1 and 1."]
+    ],
+    deep:[
+      ["Why it matters","Domain-range questions are direct JEE scoring opportunities."],
+      ["NCERT connection","NCERT gives domain and range table for six trig functions."],
+      ["JEE angle","Whenever division appears, immediately check forbidden angles."]
+    ],
+    tip:"tan and sec depend on cos; cot and cosec depend on sin.",
+    pyq:"NCERT-style: tan x is undefined at x=(2n+1)π/2, where cos x=0.",
+    q:[
+      {q:"Domain of sin x is:", options:["R","R−{0}","Only [−1,1]","Only positive reals"], ans:0, why:"sin x is defined for all real x."},
+      {q:"Range of sin x is:", options:["R","[−1,1]","R−{0}","[0,∞)"], ans:1, why:"sin x always lies between −1 and 1."},
+      {q:"tan x is undefined when:", options:["sin x=0","cos x=0","x=0 only","x=π only"], ans:1, why:"tan x = sin x/cos x, so cos x cannot be zero."},
+      {q:"cosec x is undefined when:", options:["sin x=0","cos x=0","tan x=0","sec x=0"], ans:0, why:"cosec x=1/sin x, so sin x cannot be zero."},
+      {q:"Range of cos x is:", options:["R","[−1,1]","R−{0}","[1,∞)"], ans:1, why:"cos x lies between −1 and 1."}
+    ],
+    win:"The forbidden-angle maze is cleared. You understand domain and range."
+  },
+  {
+    icon:"📈", key:"Graph Key", title:"The Wave Graph Arena", concept:"Graphs of Trigonometric Functions",
+    dialogue:[
+      ["📈","Graph Sage","The arena displays waves, asymptotes and repeating patterns."],
+      ["⭕","Unit Circle Guardian","sin and cos are smooth waves with range [−1,1]."],
+      ["🧭","Quadrant Ranger","tan has repeating branches and undefined vertical lines."],
+      ["👤","You","So each trigonometric function has a signature graph."],
+      ["📈","Graph Sage","Correct. Read the graph like a map."]
+    ],
+    training:"The graphs of sin x and cos x are wave curves with range [−1,1]. tan x has vertical asymptotes where cos x=0. Trigonometric graphs repeat after a fixed period.",
+    cards:[
+      ["sin x","Wave starts from 0."],
+      ["cos x","Wave starts from 1."],
+      ["tan x","Has vertical asymptotes."]
+    ],
+    deep:[
+      ["NCERT connection","NCERT shows graphs of sin, cos, tan, cot, sec and cosec."],
+      ["Graph reading","Look at starting value, range, breaks and period."],
+      ["JEE angle","Graph-based questions often test domain, range and period together."]
+    ],
+    tip:"sin starts at 0; cos starts at 1; tan is undefined at odd multiples of π/2.",
+    pyq:"NCERT-style: Graph of tan x repeats after π and has vertical asymptotes at x=(2n+1)π/2.",
+    q:[
+      {q:"Graph of sin x at x=0 starts from:", options:["0","1","−1","Undefined"], ans:0, why:"sin 0=0."},
+      {q:"Graph of cos x at x=0 starts from:", options:["0","1","−1","Undefined"], ans:1, why:"cos 0=1."},
+      {q:"Which graph has vertical asymptotes at odd multiples of π/2?", options:["sin x","cos x","tan x","constant function"], ans:2, why:"tan x is undefined when cos x=0."},
+      {q:"sin x and cos x have range:", options:["R","[−1,1]","[0,1]","R−{0}"], ans:1, why:"Both sin and cos lie between −1 and 1."}
+    ],
+    win:"The graph arena is cleared. You can recognize trig graphs."
+  },
+  {
+    icon:"🔁", key:"Periodicity Key", title:"The Periodic Time Loop", concept:"Periodicity and Angle Reduction",
+    dialogue:[
+      ["📈","Graph Sage","Phase Lord trapped the arena in a time loop."],
+      ["⭕","Unit Circle Guardian","Trig values repeat after a fixed period."],
+      ["🧭","Quadrant Ranger","sin and cos repeat after 2π, while tan repeats after π."],
+      ["👤","You","So large angles can be reduced using periods."],
+      ["📈","Graph Sage","Exactly. Break the loop."]
+    ],
+    training:"A trigonometric function is periodic if its values repeat after a fixed positive number. sin x and cos x have period 2π. tan x and cot x have period π.",
+    cards:[
+      ["sin, cos","Period 2π."],
+      ["tan, cot","Period π."],
+      ["Reduction","Subtract complete periods to get an equivalent angle."]
+    ],
+    deep:[
+      ["Why it matters","Large-angle questions become simple after reducing by period."],
+      ["NCERT connection","NCERT discusses periodicity after graphs of trigonometric functions."],
+      ["JEE angle","Periodicity is used in equations, graphs and simplification."]
+    ],
+    tip:"For sin and cos reduce by 360° or 2π; for tan reduce by 180° or π.",
+    pyq:"NCERT-style: sin(x+2π)=sin x, cos(x+2π)=cos x and tan(x+π)=tan x.",
+    q:[
+      {q:"Period of sin x is:", options:["π","2π","π/2","4π"], ans:1, why:"sin x repeats after 2π."},
+      {q:"Period of tan x is:", options:["π","2π","3π","π/2"], ans:0, why:"tan x repeats after π."},
+      {q:"sin(390°) equals:", options:["sin 30°","sin 60°","sin 90°","sin 180°"], ans:0, why:"390°−360°=30°."},
+      {q:"tan(225°) equals:", options:["tan 45°","tan 90°","tan 180°","tan 30°"], ans:0, why:"tan has period 180°. 225°−180°=45°."},
+      {q:"cos(x+2π) equals:", options:["sin x","cos x","−cos x","tan x"], ans:1, why:"cos x has period 2π."}
+    ],
+    win:"The periodic loop is broken. You completed TrigoVerse Version 2."
+  }
+];
+
+const practiceQuestions = [
+  ["Quadrantal Value","Find sin(π/2).","At π/2, point on unit circle is (0,1), so sin(π/2)=1."],
+  ["Quadrantal Value","Find cos π.","At π, point is (−1,0), so cosπ=−1."],
+  ["Six Functions","Write tan x in terms of sin x and cos x.","tan x = sin x / cos x."],
+  ["Reciprocal Function","Write sec x in terms of cos x.","sec x = 1/cos x."],
+  ["Quadrant Sign","What is the sign of sin 120°?","120° lies in quadrant II. sin is positive in quadrant II."],
+  ["Quadrant Sign","What is the sign of tan 210°?","210° lies in quadrant III. tan is positive in quadrant III."],
+  ["Domain","Where is tan x undefined?","tan x is undefined where cos x=0, i.e., x=(2n+1)π/2."],
+  ["Range","What is the range of sin x?","Range of sin x is [−1,1]."],
+  ["Graph Start","At x=0, where does the cos x graph start?","cos 0=1, so graph starts at y=1."],
+  ["Graph Feature","Which trig graph has vertical asymptotes at odd multiples of π/2?","tan x has vertical asymptotes there."],
+  ["Periodicity","What is period of sin x?","Period of sin x is 2π."],
+  ["Periodicity","What is period of tan x?","Period of tan x is π."],
+  ["Angle Reduction","Find equivalent angle for sin 390°.","390°−360°=30°, so sin390°=sin30°."],
+  ["Angle Reduction","Find equivalent angle for tan 225°.","tan has period 180°, so tan225°=tan45°."],
+  ["Identity Base","What is the basic identity from unit circle?","sin²x + cos²x = 1."]
+];
+
+let state={episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};
+
+function openNameModal(){
+  document.getElementById("playerNameInput").value=state.studentName==="Cadet"?"":state.studentName;
+  document.getElementById("nameModal").classList.add("show");
+  setTimeout(()=>document.getElementById("playerNameInput").focus(),80);
+}
+function savePlayerName(){
+  const raw=document.getElementById("playerNameInput").value.trim();
+  state.studentName=raw||"Cadet";
+  document.getElementById("nameModal").classList.remove("show");
+  state.episode=0;state.line=0;state.q=0;
+  goToScreen("screen-story");
+}
+function friendLine(context){
+  const n=state.studentName||"Cadet";
+  const e=episodes[state.episode];
+  if(context==="story")return `Hi ${n}! The clue in this mission is about ${e.concept}. Read the dialogue carefully.`;
+  if(context==="training")return `${n}, understand the rule first, then the example, then the JEE shortcut.`;
+  if(context==="challenge")return `${n}, read the question slowly. Check unit: degree, radian, radius, arc length or coordinate.`;
+  return `Let's go, ${n}!`;
+}
+function goToScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  if(id==="screen-story")renderStory();
+  if(id==="screen-training")renderTraining();
+  if(id==="screen-map")renderMaps();
+  if(id==="screen-challenge")renderChallenge();
+  updateHud();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function updateHud(){
+  document.getElementById("xp").textContent=state.xp;
+  document.getElementById("episodeChip").textContent=(state.episode+1)+"/6";
+  document.getElementById("keys").textContent=state.keys.size;
+  document.getElementById("hudName").textContent=state.studentName||"Guest";
+  document.getElementById("accuracy").textContent=state.attempts?Math.round(state.correct/state.attempts*100)+"%":"0%";
+  const energy=Math.max(20,100-Math.max(0,state.attempts-state.correct)*8);
+  document.getElementById("energy").textContent=energy+"%";
+  const homeNote=document.getElementById("homeFriendNote");
+  if(homeNote)homeNote.textContent=`Hi ${state.studentName||"Cadet"}! Start the mission, enter your name, and repair the Unit Circle Core step by step.`;
+}
+function renderMaps(){
+  const make=()=>episodes.map((e,i)=>`
+    <div class="node ${i===state.episode?'active':''} ${state.keys.has(i)?'done':''}" onclick="state.episode=${i};state.line=0;state.q=0;goToScreen('screen-story')">
+      <div class="node-num">${state.keys.has(i)?"✓":i+1}</div>
+      <div><strong>${e.icon} ${e.title}</strong><br><span style="color:var(--muted);font-size:13px">${e.concept}</span></div>
+    </div>`).join("");
+  const m=document.getElementById("missionMap");if(m)m.innerHTML=make();
+  const s=document.getElementById("sideMap");if(s)s.innerHTML=make();
+}
+function renderStory(){
+  const e=episodes[state.episode];
+  document.getElementById("episodeLabel").textContent="Mission "+(state.episode+1)+" of 6";
+  document.getElementById("sceneTitle").textContent=e.title;
+  document.getElementById("sceneIcon").textContent=e.icon;
+  document.getElementById("chatLog").innerHTML=e.dialogue.slice(0,state.line+1).map(d=>`
+    <div class="chat-bubble">
+      <div class="mini-avatar">${d[0]}</div>
+      <div class="bubble"><strong>${d[1]}</strong><p>${d[2].replace("Cadet",state.studentName||"Cadet").replace("You",state.studentName||"You")}</p></div>
+    </div>`).join("");
+  document.getElementById("friendGuideStory").innerHTML=`<strong>Guide:</strong> ${friendLine("story")}`;
+}
+function nextStory(){
+  const e=episodes[state.episode];
+  if(state.line<e.dialogue.length-1){state.line++;renderStory();}
+  else goToScreen("screen-training");
+}
+function renderTraining(){
+  const e=episodes[state.episode];
+  document.getElementById("trainingEpisode").textContent="Concept Chamber: "+e.key;
+  document.getElementById("trainingTitle").textContent=e.concept;
+  document.getElementById("trainingText").textContent=e.training;
+  document.getElementById("trainingCards").innerHTML=e.cards.map(c=>`<div class="training-card"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join("");
+  document.getElementById("conceptDeep").innerHTML=(e.deep||[]).map(d=>`<div class="deep-card"><h3>${d[0]}</h3><p>${d[1]}</p></div>`).join("");
+  document.getElementById("jeeTip").textContent=e.tip;
+  document.getElementById("storyPyq").textContent=e.pyq||"";
+  document.getElementById("episodeProgress").style.width=(state.q/e.q.length)*100+"%";
+  document.getElementById("friendGuideTraining").innerHTML=`<strong>Guide:</strong> ${friendLine("training")}`;
+}
+function startChallenge(){state.q=0;state.answered=false;goToScreen("screen-challenge")}
+function restartEpisode(){state.q=0;state.answered=false;renderChallenge();updateHud()}
+function renderChallenge(){
+  renderMaps();
+  const e=episodes[state.episode];
+  document.getElementById("challengeEpisode").textContent="Mission Challenge: "+e.key;
+  document.getElementById("challengeTitle").textContent=e.title;
+  document.getElementById("friendGuideChallenge").innerHTML=`<strong>Guide:</strong> ${friendLine("challenge")}`;
+  document.getElementById("nextBtn").style.display="none";
+  state.answered=false;
+  const item=e.q[state.q];
+  document.getElementById("challengeArea").innerHTML=`
+    <div class="question">${item.q}</div>
+    <p class="hint">Choose the correct answer to unlock the next challenge.</p>
+    <div class="options">${item.options.map((o,i)=>`<div class="option" onclick="answerMCQ(${i})">${o}</div>`).join("")}</div>
+    <div id="feedback" class="feedback"></div>`;
+  updateHud();
+}
+function fb(ok,text){
+  const f=document.getElementById("feedback");
+  f.className="feedback show";
+  f.innerHTML=`<strong style="color:${ok?'var(--green)':'var(--red)'}">${ok?'Correct — Trigo Gate opened!':'Not correct — correction activated.'}</strong><br>${text}`;
+}
+function answerMCQ(i){
+  if(state.answered)return;
+  state.answered=true;
+  state.attempts++;
+  const item=episodes[state.episode].q[state.q];
+  const opts=[...document.querySelectorAll(".option")];
+  if(i===item.ans){
+    opts[i].classList.add("correct");
+    state.correct++;
+    state.xp+=50;
+    fb(true,item.why);
+  }else{
+    opts[i].classList.add("wrong");
+    opts[item.ans].classList.add("correct");
+    fb(false,item.why);
+  }
+  document.getElementById("nextBtn").style.display="inline-block";
+  updateHud();
+}
+function nextQuestion(){
+  const e=episodes[state.episode];
+  state.q++;
+  if(state.q>=e.q.length){
+    state.keys.add(state.episode);
+    state.lastCompleted=state.episode;
+    confetti();
+    document.getElementById("missionModalTitle").textContent=e.key+" Unlocked";
+    document.getElementById("missionModalText").innerHTML=`<strong>${e.win}</strong><br><br>${state.studentName}, you earned this Trigo Key by mastering <strong>${e.concept}</strong>.`;
+    document.getElementById("studentName").value=state.studentName||"Cadet";
+    document.getElementById("missionModal").classList.add("show");
+    state.pending=state.keys.size===episodes.length?"final":"next";
+    renderMaps();
+    updateHud();
+    return;
+  }
+  renderChallenge();
+}
+function continueAfterMission(){
+  document.getElementById("missionModal").classList.remove("show");
+  if(state.pending==="final"){finishGame();return;}
+  state.episode=Math.min(episodes.length-1,state.lastCompleted+1);
+  state.line=0;
+  state.q=0;
+  goToScreen("screen-story");
+}
+function finishGame(){
+  confetti();
+  const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;
+  document.getElementById("finalText").innerHTML=`${state.studentName}, the Unit Circle Core is restored. You earned <strong>${state.xp} XP</strong>, unlocked <strong>${state.keys.size}/6 Trigo Keys</strong>, and scored <strong>${acc}% accuracy</strong>.`;
+  document.getElementById("championName").value=state.studentName||"Cadet";
+  document.getElementById("winModal").classList.add("show");
+}
+function renderPractice(){
+  document.getElementById("practiceList").innerHTML=practiceQuestions.map((p,i)=>`
+    <details>
+      <summary>Q${i+1}. ${p[0]} <span class="badge-tag">Exercise 3.1</span></summary>
+      <div class="solution"><strong>Question:</strong> ${p[1]}<br><br><strong>Solution:</strong> ${p[2]}</div>
+    </details>`).join("");
+}
+function confetti(){
+  const colors=["#00eaff","#35ff9a","#ffe066","#ff4cf0","#ff5b7f","#ff9f1c"];
+  for(let i=0;i<90;i++){
+    const d=document.createElement("div");
+    d.className="confetti";
+    d.style.left=Math.random()*100+"vw";
+    d.style.background=colors[Math.floor(Math.random()*colors.length)];
+    d.style.animationDelay=Math.random()*0.35+"s";
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),2300);
+  }
+}
+function downloadCertificate(finalCert){
+  const canvas=document.getElementById("certCanvas"),ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height;
+  const name=finalCert?(document.getElementById("championName").value||state.studentName||"Angle Circle Guide"):(document.getElementById("studentName").value||state.studentName||"Angle Circle Guide");
+  const title=finalCert?"TRIGOVERSE CHAMPIONSHIP CERTIFICATE":"TRIGOVERSE MISSION CERTIFICATE";
+  const mission=finalCert?"Unit Circle & Graph Arena - Chapter 3":episodes[state.lastCompleted].title+" - "+episodes[state.lastCompleted].key;
+  const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;
+  const grd=ctx.createLinearGradient(0,0,w,h);
+  grd.addColorStop(0,"#060918");grd.addColorStop(.48,"#0b2452");grd.addColorStop(1,"#19051f");
+  ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);
+  for(let i=0;i<180;i++){ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;ctx.beginPath();ctx.arc(Math.random()*w,Math.random()*h,Math.random()*2.2,0,Math.PI*2);ctx.fill();}
+  ctx.strokeStyle="#00eaff";ctx.lineWidth=10;ctx.strokeRect(50,50,w-100,h-100);
+  ctx.strokeStyle="#ffe066";ctx.lineWidth=4;ctx.strokeRect(78,78,w-156,h-156);
+  ctx.textAlign="center";
+  ctx.fillStyle="rgba(255,255,255,.08)";
+  ctx.font="900 108px Arial";
+  ctx.save();ctx.translate(w/2,h/2);ctx.rotate(-.18);ctx.fillText("Dr AI Academy",0,0);ctx.restore();
+  ctx.fillStyle="#ffe066";ctx.font="900 54px Arial";ctx.fillText("Dr AI Academy",w/2,170);
+  ctx.fillStyle="#00eaff";ctx.font="900 42px Arial";ctx.fillText(title,w/2,245);
+  ctx.fillStyle="#eaf6ff";ctx.font="28px Arial";ctx.fillText("This certifies that",w/2,330);
+  ctx.fillStyle="#fff";ctx.font="900 68px Arial";ctx.fillText(name,w/2,420);
+  ctx.fillStyle="#d9e9ff";ctx.font="30px Arial";ctx.fillText("has successfully completed",w/2,500);
+  ctx.fillStyle="#35ff9a";ctx.font="900 42px Arial";ctx.fillText(mission,w/2,570);
+  ctx.fillStyle="#ffe066";ctx.font="900 30px Arial";ctx.fillText(`XP: ${state.xp}   |   Accuracy: ${acc}%`,w/2,705);
+  ctx.fillStyle="#d9e9ff";ctx.font="24px Arial";ctx.fillText("Copyright © Dr AI Academy",w/2,790);
+  ctx.fillStyle="#00eaff";ctx.font="24px Arial";ctx.fillText("Learn AI @ Dr AI Academy",w/2,830);
+  const link=document.createElement("a");
+  link.download=finalCert?"dr-ai-academy-trigoverse-championship.png":"dr-ai-academy-trigoverse-mission.png";
+  link.href=canvas.toDataURL("image/png");
+  link.click();
+}
+function resetGame(){
+  state={episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};
+  document.getElementById("winModal").classList.remove("show");
+  goToScreen("screen-home");
+  renderMaps();
+  updateHud();
+}
+renderPractice();
+renderMaps();
+updateHud();
+</script>
+</body>
+</html>
