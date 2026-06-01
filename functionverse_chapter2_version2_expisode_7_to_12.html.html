@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NCERT Class 11 Maths Chapter 2: Relations and Functions | JEE Foundation Sci‑Fi Game - Version 2</title>
+<style>
+:root{
+  --bg:#050717;--panel:#101735;--panel2:#172452;--line:rgba(255,255,255,.13);
+  --cyan:#00eaff;--green:#35ff9a;--pink:#ff4cf0;--gold:#ffe066;--orange:#ff9f1c;--red:#ff5b7f;
+  --text:#eef8ff;--muted:#aab8d6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(255,159,28,.15),transparent 25%),
+    radial-gradient(circle at 82% 3%,rgba(255,76,240,.15),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(0,234,255,.13),transparent 34%),
+    linear-gradient(135deg,#040716 0%,#081130 58%,#12071f 100%);
+  overflow-x:hidden;
+}
+body:before,body:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#00eaff 1px,transparent 1px),radial-gradient(#ffe066 1px,transparent 1px);
+  background-size:80px 80px,150px 150px,250px 250px;background-position:0 0,35px 60px,120px 140px;
+  opacity:.22;animation:drift 48s linear infinite;
+}
+body:after{opacity:.10;filter:blur(.6px);animation-duration:72s}
+@keyframes drift{to{background-position:950px 420px,-700px 650px,620px -480px}}
+.watermark{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-16deg);
+  opacity:.05;z-index:0;pointer-events:none;white-space:nowrap;color:#fff;font-size:clamp(44px,8vw,94px);
+  font-weight:950;letter-spacing:8px;border:2px solid rgba(255,255,255,.08);border-radius:22px;padding:18px 30px;
+}
+.app{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+header{position:sticky;top:0;z-index:20;padding:14px 18px;background:linear-gradient(to bottom,rgba(4,7,22,.96),rgba(4,7,22,.76));backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,234,255,.2)}
+.topbar{max-width:1260px;margin:auto;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.brand h1{margin:0;font-size:clamp(22px,3.6vw,42px);line-height:1;text-shadow:0 0 18px rgba(0,234,255,.45)}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.hud{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:9px 13px;border-radius:999px;background:rgba(0,234,255,.08);border:1px solid rgba(0,234,255,.3);font-weight:900;font-size:13px}
+.chip span{color:var(--green)}
+main{max-width:1260px;width:100%;margin:auto;padding:18px}
+.screen{display:none;animation:fade .28s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel{position:relative;overflow:hidden;padding:22px;border-radius:28px;border:1px solid rgba(0,234,255,.22);background:linear-gradient(145deg,rgba(16,23,53,.92),rgba(7,11,34,.86));box-shadow:0 22px 70px rgba(0,0,0,.34),inset 0 0 30px rgba(0,234,255,.03)}
+.panel:before{content:"";position:absolute;right:-140px;top:-140px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(0,234,255,.18),transparent 65%)}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:950px){.grid2,.grid3{grid-template-columns:1fr}}
+.hero-title{font-size:clamp(34px,7vw,78px);line-height:.94;margin:0 0 12px;font-weight:1000;letter-spacing:-1.5px}
+.glow{color:var(--cyan);text-shadow:0 0 24px rgba(0,234,255,.42)}
+.story-text{font-size:17px;line-height:1.65;color:#deefff;margin:10px 0}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button{border:none;border-radius:15px;padding:12px 17px;cursor:pointer;font-weight:950;background:linear-gradient(135deg,var(--cyan),var(--green));color:#04101f;box-shadow:0 12px 30px rgba(0,234,255,.22);transition:.18s transform,.18s filter,.18s box-shadow;font-size:15px}
+button:hover{transform:translateY(-2px);filter:saturate(1.15);box-shadow:0 16px 40px rgba(0,234,255,.32)}
+button.secondary{background:rgba(255,255,255,.08);color:var(--text);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+button.gold{background:linear-gradient(135deg,var(--gold),var(--orange))}
+.adventure-hud{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media(max-width:750px){.adventure-hud{grid-template-columns:1fr}}
+.adventure-tile{padding:12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+.adventure-tile strong{display:block;color:var(--gold);margin-bottom:4px}
+.scene-alert{margin-top:12px;padding:13px 14px;border-radius:18px;background:rgba(255,224,102,.10);border:1px solid rgba(255,224,102,.24);color:#fff6d9;line-height:1.55;font-weight:780}
+.character-card{display:flex;gap:12px;align-items:center;padding:14px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+.character-card h3{margin:0 0 4px;font-size:20px}.character-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.avatar{width:74px;height:74px;border-radius:22px;display:grid;place-items:center;font-size:38px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,234,255,.08));border:1px solid rgba(255,255,255,.16);box-shadow:0 0 24px rgba(0,234,255,.12)}
+.map{display:grid;gap:10px;margin-top:12px}
+.node{display:flex;gap:11px;align-items:center;padding:12px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);cursor:pointer}
+.node:hover,.node.active{border-color:rgba(0,234,255,.5);background:rgba(0,234,255,.105)}
+.node.done{border-color:rgba(53,255,154,.55);background:rgba(53,255,154,.08)}
+.node-num{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;color:var(--cyan);background:rgba(0,234,255,.11);font-weight:1000}
+.scene-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px}
+@media(max-width:950px){.scene-wrap{grid-template-columns:1fr}}
+.comic-panel{min-height:470px;border-radius:30px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.14);background:radial-gradient(circle at 30% 22%,rgba(0,234,255,.18),transparent 28%),radial-gradient(circle at 70% 72%,rgba(255,76,240,.15),transparent 28%),linear-gradient(165deg,#081331,#130826)}
+.portal{position:absolute;width:130px;height:130px;border-radius:50%;border:8px solid rgba(0,234,255,.6);box-shadow:0 0 30px rgba(0,234,255,.55),inset 0 0 25px rgba(0,234,255,.35);animation:pulse 2.2s ease-in-out infinite}
+.portal.a{left:44px;top:64px}.portal.b{right:54px;bottom:78px;border-color:rgba(255,76,240,.65);box-shadow:0 0 30px rgba(255,76,240,.45),inset 0 0 25px rgba(255,76,240,.25)}
+@keyframes pulse{50%{transform:scale(1.08);filter:saturate(1.5)}}
+.laser{position:absolute;height:4px;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));box-shadow:0 0 16px var(--cyan);transform-origin:left center}
+.l1{left:150px;top:130px;width:230px;transform:rotate(24deg)}.l2{left:165px;top:165px;width:260px;transform:rotate(-9deg);opacity:.55}.l3{left:180px;top:250px;width:210px;transform:rotate(-28deg);opacity:.7}
+.ship{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:92px;filter:drop-shadow(0 0 22px rgba(255,224,102,.45));animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-50%,-56%) rotate(2deg)}}
+.character-stage{position:absolute;left:16px;right:16px;bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:500px){.character-stage{grid-template-columns:1fr}}
+.stage-card{padding:10px;border-radius:18px;background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.16);display:flex;gap:9px;align-items:center}
+.stage-card .avatar{width:58px;height:58px;border-radius:18px;font-size:30px}.stage-card strong{display:block;font-size:13px}.stage-card span{font-size:12px;color:var(--muted)}
+.dialogue-side{display:flex;flex-direction:column;justify-content:space-between}
+.episode{color:var(--gold);font-weight:1000;letter-spacing:.5px;margin-bottom:7px}
+.dialogue-side h2{margin:0 0 12px;font-size:clamp(28px,4vw,46px);line-height:1.08}
+.chat-log{display:grid;gap:12px;max-height:345px;overflow:auto;padding-right:4px}
+.chat-bubble{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.mini-avatar{width:44px;height:44px;border-radius:15px;background:rgba(0,234,255,.1);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;font-size:24px;font-weight:900}
+.bubble{padding:14px 16px;border-radius:22px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.13)}
+.bubble strong{display:block;margin-bottom:4px}.bubble p{margin:0;color:#e6f4ff;line-height:1.58;font-size:16px}
+.friend-box{margin-top:12px;padding:13px 14px;border-radius:18px;background:rgba(0,234,255,.09);border:1px solid rgba(0,234,255,.23)}
+.friend-box strong{color:var(--cyan)}
+.training-card{padding:15px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.training-card h3{margin:0 0 8px;color:var(--gold)}.training-card p{margin:0;color:#d9e9ff;line-height:1.55}
+.concept-deep{display:grid;gap:12px;margin-top:14px}
+.deep-card{padding:15px;border-radius:20px;background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.13)}
+.deep-card h3{margin:0 0 8px;color:var(--cyan)}.deep-card p{margin:0;color:#e7f5ff;line-height:1.62}
+.pyq-card{margin-top:14px;padding:15px;border-radius:20px;background:linear-gradient(135deg,rgba(255,224,102,.12),rgba(255,76,240,.08));border:1px solid rgba(255,224,102,.28)}
+.pyq-card h3{margin:0 0 8px;color:var(--gold)}.pyq-card p{margin:0;color:#e8f5ff;line-height:1.55}
+.progress{height:12px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));transition:.3s}
+.action-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:950px){.action-strip{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.action-strip{grid-template-columns:1fr}}
+.action-card{padding:12px;min-height:86px;border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(0,234,255,.04));border:1px solid rgba(255,255,255,.13);display:flex;flex-direction:column;justify-content:center}
+.action-card b{color:var(--gold)}.action-card span{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}
+.question{font-size:clamp(22px,3vw,32px);font-weight:1000;line-height:1.25;margin:10px 0}.hint{color:var(--muted);line-height:1.5}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}
+@media(max-width:700px){.options{grid-template-columns:1fr}}
+.option{min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;font-weight:850;transition:.16s}
+.option:hover{background:rgba(0,234,255,.12);border-color:rgba(0,234,255,.45);transform:translateY(-2px)}
+.option.correct{background:rgba(53,255,154,.22);border-color:var(--green)}.option.wrong{background:rgba(255,91,127,.22);border-color:var(--red)}
+.feedback{display:none;margin-top:14px;padding:14px;border-radius:18px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.12);line-height:1.55}.feedback.show{display:block}
+input{width:100%;padding:13px 14px;border-radius:15px;border:1px solid rgba(0,234,255,.3);background:rgba(0,0,0,.25);color:#fff;font-size:16px;outline:none}
+.drag-board{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}@media(max-width:760px){.drag-board{grid-template-columns:1fr}}
+.bucket{min-height:160px;border:1px dashed rgba(0,234,255,.36);border-radius:20px;padding:13px;background:rgba(0,234,255,.045)}
+.bucket h3{margin:0 0 10px;color:var(--cyan)}.tokens{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.token{padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);cursor:grab;font-weight:850}
+details{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:13px;margin:10px 0}
+summary{cursor:pointer;font-weight:950}.solution{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#d9e9ff;line-height:1.55}
+.badge-tag{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--gold);color:#071025;font-weight:950;font-size:11px;margin-left:6px}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;font-weight:700}.footer a{color:var(--cyan);text-decoration:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}.modal.show{display:flex}
+.modal-card{max-width:760px;width:100%;border-radius:30px;padding:25px;border:1px solid rgba(0,234,255,.36);background:radial-gradient(circle at 10% 0%,rgba(255,224,102,.16),transparent 30%),linear-gradient(145deg,#0b1230,#111d47);box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.rank{font-size:clamp(34px,7vw,58px);font-weight:1000;color:var(--gold);text-shadow:0 0 24px rgba(255,224,102,.4);line-height:1}
+.confetti{position:fixed;width:10px;height:16px;top:-20px;z-index:80;animation:fall 2s ease-in forwards;border-radius:3px}@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:0}}
+canvas{display:none}
+</style>
+</head>
+<body>
+<div class="watermark">Dr AI Academy</div>
+<div class="app">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>FunctionVerse: The Portal Paradox - Version 2</h1>
+      <p>NCERT Class 11 Maths Chapter 2: Relations and Functions | JEE Foundation Sci‑Fi Game<br>Version 2: Episodes 7–12 | Functions, Graphs, Special Functions, Algebra of Functions, Domain/Range, Final Boss</p>
+    </div>
+    <div class="hud">
+      <div class="chip">Cadet: <span id="hudName">Guest</span></div>
+      <div class="chip">XP: <span id="xp">0</span></div>
+      <div class="chip">Episode: <span id="episodeChip">1/8</span></div>
+      <div class="chip">Accuracy: <span id="accuracy">0%</span></div>
+      <div class="chip">Keys: <span id="keys">0</span>/8</div>
+      <div class="chip">Portal Energy: <span id="energy">100%</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="screen-home" class="screen active">
+    <div class="grid2">
+      <div class="panel">
+        <h1 class="hero-title">FunctionVerse V2: <span class="glow">The Portal Paradox</span></h1>
+        <p class="story-text">
+          The second layer of the Portal Network is unstable.
+          Students now investigate functions, real functions, special function graphs, algebra of functions, domain-range traps,
+          and the final JEE boss battle based on NCERT Chapter 2.
+        </p>
+        <div class="adventure-hud">
+          <div class="adventure-tile"><strong>Mystery Mode</strong>Investigate broken portals through clues and character dialogue.</div>
+          <div class="adventure-tile"><strong>JEE Mode</strong>Every episode includes NCERT foundation plus JEE-style reasoning.</div>
+          <div class="adventure-tile"><strong>Adventure Flow</strong>Story → Training → Rescue Challenge → Knowledge Key.</div>
+        </div>
+        <div class="scene-alert" id="homeFriendNote">
+          Hi Cadet! Start the story, enter your name, and repair the Portal Network step by step.
+        </div>
+        <div class="controls">
+          <button onclick="openNameModal()">Start Story</button>
+          <button class="secondary" onclick="goToScreen('screen-map')">Mission Map</button>
+          <button class="secondary" onclick="goToScreen('screen-practice')">JEE Practice Bank</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="grid3">
+          <div class="character-card"><div class="avatar">🛡️</div><div><h3>Captain Set</h3><p>Connects old set concepts with new portal logic.</p></div></div>
+          <div class="character-card"><div class="avatar">🧠</div><div><h3>Venn Ranger</h3><p>Explains relations visually using maps and links.</p></div></div>
+          <div class="character-card"><div class="avatar">🤖</div><div><h3>Portal Bot</h3><p>Scans whether a mapping is a true function.</p></div></div>
+        </div>
+        <div class="scene-alert" style="margin-top:16px;background:rgba(255,91,127,.10);border-color:rgba(255,91,127,.25);color:#ffdbe5">
+          <strong>Void Lord's trap:</strong> one source planet connected to two destinations. Can you detect the fake function?
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-map" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <h2>Mission Map: 8 Portal Keys</h2>
+        <p class="story-text">Each episode teaches one relation/function concept and unlocks a portal key.</p>
+        <div class="map" id="missionMap"></div>
+        <div class="controls"><button onclick="goToScreen('screen-story')">Continue Episode</button><button class="secondary" onclick="goToScreen('screen-home')">Home</button></div>
+      </div>
+      <div class="panel">
+        <h2>Game Flow</h2>
+        <div class="grid3">
+          <div class="training-card"><h3>1. Mystery Scene</h3><p>Characters discuss a strange portal event.</p></div>
+          <div class="training-card"><h3>2. Concept Chamber</h3><p>NCERT concept + JEE insight explained clearly.</p></div>
+          <div class="training-card"><h3>3. Rescue Challenge</h3><p>Student solves the portal puzzle and earns XP.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-story" class="screen">
+    <div class="scene-wrap">
+      <div class="comic-panel">
+        <div class="portal a"></div><div class="portal b"></div>
+        <div class="laser l1"></div><div class="laser l2"></div><div class="laser l3"></div>
+        <div class="ship" id="sceneIcon">🌀</div>
+        <div class="character-stage">
+          <div class="stage-card"><div class="avatar">🛡️</div><div><strong>Captain Set</strong><span>Leader</span></div></div>
+          <div class="stage-card"><div class="avatar">⚡</div><div><strong>Quantum Sage</strong><span>JEE Mentor</span></div></div>
+          <div class="stage-card"><div class="avatar">🤖</div><div><strong>Portal Bot</strong><span>Scanner</span></div></div>
+        </div>
+      </div>
+      <div class="panel dialogue-side">
+        <div>
+          <div class="episode" id="episodeLabel">Episode 1 of 8</div>
+          <h2 id="sceneTitle">The First Broken Portal</h2>
+          <div class="chat-log" id="chatLog"></div>
+          <div class="friend-box" id="friendGuideStory"><strong>Guide:</strong> Read the conversation carefully. The clue is hidden in the dialogue.</div>
+        </div>
+        <div class="controls">
+          <button onclick="nextStory()">Continue Story</button>
+          <button class="secondary" onclick="goToScreen('screen-training')">Go to Training</button>
+          <button class="secondary" onclick="goToScreen('screen-map')">Map</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-training" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="trainingEpisode">Training Chamber</div>
+        <h2 id="trainingTitle">Concept Training</h2>
+        <p class="story-text" id="trainingText"></p>
+        <div class="friend-box" id="friendGuideTraining"><strong>Guide:</strong> Understand the idea first, then solve the portal puzzle.</div>
+        <div class="grid3" id="trainingCards"></div>
+        <div class="concept-deep" id="conceptDeep"></div>
+        <div class="controls">
+          <button onclick="startChallenge()">Start Rescue Challenge</button>
+          <button class="secondary" onclick="goToScreen('screen-story')">Back to Story</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Quantum Sage's JEE Tip</h2>
+        <p class="story-text" id="jeeTip"></p>
+        <div class="pyq-card"><h3>PYQ Story Battle</h3><p id="storyPyq"></p></div>
+        <div class="progress"><div id="episodeProgress"></div></div>
+        <p class="story-text">Complete the rescue challenge to unlock this Portal Key.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-challenge" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="challengeEpisode">Challenge</div>
+        <h2 id="challengeTitle">Mission Challenge</h2>
+        <div class="friend-box" id="friendGuideChallenge"><strong>Guide:</strong> Read the condition, identify the concept, answer carefully.</div>
+        <div class="action-strip">
+          <div class="action-card"><b>Scan</b><span>Read the portal condition.</span></div>
+          <div class="action-card"><b>Decode</b><span>Use ordered pair, relation, or function rule.</span></div>
+          <div class="action-card"><b>Repair</b><span>Choose, type, or drag the correct command.</span></div>
+          <div class="action-card"><b>Unlock</b><span>Earn XP and restore portal energy.</span></div>
+        </div>
+        <div id="challengeArea"></div>
+        <div class="controls">
+          <button id="nextBtn" onclick="nextQuestion()" style="display:none">Next Adventure Gate</button>
+          <button class="secondary" onclick="restartEpisode()">Restart Episode</button>
+          <button class="secondary" onclick="goToScreen('screen-training')">Concept Training</button>
+        </div>
+      </div>
+      <div class="panel"><h2>Episode Status</h2><div class="map" id="sideMap"></div></div>
+    </div>
+  </section>
+
+  <section id="screen-practice" class="screen">
+    <div class="panel">
+      <h2>JEE PYQ-Based Practice Bank with Solutions</h2>
+      <p class="story-text">Practice functions, function test, real functions, graphs, algebra of functions and domain-range questions.</p>
+      <div id="practiceList"></div>
+      <div class="controls"><button class="secondary" onclick="goToScreen('screen-home')">Home</button><button onclick="goToScreen('screen-map')">Mission Map</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  Copyright © Dr AI Academy &nbsp;
+  <a href="https://courses.draiacademy.com" target="_blank" rel="noopener">Learn AI @ Dr AI Academy</a>
+</footer>
+</div>
+
+<div class="modal" id="nameModal">
+  <div class="modal-card">
+    <div class="rank">Welcome Portal Engineer</div>
+    <h2>What should the team call you?</h2>
+    <p class="story-text">Enter your name so the Portal Observatory can personalize your mission.</p>
+    <input id="playerNameInput" placeholder="Enter student name"/>
+    <div class="controls"><button onclick="savePlayerName()">Start My Adventure</button><button class="secondary" onclick="document.getElementById('nameModal').classList.remove('show')">Cancel</button></div>
+  </div>
+</div>
+
+<div class="modal" id="missionModal">
+  <div class="modal-card">
+    <div class="rank">Portal Key Unlocked!</div>
+    <h2 id="missionModalTitle">Mission Complete</h2>
+    <p class="story-text" id="missionModalText"></p>
+    <input id="studentName" value="Cadet" placeholder="Student name for certificate"/>
+    <div class="controls"><button onclick="downloadCertificate(false)">Download Episode Certificate</button><button class="secondary" onclick="continueAfterMission()">Continue Story</button></div>
+  </div>
+</div>
+
+<div class="modal" id="winModal">
+  <div class="modal-card">
+    <div class="rank">Portal Paradox Solved</div>
+    <h2>FunctionVerse Championship Complete 🎉</h2>
+    <p class="story-text" id="finalText"></p>
+    <input id="championName" value="Cadet" placeholder="Student name for championship certificate"/>
+    <div class="controls"><button onclick="downloadCertificate(true)">Download Championship Certificate</button><button class="secondary" onclick="resetGame()">Play Again</button><button class="secondary" onclick="goToScreen('screen-practice');document.getElementById('winModal').classList.remove('show')">JEE Practice</button></div>
+  </div>
+</div>
+
+<canvas id="certCanvas" width="1600" height="1131"></canvas>
+
+<script>
+const episodes = [
+  {
+    icon:"🚪", key:"Function Test Key", title:"The Double-Door Trap", concept:"Functions",
+    dialogue:[
+      ["🤖","Portal Bot","Danger! Source planet 1 is connected to destination A and destination B."],
+      ["🛡️","Captain Set","That violates the function law. One input cannot have two different outputs."],
+      ["⚡","Quantum Sage","A function from A to B assigns every element of A exactly one element of B."],
+      ["👤","You","So many inputs may share one output, but one input cannot split into two outputs."],
+      ["🤖","Portal Bot","Function test protocol activated."]
+    ],
+    training:"A function from A to B is a relation in which every element of A has one and only one image in B. The domain must be A, and no first element can have two different images.",
+    cards:[["Allowed","Many inputs may go to the same output."],["Not allowed","One input cannot go to two different outputs."],["Every input","Every element of A must have an image."]],
+    deep:[["NCERT definition","Function is a special relation with one and only one image for each element of A."],["Common trap","A repeated first component with different second components breaks function status."],["JEE angle","Function test appears in ordered pairs, mappings, graphs and piecewise definitions."]],
+    tip:"Check every input: exactly one output.",
+    pyq:"NCERT Exercise 2.3 asks which relations are functions and then asks domain/range.",
+    type:"mcq",
+    q:[
+      {q:"Which relation is a function?", options:["{(1,a),(1,b)}","{(1,a),(2,a),(3,b)}","{(2,x),(2,y)}","{(1,a),(2,b),(1,c)}"], ans:1, why:"Each input 1,2,3 has exactly one output."},
+      {q:"Why is {(1,a),(1,b),(2,c)} not a function?", options:["b is repeated","Input 1 has two outputs","It has three pairs","2 goes to c"], ans:1, why:"One input cannot have two different outputs in a function."},
+      {q:"Many-one mapping is:", options:["Never a function","Allowed as a function","Always not a relation","Only possible for empty sets"], ans:1, why:"Many inputs can map to the same output; this can still be a function."},
+      {q:"A function f:A→B must have domain:", options:["B","Range only","A","Empty set only"], ans:2, why:"For f:A→B, every element of A must be assigned, so domain is A."}
+    ],
+    win:"The Double-Door Trap is destroyed. You can test functions."
+  },
+  {
+    icon:"⚙️", key:"Function Values Key", title:"The Function Machine", concept:"Function Values",
+    dialogue:[
+      ["⚡","Quantum Sage","The next chamber contains a machine: f(x)=2x−5."],
+      ["🤖","Portal Bot","Input required. Output will be generated by the rule."],
+      ["🛡️","Captain Set","This is another way to see functions: input goes in, output comes out."],
+      ["👤","You","If x=7, then f(7)=14−5=9."],
+      ["⚡","Quantum Sage","Exactly. The machine is ready."]
+    ],
+    training:"If a function is given by a formula, substitute the input value into the formula. For f(x)=2x−5, f(0), f(7), f(−3) are found by replacing x.",
+    cards:[["Substitution","f(7)=2(7)−5=9."],["Negative input","f(−3)=−6−5=−11."],["NCERT link","Exercise 2.3 asks f(0), f(7), f(−3) for f(x)=2x−5."]],
+    deep:[["Meaning","Function notation is an input-output machine."],["Common trap","Use brackets carefully for negative inputs."],["JEE angle","This builds foundation for composition, inverse functions and calculus later."]],
+    tip:"Replace x everywhere by the given value.",
+    pyq:"NCERT Exercise 2.3: f(x)=2x−5 gives f(0)=−5, f(7)=9, f(−3)=−11.",
+    type:"mcq",
+    q:[
+      {q:"If f(x)=2x−5, find f(0).", options:["0","−5","5","2"], ans:1, why:"f(0)=2(0)−5=−5."},
+      {q:"If f(x)=2x−5, find f(7).", options:["9","14","−9","19"], ans:0, why:"f(7)=14−5=9."},
+      {q:"If f(x)=2x−5, find f(−3).", options:["1","−1","−11","11"], ans:2, why:"f(−3)=−6−5=−11."},
+      {q:"If f(x)=x²+2, find f(3).", options:["5","9","11","12"], ans:2, why:"f(3)=9+2=11."}
+    ],
+    win:"The Function Machine is active. You can evaluate functions."
+  },
+  {
+    icon:"📈", key:"Graph Key", title:"The Graph Observatory", concept:"Special Functions and Graphs",
+    dialogue:[
+      ["🧠","Venn Ranger","The observatory shows seven graph signatures."],
+      ["⚡","Quantum Sage","Identity, constant, polynomial, rational, modulus, signum, and greatest integer functions."],
+      ["🤖","Portal Bot","Graph recognition is important. The shapes are clues."],
+      ["👤","You","So each function type has a visual identity."],
+      ["⚡","Quantum Sage","Correct. This helps in JEE graphs and domain-range problems."]
+    ],
+    training:"NCERT introduces identity, constant, polynomial, rational, modulus, signum and greatest integer functions, with their graphs and domain-range ideas.",
+    cards:[["Identity","f(x)=x, straight line through origin."],["Constant","f(x)=c, line parallel to x-axis."],["Modulus","f(x)=|x|, V-shaped graph."]],
+    deep:[["Rational","Functions like 1/x are undefined where denominator is zero."],["Signum","Range is {−1,0,1}."],["Greatest integer","f(x)=[x] makes step-like graph."]],
+    tip:"For graph recognition, remember signature shapes: line, horizontal line, parabola, V-shape, steps.",
+    pyq:"NCERT section 2.4.1 lists special functions and graphs, including f(x)=x², f(x)=1/x, |x|, signum and greatest integer.",
+    type:"mcq",
+    q:[
+      {q:"Identity function is:", options:["f(x)=x","f(x)=c","f(x)=1/x","f(x)=|x|"], ans:0, why:"Identity function is f(x)=x."},
+      {q:"Constant function graph is:", options:["Parabola","Line parallel to x-axis","V-shaped","Step graph"], ans:1, why:"f(x)=c is a horizontal line."},
+      {q:"Modulus function is:", options:["f(x)=x²","f(x)=|x|","f(x)=1/x","f(x)=[x]"], ans:1, why:"Modulus function is f(x)=|x|."},
+      {q:"Greatest integer function has graph like:", options:["Smooth parabola","Horizontal steps","Circle","Straight line through origin"], ans:1, why:"f(x)=[x] has step-like graph."}
+    ],
+    win:"The Graph Observatory is decoded. You can recognize special functions."
+  },
+  {
+    icon:"🧪", key:"Domain Range Key", title:"The Domain-Range Labyrinth", concept:"Domain and Range of Real Functions",
+    dialogue:[
+      ["🤖","Portal Bot","Some real-function portals are blocked by forbidden values."],
+      ["⚡","Quantum Sage","For rational functions, denominator cannot be zero."],
+      ["🛡️","Captain Set","For square-root functions, the expression inside must be non-negative."],
+      ["👤","You","So domain is about allowed inputs."],
+      ["⚡","Quantum Sage","Exactly. Range is about possible outputs."]
+    ],
+    training:"For real functions, domain is the set of allowed real inputs. Rational functions exclude values that make the denominator zero. Square-root functions need radicand ≥ 0.",
+    cards:[["Rational","Denominator ≠ 0."],["Square root","Inside expression ≥ 0."],["Range","Possible output values."]],
+    deep:[["NCERT examples","The chapter gives domain of rational functions by excluding denominator zeros."],["Exercise link","Exercise 2.3 asks domain/range of real functions like −x and √(9−x²)."],["JEE angle","Domain-range is a major scoring area if restrictions are identified correctly."]],
+    tip:"Always ask: what input values are forbidden?",
+    pyq:"NCERT Example 21: denominator (x−4)(x−1), so domain excludes 1 and 4.",
+    type:"mcq",
+    q:[
+      {q:"Domain of f(x)=1/x is:", options:["R","R−{0}","{0}","Positive reals only"], ans:1, why:"Denominator cannot be zero."},
+      {q:"Domain of f(x)=√(x−1) is:", options:["x≥1","x≤1","all real numbers","x≠1"], ans:0, why:"x−1 must be ≥0."},
+      {q:"Domain of f(x)=1/(x−2) is:", options:["R","R−{2}","{2}","x>2"], ans:1, why:"x−2 cannot be zero, so x≠2."},
+      {q:"Range of f(x)=x²+2 for real x is:", options:["R","[2,∞)","(−∞,2]","{2}"], ans:1, why:"x²≥0, so x²+2≥2."}
+    ],
+    win:"The Domain-Range Labyrinth is cleared."
+  },
+  {
+    icon:"➕", key:"Algebra Key", title:"The Function Fusion Reactor", concept:"Algebra of Functions",
+    dialogue:[
+      ["🛡️","Captain Set","The reactor can add, subtract, multiply and divide function energies."],
+      ["⚡","Quantum Sage","For f and g, define (f+g)(x)=f(x)+g(x), and similarly for difference and product."],
+      ["🤖","Portal Bot","Warning: quotient is allowed only when g(x)≠0."],
+      ["👤","You","So function algebra works pointwise."],
+      ["⚡","Quantum Sage","Correct. This is NCERT section 2.4.2."]
+    ],
+    training:"For real functions f:X→R and g:X→R, (f+g)(x)=f(x)+g(x), (f−g)(x)=f(x)−g(x), (fg)(x)=f(x)g(x), and (f/g)(x)=f(x)/g(x), provided g(x)≠0.",
+    cards:[["Addition","Add expressions."],["Product","Multiply expressions."],["Quotient","Exclude where denominator function is zero."]],
+    deep:[["NCERT example","For f(x)=x² and g(x)=2x+1, NCERT finds f+g, f−g, fg and f/g."],["JEE angle","Function algebra appears in domain questions and simplification tasks."],["Trap","For quotient, mention excluded value."]],
+    tip:"After forming f/g, check where g(x)=0.",
+    pyq:"NCERT Example 16: f/g = x²/(2x+1), x≠−1/2.",
+    type:"mcq",
+    q:[
+      {q:"If f(x)=x² and g(x)=2x+1, then (f+g)(x)=", options:["x²+2x+1","2x³+x²","x²−2x−1","x²/(2x+1)"], ans:0, why:"Add the expressions: x²+2x+1."},
+      {q:"If f(x)=x² and g(x)=2x+1, then (f−g)(x)=", options:["x²+2x+1","x²−2x−1","2x³+x²","2x+1−x²"], ans:1, why:"Subtract: x²−(2x+1)=x²−2x−1."},
+      {q:"If f(x)=x² and g(x)=2x+1, then (fg)(x)=", options:["x²+2x+1","x²−2x−1","2x³+x²","x/(2x+1)"], ans:2, why:"x²(2x+1)=2x³+x²."},
+      {q:"For f/g with g(x)=2x+1, x cannot be:", options:["0","1","−1/2","2"], ans:2, why:"2x+1=0 gives x=−1/2."}
+    ],
+    win:"The Function Fusion Reactor is stable."
+  },
+  {
+    icon:"🏆", key:"Final Boss Key", title:"The Final JEE Boss Battle", concept:"Mixed NCERT + JEE Challenge",
+    dialogue:[
+      ["🕳️","Void Lord","You know functions, but can you survive the mixed paradox?"],
+      ["🤖","Portal Bot","Final scan includes function test, function values, graph types, domains, ranges and function algebra."],
+      ["⚡","Quantum Sage","Solve step by step. JEE rewards clarity, not panic."],
+      ["👤","You","I will identify the concept first, then calculate."],
+      ["🛡️","Captain Set","Finish it. The FunctionVerse is waiting."]
+    ],
+    training:"The final boss combines function test, real functions, special graphs, algebra of functions and domain-range restrictions.",
+    cards:[["Function test","Every input has exactly one output."],["Domain","Exclude forbidden inputs."],["Algebra","Combine functions pointwise."]],
+    deep:[["Strategy","Classify the question first: function test, value, graph, domain/range or algebra."],["NCERT base","Exercises 2.3 and Miscellaneous Exercise cover these mixed ideas."],["JEE angle","Mixed questions are common and test whether definitions are clear."]],
+    tip:"Do not solve blindly. Identify the type first.",
+    pyq:"NCERT Miscellaneous Exercise includes function/not function, rational domain, root domain/range, algebra of functions, and linear function from ordered pairs.",
+    type:"mcq",
+    q:[
+      {q:"Which relation is NOT a function?", options:["{(1,a),(2,a)}","{(1,a),(2,b)}","{(1,a),(1,b)}","{(1,b)}"], ans:2, why:"Input 1 has two outputs a and b."},
+      {q:"If f(x)=x+1 and g(x)=2x−3, then (f+g)(x)=", options:["3x−2","x−2","2x²−x−3","(x+1)/(2x−3)"], ans:0, why:"x+1+2x−3=3x−2."},
+      {q:"Domain of f(x)=1/(x²−5x+4) excludes:", options:["0,4","1,4","−1,−4","All real numbers"], ans:1, why:"x²−5x+4=(x−1)(x−4), so exclude 1 and 4."},
+      {q:"Range of f(x)=|x| for real x is:", options:["R","[0,∞)","(−∞,0]","{−1,0,1}"], ans:1, why:"Absolute value is always non-negative."},
+      {q:"Signum function range is:", options:["R","{0}","{−1,0,1}","[0,∞)"], ans:2, why:"Signum gives −1, 0 or 1."}
+    ],
+    win:"The FunctionVerse is restored. You completed Version 2."
+  }
+];
+
+const practiceQuestions = [
+  ["Function Test","Which relation is not a function: {(1,a),(2,b)} or {(1,a),(1,b)}?","{(1,a),(1,b)} is not a function because input 1 has two outputs."],
+  ["Function Value","If f(x)=2x−5, find f(0), f(7), f(−3).","f(0)=−5, f(7)=9, f(−3)=−11."],
+  ["Temperature Function","t(C)=9C/5+32. Find t(0).","t(0)=32."],
+  ["Temperature Reverse","If t(C)=212, find C.","212=9C/5+32, so 180=9C/5, C=100."],
+  ["Range of Linear Function","Find range of f(x)=2−3x, x∈R, x>0.","Since x>0, −3x<0, so f(x)<2. Range=(-∞,2)."],
+  ["Range of Quadratic","Find range of f(x)=x²+2 for real x.","Since x²≥0, range is [2,∞)."],
+  ["Domain Rational","Find domain of f(x)=1/(x−4).","Domain is R−{4}."],
+  ["Domain Factor","Find domain of f(x)=1/(x²−5x+4).","x²−5x+4=(x−1)(x−4), so domain is R−{1,4}."],
+  ["Modulus Function","What is range of f(x)=|x|?","Range is [0,∞)."],
+  ["Signum Function","What is range of signum function?","Range is {−1,0,1}."],
+  ["Greatest Integer","What is [2.7]?","Greatest integer less than or equal to 2.7 is 2."],
+  ["Algebra of Functions","If f(x)=x+1, g(x)=2x−3, find (f+g)(x).","(f+g)(x)=x+1+2x−3=3x−2."],
+  ["Function Quotient","For f/g, what condition must hold?","g(x)≠0."],
+  ["Linear Function From Points","If f(x)=ax+b and f(0)=−1, f(1)=1, find f(x).","b=−1 and a−1=1 so a=2. Thus f(x)=2x−1."],
+  ["Function or Not","If f={(1,5),(2,9),(3,1),(4,5),(2,11)}, is it a function?","No, because input 2 has two images 9 and 11."]
+];
+
+let state={episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};
+
+function openNameModal(){document.getElementById("playerNameInput").value=state.studentName==="Cadet"?"":state.studentName;document.getElementById("nameModal").classList.add("show");setTimeout(()=>document.getElementById("playerNameInput").focus(),80)}
+function savePlayerName(){const raw=document.getElementById("playerNameInput").value.trim();state.studentName=raw||"Cadet";document.getElementById("nameModal").classList.remove("show");state.episode=0;state.line=0;state.q=0;goToScreen("screen-story")}
+function friendLine(context){const n=state.studentName||"Cadet";const e=episodes[state.episode];if(context==="story")return `Hi ${n}! The clue in this episode is about ${e.concept}. Read the dialogue like a detective.`;if(context==="training")return `${n}, learn the definition first, then connect it to the portal story, then solve the JEE-style example.`;if(context==="challenge")return `${n}, scan the condition, identify the concept, then repair the portal with the correct answer.`;return `Let's go, ${n}!`}
+function goToScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");if(id==="screen-story")renderStory();if(id==="screen-training")renderTraining();if(id==="screen-map")renderMaps();if(id==="screen-challenge")renderChallenge();updateHud();window.scrollTo({top:0,behavior:"smooth"})}
+function updateHud(){document.getElementById("xp").textContent=state.xp;document.getElementById("episodeChip").textContent=(state.episode+1)+"/8";document.getElementById("keys").textContent=state.keys.size;document.getElementById("hudName").textContent=state.studentName||"Guest";document.getElementById("accuracy").textContent=state.attempts?Math.round(state.correct/state.attempts*100)+"%":"0%";const energy=Math.max(20,100-Math.max(0,state.attempts-state.correct)*8);document.getElementById("energy").textContent=energy+"%";const homeNote=document.getElementById("homeFriendNote");if(homeNote)homeNote.textContent=`Hi ${state.studentName||"Cadet"}! Start the story, enter your name, and repair the Portal Network step by step.`}
+function renderMaps(){const make=()=>episodes.map((e,i)=>`<div class="node ${i===state.episode?'active':''} ${state.keys.has(i)?'done':''}" onclick="state.episode=${i};state.line=0;state.q=0;goToScreen('screen-story')"><div class="node-num">${state.keys.has(i)?"✓":i+1}</div><div><strong>${e.icon} ${e.title}</strong><br><span style="color:var(--muted);font-size:13px">${e.concept}</span></div></div>`).join("");const m=document.getElementById("missionMap");if(m)m.innerHTML=make();const s=document.getElementById("sideMap");if(s)s.innerHTML=make()}
+function renderStory(){const e=episodes[state.episode];document.getElementById("episodeLabel").textContent="Episode "+(state.episode+1)+" of 8";document.getElementById("sceneTitle").textContent=e.title;document.getElementById("sceneIcon").textContent=e.icon;document.getElementById("chatLog").innerHTML=e.dialogue.slice(0,state.line+1).map(d=>`<div class="chat-bubble"><div class="mini-avatar">${d[0]}</div><div class="bubble"><strong>${d[1]}</strong><p>${d[2].replace("Cadet",state.studentName||"Cadet").replace("You",state.studentName||"You")}</p></div></div>`).join("");document.getElementById("friendGuideStory").innerHTML=`<strong>Guide:</strong> ${friendLine("story")}`}
+function nextStory(){const e=episodes[state.episode];if(state.line<e.dialogue.length-1){state.line++;renderStory()}else goToScreen("screen-training")}
+function renderTraining(){const e=episodes[state.episode];document.getElementById("trainingEpisode").textContent="Training Chamber: "+e.key;document.getElementById("trainingTitle").textContent=e.concept;document.getElementById("trainingText").textContent=e.training;document.getElementById("trainingCards").innerHTML=e.cards.map(c=>`<div class="training-card"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join("");document.getElementById("conceptDeep").innerHTML=(e.deep||[]).map(d=>`<div class="deep-card"><h3>${d[0]}</h3><p>${d[1]}</p></div>`).join("");document.getElementById("jeeTip").textContent=e.tip;document.getElementById("storyPyq").textContent=e.pyq||"";document.getElementById("episodeProgress").style.width=(state.q/(e.type==="drag"?1:e.q.length))*100+"%";document.getElementById("friendGuideTraining").innerHTML=`<strong>Guide:</strong> ${friendLine("training")}`}
+function startChallenge(){state.q=0;state.answered=false;goToScreen("screen-challenge")}
+function restartEpisode(){state.q=0;state.answered=false;renderChallenge();updateHud()}
+function renderChallenge(){renderMaps();const e=episodes[state.episode];document.getElementById("challengeEpisode").textContent="Rescue Challenge: "+e.key;document.getElementById("challengeTitle").textContent=e.title;document.getElementById("friendGuideChallenge").innerHTML=`<strong>Guide:</strong> ${friendLine("challenge")}`;document.getElementById("nextBtn").style.display="none";state.answered=false;const area=document.getElementById("challengeArea");if(e.type==="mcq"){const item=e.q[state.q];area.innerHTML=`<div class="question">${item.q}</div><p class="hint">Choose the correct command to unlock the next adventure gate.</p><div class="options">${item.options.map((o,i)=>`<div class="option" onclick="answerMCQ(${i})">${o}</div>`).join("")}</div><div id="feedback" class="feedback"></div>`}updateHud()}
+function fb(ok,text){const f=document.getElementById("feedback");f.className="feedback show";f.innerHTML=`<strong style="color:${ok?'var(--green)':'var(--red)'}">${ok?'Correct — portal repaired!':'Not correct — scanner shows the correction.'}</strong><br>${text}`}
+function answerMCQ(i){if(state.answered)return;state.answered=true;state.attempts++;const item=episodes[state.episode].q[state.q];const opts=[...document.querySelectorAll(".option")];if(i===item.ans){opts[i].classList.add("correct");state.correct++;state.xp+=50;fb(true,item.why)}else{opts[i].classList.add("wrong");opts[item.ans].classList.add("correct");fb(false,item.why)}document.getElementById("nextBtn").style.display="inline-block";updateHud()}
+function nextQuestion(){const e=episodes[state.episode],total=e.q.length;state.q++;if(state.q>=total){state.keys.add(state.episode);state.lastCompleted=state.episode;confetti();document.getElementById("missionModalTitle").textContent=e.key+" Unlocked";document.getElementById("missionModalText").innerHTML=`<strong>${e.win}</strong><br><br>${state.studentName}, you earned this Portal Key by mastering <strong>${e.concept}</strong>.`;document.getElementById("studentName").value=state.studentName||"Cadet";document.getElementById("missionModal").classList.add("show");state.pending=state.keys.size===episodes.length?"final":"next";renderMaps();updateHud();return}renderChallenge()}
+function continueAfterMission(){document.getElementById("missionModal").classList.remove("show");if(state.pending==="final"){finishGame();return}state.episode=Math.min(episodes.length-1,state.lastCompleted+1);state.line=0;state.q=0;goToScreen("screen-story")}
+function finishGame(){confetti();const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;document.getElementById("finalText").innerHTML=`${state.studentName}, the Portal Paradox is solved. You earned <strong>${state.xp} XP</strong>, unlocked <strong>${state.keys.size}/8 Portal Keys</strong>, and scored <strong>${acc}% accuracy</strong>.`;document.getElementById("championName").value=state.studentName||"Cadet";document.getElementById("winModal").classList.add("show")}
+function renderPractice(){document.getElementById("practiceList").innerHTML=practiceQuestions.map((p,i)=>`<details><summary>Q${i+1}. ${p[0]} <span class="badge-tag">PYQ-Based</span></summary><div class="solution"><strong>Question:</strong> ${p[1]}<br><br><strong>Solution:</strong> ${p[2]}</div></details>`).join("")}
+function confetti(){const colors=["#00eaff","#35ff9a","#ffe066","#ff4cf0","#ff5b7f","#ff9f1c"];for(let i=0;i<90;i++){const d=document.createElement("div");d.className="confetti";d.style.left=Math.random()*100+"vw";d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*0.35+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}}
+function downloadCertificate(finalCert){const canvas=document.getElementById("certCanvas"),ctx=canvas.getContext("2d"),w=canvas.width,h=canvas.height;const name=finalCert?(document.getElementById("championName").value||state.studentName||"JEE Portal Engineer"):(document.getElementById("studentName").value||state.studentName||"JEE Portal Engineer");const title=finalCert?"FUNCTIONVERSE CHAMPIONSHIP CERTIFICATE":"FUNCTIONVERSE EPISODE CERTIFICATE";const mission=finalCert?"Portal Paradox - Relations & Functions":episodes[state.lastCompleted].title+" - "+episodes[state.lastCompleted].key;const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;const grd=ctx.createLinearGradient(0,0,w,h);grd.addColorStop(0,"#060918");grd.addColorStop(.48,"#0b2452");grd.addColorStop(1,"#19051f");ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);for(let i=0;i<180;i++){ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;ctx.beginPath();ctx.arc(Math.random()*w,Math.random()*h,Math.random()*2.2,0,Math.PI*2);ctx.fill()}ctx.strokeStyle="#00eaff";ctx.lineWidth=10;ctx.strokeRect(50,50,w-100,h-100);ctx.strokeStyle="#ffe066";ctx.lineWidth=4;ctx.strokeRect(78,78,w-156,h-156);ctx.textAlign="center";ctx.fillStyle="rgba(255,255,255,.08)";ctx.font="900 108px Arial";ctx.save();ctx.translate(w/2,h/2);ctx.rotate(-.18);ctx.fillText("Dr AI Academy",0,0);ctx.restore();ctx.fillStyle="#ffe066";ctx.font="900 54px Arial";ctx.fillText("Dr AI Academy",w/2,170);ctx.fillStyle="#00eaff";ctx.font="900 42px Arial";ctx.fillText(title,w/2,245);ctx.fillStyle="#eaf6ff";ctx.font="28px Arial";ctx.fillText("This certifies that",w/2,330);ctx.fillStyle="#fff";ctx.font="900 68px Arial";ctx.fillText(name,w/2,420);ctx.fillStyle="#d9e9ff";ctx.font="30px Arial";ctx.fillText("has successfully completed",w/2,500);ctx.fillStyle="#35ff9a";ctx.font="900 42px Arial";ctx.fillText(mission,w/2,570);ctx.fillStyle="#ffe066";ctx.font="900 30px Arial";ctx.fillText(`XP: ${state.xp}   |   Accuracy: ${acc}%`,w/2,705);ctx.fillStyle="#d9e9ff";ctx.font="24px Arial";ctx.fillText("Copyright © Dr AI Academy",w/2,790);ctx.fillStyle="#00eaff";ctx.font="24px Arial";ctx.fillText("Learn AI @ Dr AI Academy",w/2,830);const link=document.createElement("a");link.download=finalCert?"dr-ai-academy-functionverse-championship.png":"dr-ai-academy-functionverse-episode.png";link.href=canvas.toDataURL("image/png");link.click()}
+function resetGame(){state={episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};document.getElementById("winModal").classList.remove("show");goToScreen("screen-home");renderMaps();updateHud()}
+renderPractice();renderMaps();updateHud();
+</script>
+</body>
+</html>
