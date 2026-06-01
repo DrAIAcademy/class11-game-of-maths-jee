@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SetVerse: The Lost Venn Core | Dr AI Academy</title>
+<style>
+:root{
+  --bg:#030514;
+  --deep:#070b22;
+  --panel:#101735;
+  --panel2:#17234b;
+  --cyan:#00eaff;
+  --green:#35ff9a;
+  --pink:#ff3df2;
+  --gold:#ffe066;
+  --orange:#ff9f1c;
+  --red:#ff4d6d;
+  --text:#eef8ff;
+  --muted:#aab8d6;
+  --line:rgba(255,255,255,.13);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255,159,28,.15), transparent 24%),
+    radial-gradient(circle at 80% 5%, rgba(255,61,242,.16), transparent 27%),
+    radial-gradient(circle at 45% 100%, rgba(0,234,255,.12), transparent 35%),
+    linear-gradient(135deg,#030514 0%,#09112d 55%,#10051b 100%);
+}
+body:before,body:after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#00eaff 1px,transparent 1px),radial-gradient(#ffe066 1px,transparent 1px);
+  background-size:80px 80px,150px 150px,260px 260px;
+  background-position:0 0,40px 60px,110px 150px;
+  opacity:.23; animation:stars 45s linear infinite;
+}
+body:after{opacity:.11;filter:blur(.6px);animation-duration:70s}
+@keyframes stars{to{background-position:1000px 400px,-800px 700px,600px -500px}}
+.watermark{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-18deg);
+  z-index:0;opacity:.055;font-size:clamp(42px,7vw,92px);font-weight:950;letter-spacing:7px;
+  color:#fff;pointer-events:none;text-transform:uppercase;white-space:nowrap;
+  border:2px solid rgba(255,255,255,.08);padding:18px 30px;border-radius:20px;
+}
+.app{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+header{
+  position:sticky;top:0;z-index:20;padding:14px 18px;
+  background:linear-gradient(to bottom,rgba(3,5,20,.96),rgba(3,5,20,.75));
+  backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,234,255,.22)
+}
+.topbar{max-width:1240px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand h1{margin:0;font-size:clamp(22px,3.5vw,42px);line-height:1;text-shadow:0 0 18px rgba(0,234,255,.5)}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.hud{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.chip{border:1px solid rgba(0,234,255,.35);background:rgba(0,234,255,.08);border-radius:999px;padding:9px 13px;font-weight:900;font-size:13px}
+.chip span{color:var(--green)}
+main{max-width:1240px;width:100%;margin:auto;padding:18px}
+.screen{display:none;animation:fade .28s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel{
+  border:1px solid rgba(0,234,255,.23);
+  background:linear-gradient(145deg,rgba(16,23,53,.9),rgba(7,11,34,.84));
+  border-radius:28px;padding:22px;box-shadow:0 22px 70px rgba(0,0,0,.34),inset 0 0 30px rgba(0,234,255,.035);
+  position:relative;overflow:hidden
+}
+.panel:before{content:"";position:absolute;right:-140px;top:-150px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(0,234,255,.18),transparent 65%)}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.hero-title{font-size:clamp(34px,7vw,78px);line-height:.95;margin:0 0 12px;font-weight:1000;letter-spacing:-1.5px}
+.glow{color:var(--cyan);text-shadow:0 0 24px rgba(0,234,255,.4)}
+.story-text{font-size:17px;line-height:1.65;color:#d9e9ff;margin:12px 0}
+button{
+  border:none;border-radius:15px;padding:12px 17px;font-weight:950;color:#04101f;
+  background:linear-gradient(135deg,var(--cyan),var(--green));cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,234,255,.22);transition:.18s transform,.18s filter,.18s box-shadow;font-size:15px
+}
+button:hover{transform:translateY(-2px);filter:saturate(1.15);box-shadow:0 16px 40px rgba(0,234,255,.32)}
+button.secondary{color:var(--text);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+button.gold{background:linear-gradient(135deg,var(--gold),var(--orange))}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.character{
+  display:flex;gap:12px;align-items:center;padding:14px;border-radius:22px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line)
+}
+.avatar{
+  width:66px;height:66px;border-radius:22px;display:grid;place-items:center;font-size:38px;
+  background:linear-gradient(135deg,rgba(0,234,255,.24),rgba(255,61,242,.22));
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 0 22px rgba(0,234,255,.17)
+}
+.character h3{margin:0 0 4px;font-size:20px}
+.character p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.map{display:grid;gap:10px;margin-top:12px}
+.node{
+  display:flex;gap:11px;align-items:center;padding:12px;border-radius:18px;
+  border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.055);cursor:pointer
+}
+.node:hover,.node.active{border-color:rgba(0,234,255,.5);background:rgba(0,234,255,.105)}
+.node.done{border-color:rgba(53,255,154,.55);background:rgba(53,255,154,.08)}
+.node-num{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;color:var(--cyan);background:rgba(0,234,255,.11);font-weight:1000}
+.scene-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:18px;align-items:stretch}
+@media(max-width:900px){.scene-wrap{grid-template-columns:1fr}}
+.comic-frame{
+  min-height:430px;border-radius:30px;border:1px solid rgba(255,255,255,.14);overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(0,234,255,.18),transparent 30%),
+    radial-gradient(circle at 70% 70%,rgba(255,61,242,.16),transparent 30%),
+    linear-gradient(160deg,#081331,#120824);
+}
+.planet{position:absolute;border-radius:50%;filter:drop-shadow(0 0 25px rgba(0,234,255,.3))}
+.p1{width:160px;height:160px;background:radial-gradient(circle at 35% 30%,#fff, #00eaff 16%,#2157ff 55%,#071033 100%);left:45px;top:55px}
+.p2{width:98px;height:98px;background:radial-gradient(circle at 35% 30%,#fff,#ffe066 15%,#ff3df2 63%,#25041f);right:62px;bottom:70px}
+.ship{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:94px;filter:drop-shadow(0 0 22px rgba(255,224,102,.45));animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-50%,-56%) rotate(2deg)}}
+.hero-face{position:absolute;bottom:22px;left:22px;right:22px;display:flex;gap:12px;align-items:center;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:13px}
+.hero-face .avatar{width:56px;height:56px;border-radius:18px;font-size:30px}
+.dialogue{
+  min-height:430px;display:flex;flex-direction:column;justify-content:space-between
+}
+.episode{color:var(--gold);font-weight:1000;letter-spacing:.5px;margin-bottom:7px}
+.dialogue h2{margin:0 0 12px;font-size:clamp(28px,4vw,46px);line-height:1.08}
+.speech{
+  background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.13);
+  border-radius:23px;padding:18px;margin-top:12px
+}
+.speaker{display:flex;gap:10px;align-items:center;margin-bottom:10px;color:#fff;font-weight:1000}
+.speaker span{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:rgba(0,234,255,.12)}
+.speech p{margin:0;color:#e6f4ff;line-height:1.65;font-size:18px}
+.training-card{
+  padding:15px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)
+}
+.training-card h3{margin:0 0 8px;color:var(--gold)}
+.training-card p{margin:0;color:#d9e9ff;line-height:1.55}
+.question{font-size:clamp(22px,3vw,32px);font-weight:1000;line-height:1.25;margin:10px 0}
+.hint{color:var(--muted);line-height:1.5}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}
+@media(max-width:700px){.options{grid-template-columns:1fr}}
+.option{
+  min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;border-radius:18px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);cursor:pointer;font-weight:850;transition:.16s
+}
+.option:hover{background:rgba(0,234,255,.12);border-color:rgba(0,234,255,.45);transform:translateY(-2px)}
+.option.correct{background:rgba(53,255,154,.22);border-color:var(--green)}
+.option.wrong{background:rgba(255,77,109,.22);border-color:var(--red)}
+.feedback{display:none;margin-top:14px;padding:14px;border-radius:18px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.12);line-height:1.55}
+.feedback.show{display:block}
+.progress{height:12px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));transition:.3s}
+input{width:100%;padding:13px 14px;border-radius:15px;border:1px solid rgba(0,234,255,.3);background:rgba(0,0,0,.25);color:#fff;font-size:16px;outline:none}
+.drag-board{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:760px){.drag-board{grid-template-columns:1fr}}
+.bucket{min-height:160px;border:1px dashed rgba(0,234,255,.36);border-radius:20px;padding:13px;background:rgba(0,234,255,.045)}
+.bucket h3{margin:0 0 10px;color:var(--cyan)}
+.tokens{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.token{padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);cursor:grab;font-weight:850}
+.venn-wrap{display:flex;justify-content:center;margin-top:15px;overflow:auto}
+.zone{cursor:pointer;transition:.16s;opacity:.32}
+.zone:hover{opacity:.65}.zone.selected{opacity:.92;filter:drop-shadow(0 0 12px rgba(0,234,255,.8))}
+
+.pyq-story-card{
+  margin-top:14px;
+  padding:15px;
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,224,102,.12),rgba(255,61,242,.08));
+  border:1px solid rgba(255,224,102,.28);
+}
+.pyq-story-card h3{margin:0 0 8px;color:var(--gold)}
+.pyq-story-card p{margin:0;color:#e8f5ff;line-height:1.55}
+
+
+.voice-panel{
+  margin-top:14px;
+  padding:14px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(0,234,255,.10),rgba(53,255,154,.06));
+  border:1px solid rgba(0,234,255,.25);
+}
+.voice-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.voice-status{color:var(--muted);font-size:13px;margin-top:8px}
+.adventure-hud{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+@media(max-width:700px){.adventure-hud{grid-template-columns:1fr}}
+.adventure-tile{
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+.adventure-tile strong{display:block;color:var(--gold);margin-bottom:4px}
+.life-meter{
+  height:11px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.11);
+  margin-top:7px;
+}
+.life-meter div{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--green));
+  transition:.3s;
+}
+.concept-deep{
+  margin-top:14px;
+  display:grid;
+  gap:12px;
+}
+.deep-card{
+  padding:15px;
+  border-radius:20px;
+  background:rgba(0,0,0,.20);
+  border:1px solid rgba(255,255,255,.13);
+}
+.deep-card h3{margin:0 0 8px;color:var(--cyan)}
+.deep-card p{margin:0;color:#e7f5ff;line-height:1.62}
+.action-strip{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+@media(max-width:900px){.action-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.action-strip{grid-template-columns:1fr}}
+.action-card{
+  padding:12px;
+  min-height:86px;
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(0,234,255,.04));
+  border:1px solid rgba(255,255,255,.13);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.action-card b{color:var(--gold)}
+.action-card span{font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}
+.scene-alert{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,159,28,.10);
+  border:1px solid rgba(255,159,28,.25);
+  color:#fff5d6;
+  line-height:1.5;
+  font-weight:750;
+}
+.pulse-orb{
+  position:absolute;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 24px var(--gold);
+  animation:orb 2.2s ease-in-out infinite;
+}
+.orb1{left:25%;top:32%}.orb2{right:18%;top:42%;animation-delay:.5s}.orb3{left:48%;bottom:24%;animation-delay:1s}
+@keyframes orb{50%{transform:scale(1.35);opacity:.55}}
+
+details{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:13px;margin:10px 0}
+summary{cursor:pointer;font-weight:950}.solution{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);color:#d9e9ff;line-height:1.55}
+.badge-tag{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--gold);color:#071025;font-weight:950;font-size:11px;margin-left:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal.show{display:flex}
+.modal-card{max-width:760px;width:100%;border-radius:30px;padding:25px;border:1px solid rgba(0,234,255,.36);background:radial-gradient(circle at 10% 0%,rgba(255,224,102,.16),transparent 30%),linear-gradient(145deg,#0b1230,#111d47);box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.rank{font-size:clamp(34px,7vw,58px);font-weight:1000;color:var(--gold);text-shadow:0 0 24px rgba(255,224,102,.4);line-height:1}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:14px;font-weight:700}
+.footer a{color:var(--cyan);text-decoration:none}
+.confetti{position:fixed;width:10px;height:16px;top:-20px;z-index:80;animation:fall 2s ease-in forwards;border-radius:3px}
+@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:0}}
+canvas{display:none}
+</style>
+</head>
+<body>
+<div class="watermark">Dr AI Academy</div>
+<div class="app">
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>SetVerse: The Lost Venn Core</h1>
+      <p>NCERT Class 11 Maths Chapter 1: Sets | JEE Foundation Sci‑Fi Story Game</p>
+    </div>
+    <div class="hud">
+      <div class="chip">XP: <span id="xp">0</span></div>
+      <div class="chip">Episode: <span id="episodeChip">1/8</span></div>
+      <div class="chip">Accuracy: <span id="accuracy">0%</span></div>
+      <div class="chip">Keys: <span id="keys">0</span>/8</div>
+      <div class="chip">Core Energy: <span id="energy">100%</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="screen-home" class="screen active">
+    <div class="grid2">
+      <div class="panel">
+        <h1 class="hero-title">Learn Sets through a <span class="glow">Sci‑Fi Story</span></h1>
+        <p class="story-text">
+          In the year 2126, the MathVerse is collapsing. The Lost Venn Core has broken into 8 Knowledge Keys.
+          To restore it, the student joins Captain Set, Venn Ranger, and Quantum Sage through story scenes, training rooms,
+          friendly step-by-step guidance, rescue events, boss challenges, PYQ-based story battles, and JEE practice missions.
+        </p>
+        <div class="adventure-hud">
+          <div class="adventure-tile"><strong>Adventure Mode</strong>Story → Training → Rescue Challenge → Boss Battle</div>
+          <div class="adventure-tile"><strong>Personal Mode</strong>Personal welcome and step-by-step friendly guidance.</div>
+          <div class="adventure-tile"><strong>JEE Mode</strong>PYQ-inspired battles appear inside the story.</div>
+        </div>
+        <div class="scene-alert" id="homeFriendNote">
+          Hi cadet! Click Start Story, enter your name, and I will guide you like a friend through every step.
+        </div>
+        <div class="controls">
+          <button onclick="openNameModal()">Start Story</button>
+          <button class="secondary" onclick="goToScreen('screen-map')">Mission Map</button>
+          <button class="secondary" onclick="goToScreen('screen-practice')">JEE Practice Bank</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="grid3">
+          <div class="character"><div class="avatar">🛡️</div><div><h3>Captain Set</h3><p>Teaches membership, roster form, and logic.</p></div></div>
+          <div class="character"><div class="avatar">🧠</div><div><h3>Venn Ranger</h3><p>Controls Venn zones, subsets, union and intersection.</p></div></div>
+          <div class="character"><div class="avatar">⚡</div><div><h3>Quantum Sage</h3><p>Connects every concept to JEE-style thinking.</p></div></div>
+        </div>
+        <p class="story-text"><strong>Villain:</strong> Void Lord, who hides concepts inside confusing symbols, impossible sets, and wrong Venn regions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-map" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <h2>Mission Map: 8 Knowledge Keys</h2>
+        <p class="story-text">Each episode teaches one concept first, then unlocks a challenge. Complete the challenge to earn a Knowledge Key.</p>
+        <div class="map" id="missionMap"></div>
+        <div class="controls">
+          <button onclick="goToScreen('screen-story')">Continue Current Episode</button>
+          <button class="secondary" onclick="goToScreen('screen-home')">Home</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>How this story game works</h2>
+        <div class="grid3">
+          <div class="training-card"><h3>1. Story</h3><p>Characters explain the problem in a cinematic scene.</p></div>
+          <div class="training-card"><h3>2. Training</h3><p>Student learns the exact NCERT concept with examples.</p></div>
+          <div class="training-card"><h3>3. Challenge</h3><p>Student solves a mission and earns XP + certificate.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-story" class="screen">
+    <div class="scene-wrap">
+      <div class="comic-frame" id="comicFrame">
+        <div class="planet p1"></div>
+        <div class="planet p2"></div>
+        <div class="pulse-orb orb1"></div>
+        <div class="pulse-orb orb2"></div>
+        <div class="pulse-orb orb3"></div>
+        <div class="ship" id="sceneIcon">🚀</div>
+        <div class="hero-face">
+          <div class="avatar" id="speakerAvatar">🛡️</div>
+          <div><strong id="speakerName">Captain Set</strong><p id="speakerRole" style="margin:3px 0 0;color:var(--muted)">Commander of the SetVerse</p></div>
+        </div>
+      </div>
+      <div class="panel dialogue">
+        <div>
+          <div class="episode" id="episodeLabel">Episode 1 of 8</div>
+          <h2 id="sceneTitle">The Broken Set Core</h2>
+          <div class="speech">
+            <div class="speaker"><span id="speechIcon">🛡️</span><div id="speechSpeaker">Captain Set</div></div>
+            <p id="speechText">Cadet, the Set Core has cracked. Every object must be scanned correctly, or the whole MathVerse will lose order.</p>
+          </div>
+          <div class="scene-alert" id="friendGuideStory">Friend Guide: I will guide you step by step.</div>
+        </div>
+        <div>
+          <div class="voice-panel">
+            <div class="voice-status" id="storyVoiceStatus">Friend Guide: Read the scene, then click Continue Story. Guidance are used only during answers.</div>
+          </div>
+          <div class="controls">
+            <button onclick="nextStoryLine()">Continue Story</button>
+            <button class="secondary" onclick="goToScreen('screen-training')">Skip to Training</button>
+            <button class="secondary" onclick="goToScreen('screen-map')">Map</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-training" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="trainingEpisode">Training Chamber</div>
+        <h2 id="trainingTitle">Concept Training</h2>
+        <p class="story-text" id="trainingText"></p>
+        <div class="scene-alert" id="friendGuideTraining">Friend Guide: First understand the idea, then look at the example, then attempt the mission.</div>
+        <div class="grid3" id="trainingCards"></div>
+        <div class="concept-deep" id="conceptDeep"></div>
+        <div class="voice-panel">
+          <div class="voice-status" id="conceptVoiceStatus">Friend Guide: Learn this concept step by step. When ready, start the rescue challenge.</div>
+        </div>
+        <div class="controls">
+          <button onclick="startChallenge()">Start Rescue Challenge</button>
+          <button class="secondary" onclick="goToScreen('screen-story')">Back to Story</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Quantum Sage's JEE Tip</h2>
+        <p class="story-text" id="jeeTip"></p>
+        <div class="pyq-story-card">
+          <h3>PYQ Story Battle</h3>
+          <p id="storyPyq"></p>
+        </div>
+        <div class="progress"><div id="episodeProgress"></div></div>
+        <p class="story-text">Progress in current episode. Complete the challenge to unlock the next Knowledge Key.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-challenge" class="screen">
+    <div class="grid2">
+      <div class="panel">
+        <div class="episode" id="challengeEpisode">Challenge</div>
+        <h2 id="challengeTitle">Mission Challenge</h2>
+        <div class="scene-alert" id="friendGuideChallenge">Friend Guide: Take it slow. Read the condition, identify the set rule, then answer.</div>
+        <div class="action-strip">
+          <div class="action-card"><b>Scan</b><span>Read the mission condition carefully.</span></div>
+          <div class="action-card"><b>Think</b><span>Use the concept, not guesswork.</span></div>
+          <div class="action-card"><b>Answer</b><span>Click, type, drag, or speak.</span></div>
+          <div class="action-card"><b>Unlock</b><span>Earn XP and restore core energy.</span></div>
+        </div>
+        <div id="challengeArea"></div>
+        
+        <div class="controls">
+          <button id="nextBtn" onclick="nextQuestion()" style="display:none">Next Adventure Gate</button>
+          <button class="secondary" onclick="restartEpisode()">Restart Episode</button>
+          <button class="secondary" onclick="goToScreen('screen-training')">Concept Training</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Episode Status</h2>
+        <div class="map" id="sideMap"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-practice" class="screen">
+    <div class="panel">
+      <h2>JEE PYQ-Based Practice Bank with Solutions</h2>
+      <p class="story-text">These are JEE Main pattern / PYQ-inspired questions based on Sets, Venn diagrams, intervals, complement, union, intersection, counting and set identities.</p>
+      <div id="practiceList"></div>
+      <div class="controls">
+        <button class="secondary" onclick="goToScreen('screen-home')">Home</button>
+        <button onclick="goToScreen('screen-map')">Mission Map</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  Copyright © Dr AI Academy &nbsp; 
+  <a href="https://courses.draiacademy.com" target="_blank" rel="noopener">Learn AI @ Dr AI Academy</a>
+</footer>
+</div>
+
+
+<div class="modal" id="nameModal">
+  <div class="modal-card">
+    <div class="rank">Welcome Cadet</div>
+    <h2>What should I call you in this mission?</h2>
+    <p class="story-text">Enter your name so the story can welcome you personally and guide you like a friend.</p>
+    <input id="playerNameInput" placeholder="Enter student name"/>
+    <div class="controls">
+      <button onclick="savePlayerName()">Start My Adventure</button>
+      <button class="secondary" onclick="document.getElementById('nameModal').classList.remove('show')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="missionModal">
+  <div class="modal-card">
+    <div class="rank" id="missionRank">Knowledge Key Unlocked!</div>
+    <h2 id="missionModalTitle">Mission Complete</h2>
+    <p class="story-text" id="missionModalText"></p>
+    <input id="studentName" value="Cadet" placeholder="Student name for certificate"/>
+    <div class="controls">
+      <button onclick="downloadCertificate(false)">Download Episode Certificate</button>
+      <button class="secondary" onclick="continueAfterMission()">Continue Story</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="winModal">
+  <div class="modal-card">
+    <div class="rank">SetVerse Restored</div>
+    <h2>JEE Set Commander Championship Complete 🎉</h2>
+    <p class="story-text" id="finalText"></p>
+    <input id="championName" value="Cadet" placeholder="Student name for championship certificate"/>
+    <div class="controls">
+      <button onclick="downloadCertificate(true)">Download Championship Certificate</button>
+      <button class="secondary" onclick="resetGame()">Play Again</button>
+      <button class="secondary" onclick="goToScreen('screen-practice');document.getElementById('winModal').classList.remove('show')">JEE Practice</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="certCanvas" width="1600" height="1131"></canvas>
+
+<script>
+const episodes = [
+  {
+    icon:"🚀", key:"Element Key", title:"The Broken Set Core", concept:"Belongs to ∈ and Does Not Belong to ∉",
+    lines:[
+      ["🛡️","Captain Set","Cadet, the Set Core has cracked. Every object must be scanned correctly, or the whole MathVerse will lose order."],
+      ["🧠","Venn Ranger","In this universe, nothing is random. Every crystal either belongs to a set or stays outside it."],
+      ["⚡","Quantum Sage","Your first weapon is simple: ∈ means belongs to, and ∉ means does not belong to. JEE questions often test this precision."]
+    ],
+    training:"A set is a well-defined collection of objects. If an object is a member of set A, write x ∈ A. If it is not a member, write x ∉ A.",
+    cards:[
+      ["Symbol","3 ∈ {2,3,5} means 3 belongs to the set."],
+      ["Outside","7 ∉ {2,3,5} means 7 does not belong to the set."],
+      ["JEE trap","Read the set carefully before choosing ∈ or ∉."]
+    ],
+    deep:[
+      ["What it really means","Membership is the first decision in set theory. Before doing union, intersection, complement, or functions, you must know whether an object is inside the set or outside it."],
+      ["NCERT connection","NCERT defines a set as a well-defined collection. That means for any object, the answer should be clear: it belongs or it does not belong."],
+      ["JEE angle","In JEE, membership is hidden inside conditions like x∈N, x∈R, x²<10, x is prime, or x belongs to an interval."]
+    ],
+    tip:"In JEE, membership questions become important in domain, range, intervals, functions, and probability.",
+    pyq:"PYQ-inspired: If A={x∈N : x²<10}, decide whether 3∈A and 4∈A. Since 3²=9<10 but 4²=16, only 3 belongs to A.",
+    type:"mcq",
+    q:[
+      {q:"Let P = {2, 3, 5}. Which statement is true?", options:["3 ∈ P","7 ∈ P","5 ∉ P","2 ∉ P"], ans:0, why:"3 is listed inside P, so 3 ∈ P."},
+      {q:"Let V = {a, e, i, o, u}. Choose the correct statement.", options:["b ∈ V","e ∈ V","z ∈ V","u ∉ V"], ans:1, why:"e is a vowel, so e ∈ V."},
+      {q:"Let A = {1,2,3,4,5,6}. Which one is false?", options:["5 ∈ A","8 ∈ A","4 ∈ A","2 ∈ A"], ans:1, why:"8 is not in A, so 8 ∈ A is false."},
+      {q:"JEE-style: If A = {x ∈ N : x² < 20}, which statement is correct?", options:["5 ∈ A","4 ∈ A","0 ∈ A","6 ∈ A"], ans:1, why:"Natural numbers satisfying x² < 20 are 1,2,3,4. So 4 ∈ A."},
+      {q:"If B = {x : x is a prime factor of 42}, which is true?", options:["7 ∈ B","9 ∈ B","1 ∈ B","14 ∈ B"], ans:0, why:"Prime factors of 42 are 2,3,7."}
+    ],
+    win:"The scanner is restored. You can now identify whether an object belongs to a set or not."
+  },
+  {
+    icon:"⚛️", key:"Roster Key", title:"The Roster Reactor", concept:"Roster Form and Set-Builder Form",
+    lines:[
+      ["⚛️","Quantum Sage","We have reached the Roster Reactor. It stores sets in two languages."],
+      ["🛡️","Captain Set","Roster form lists the members. Set-builder form describes the rule that creates them."],
+      ["🧠","Venn Ranger","Be careful, cadet. In a set, repeated elements do not create extra copies."]
+    ],
+    training:"Roster form writes all elements inside braces. Set-builder form writes a rule using symbols such as {x : x is a natural number and 3 < x < 10}.",
+    cards:[
+      ["Roster","{2,4,6} lists the elements directly."],
+      ["Set-builder","{x : x is an even positive integer less than 7} describes the same set."],
+      ["Repetition","Letters of SCHOOL become {S,C,H,O,L}; O is not repeated."]
+    ],
+    deep:[
+      ["What it really means","Roster form is like opening the set box and listing every object. Set-builder form is like writing the rule that decides which objects enter the box."],
+      ["NCERT connection","NCERT uses both forms because some finite sets are easier to list, while pattern-based or infinite sets are easier to describe by a rule."],
+      ["JEE angle","Many JEE questions become simple once you convert a condition into actual elements or convert listed elements into a pattern."]
+    ],
+    tip:"Many JEE problems first require converting a condition into actual elements. This is roster thinking.",
+    pyq:"PYQ-inspired: Convert {x∈Z : -2≤x<3} into roster form. The answer is {-2,-1,0,1,2}.",
+    type:"mcq",
+    q:[
+      {q:"Convert {x : x is a natural number and 3 < x < 10} into roster form.", options:["{3,4,5,6,7,8,9,10}","{4,5,6,7,8,9}","{1,2,3,4,5,6}","{4,5,6,7,8,9,10}"], ans:1, why:"Natural numbers strictly between 3 and 10 are 4,5,6,7,8,9."},
+      {q:"Which set-builder form matches {1,4,9,16,25,...}?", options:["{x : x is prime}","{x : x = n², n ∈ N}","{x : x is even}","{x : x < 25}"], ans:1, why:"1,4,9,16,25 are squares of natural numbers."},
+      {q:"Letters of SCHOOL in roster form should be:", options:["{S,C,H,O,O,L}","{S,C,H,O,L}","{S,C,H,L}","{school}"], ans:1, why:"In a set, repeated elements are written only once."},
+      {q:"JEE-style: Convert {x ∈ Z : -2 ≤ x < 3} into roster form.", options:["{-2,-1,0,1,2}","{-2,-1,0,1,2,3}","{-1,0,1,2}","{-2,0,2}"], ans:0, why:"Integers from -2 inclusive to less than 3 are -2,-1,0,1,2."},
+      {q:"Which roster form represents {x : x is a divisor of 12}?", options:["{1,2,3,4,6,12}","{2,3,4,6}","{1,12}","{1,2,3,6,9,12}"], ans:0, why:"All positive divisors of 12 are 1,2,3,4,6,12."}
+    ],
+    win:"The Roster Reactor is online. You can now convert between rules and elements."
+  },
+  {
+    icon:"🕳️", key:"Null Key", title:"The Null Black Hole", concept:"Empty Set / Null Set",
+    lines:[
+      ["🕳️","Void Lord","Welcome to the Null Black Hole. I hide impossible conditions here."],
+      ["🛡️","Captain Set","If no element satisfies the condition, the set has no elements. That is the empty set."],
+      ["⚡","Quantum Sage","The symbol is φ or { }. First check if anything exists before calculating."]
+    ],
+    training:"An empty set contains no element. Example: {x : x is a natural number and 1 < x < 2} = φ.",
+    cards:[
+      ["Empty","No element satisfies the condition."],
+      ["Symbol","φ or { } represents the empty set."],
+      ["Trap","Even prime greater than 2 is empty because 2 is the only even prime."]
+    ],
+    deep:[
+      ["What it really means","An empty set is not zero; it is a set with no elements. It is like an empty container."],
+      ["NCERT connection","NCERT examples include no natural number between 1 and 2, or no rational solution for certain equations."],
+      ["JEE angle","Empty-set traps appear when two conditions cannot be true together, such as x<5 and x>7, or no real solution to x²+1=0."]
+    ],
+    tip:"JEE often combines impossible conditions with equations or intervals. Always test existence.",
+    pyq:"PYQ-inspired: {x∈R : x²+1=0} is empty in real numbers, but not empty in complex numbers. Always check the universal set.",
+    type:"mcq",
+    q:[
+      {q:"Which is an empty set?", options:["{x : x is an even prime number}","{x : x is an even prime number greater than 2}","{x : x is a vowel}","{x : x is a divisor of 6}"], ans:1, why:"2 is the only even prime. No even prime is greater than 2."},
+      {q:"A = {x : x is a natural number and 1 < x < 2}. What is A?", options:["{1}","{2}","φ","{1,2}"], ans:2, why:"There is no natural number strictly between 1 and 2."},
+      {q:"Which set is NOT empty?", options:["Odd natural numbers divisible by 2","Points common to two parallel lines","Even prime numbers","Natural numbers x such that x < 5 and x > 7"], ans:2, why:"The set of even prime numbers contains 2."},
+      {q:"JEE-style: Which set is empty in R?", options:["{x : x² = 4}","{x : x² + 1 = 0}","{x : x² - 1 = 0}","{x : x = 0}"], ans:1, why:"No real number satisfies x² + 1 = 0."},
+      {q:"Which set is empty?", options:["{x∈N : x<3}","{x∈N : 2<x<3}","{x∈Z : -1≤x≤1}","{x∈R : 0<x<1}"], ans:1, why:"There is no natural number strictly between 2 and 3."}
+    ],
+    win:"The Null Black Hole collapses safely. You can now detect impossible sets."
+  },
+  {
+    icon:"🌌", key:"Infinity Key", title:"Infinite Orbit", concept:"Finite and Infinite Sets",
+    lines:[
+      ["🌌","Venn Ranger","This orbit splits into two paths: finite planets and infinite galaxies."],
+      ["⚡","Quantum Sage","Finite means a definite number of elements. Infinite means there is no final element."],
+      ["🛡️","Captain Set","Sort the cosmic cards. The gate opens only if every set reaches its correct orbit."]
+    ],
+    training:"A set is finite if it is empty or has a definite number of elements. Otherwise it is infinite, such as the set of natural numbers.",
+    cards:[
+      ["Finite","Months of a year, English alphabet, prime numbers less than 99."],
+      ["Infinite","Natural numbers, multiples of 5, positive integers greater than 100."],
+      ["Meaning","Finite can be completely counted; infinite continues without end."]
+    ],
+    deep:[
+      ["What it really means","Finite means you can finish counting. Infinite means the elements continue without a final element."],
+      ["NCERT connection","NCERT gives examples like days of a week as finite and natural numbers as infinite."],
+      ["JEE angle","Intervals in real numbers are usually infinite, even if the interval length is small, because infinitely many real values lie between two numbers."]
+    ],
+    tip:"In JEE, finite/infinite thinking appears in solution sets, intervals, sequences, and functions.",
+    pyq:"PYQ-inspired: The solution set of x²=4 in R is finite: {-2,2}. The interval (0,1) is infinite because it has infinitely many real numbers.",
+    type:"drag",
+    tokens:[
+      {text:"Months of a year", bucket:"finite"},
+      {text:"Natural numbers", bucket:"infinite"},
+      {text:"Prime numbers less than 99", bucket:"finite"},
+      {text:"Positive integers greater than 100", bucket:"infinite"},
+      {text:"Letters in English alphabet", bucket:"finite"},
+      {text:"Multiples of 5", bucket:"infinite"},
+      {text:"Solutions of x² = 4 in R", bucket:"finite"},
+      {text:"Real numbers between 0 and 1", bucket:"infinite"},
+      {text:"Prime numbers less than 10", bucket:"finite"},
+      {text:"Integers less than -100", bucket:"infinite"}
+    ],
+    win:"The orbit map is restored. You can now distinguish finite and infinite sets."
+  },
+  {
+    icon:"🛡️", key:"Subset Key", title:"The Subset Shield", concept:"Subsets and Proper Subsets",
+    lines:[
+      ["🛡️","Captain Set","The shield will activate only if every element of A is already inside B."],
+      ["🧠","Venn Ranger","That relation is called subset: A ⊂ B."],
+      ["⚡","Quantum Sage","Remember two universal laws: φ is a subset of every set, and every set is a subset of itself."]
+    ],
+    training:"A ⊂ B means every element of A is also an element of B. If A ⊂ B and A ≠ B, then A is a proper subset of B.",
+    cards:[
+      ["Subset","{1,3} ⊂ {1,3,5,7,9}."],
+      ["Not subset","{a,e,i} is not a subset of {a,b,c,d}."],
+      ["Special rule","φ ⊂ A for every set A."]
+    ],
+    deep:[
+      ["What it really means","A subset is containment. A is inside B if every element of A is also found in B."],
+      ["NCERT connection","NCERT explains that A⊂B if a∈A implies a∈B. This implication idea is very important."],
+      ["JEE angle","If A⊂B, then A∪B=B and A∩B=A. These shortcuts save time in objective questions."]
+    ],
+    tip:"Subset logic becomes powerful in functions, relations, solution sets, probability and coordinate geometry.",
+    pyq:"PYQ-inspired: If A⊂B, then A∪B=B and A∩B=A. These identities appear repeatedly in JEE objective problems.",
+    type:"mcq",
+    q:[
+      {q:"A = {1,3}, C = {1,3,5,7,9}. Choose the correct statement.", options:["A ⊂ C","C ⊂ A","3 ∉ C","A = C"], ans:0, why:"Every element of A is present in C."},
+      {q:"Which statement is always true?", options:["A ⊂ φ","φ ⊂ A","A ∈ A","A ⊄ A"], ans:1, why:"The empty set is accepted as a subset of every set."},
+      {q:"Let A = {a,e,i,o,u}, B = {a,b,c,d}. Is A ⊂ B?", options:["Yes","No","Only if b is vowel","A = B"], ans:1, why:"e, i, o, u are in A but not in B."},
+      {q:"JEE-style: If A ⊂ B, then A ∪ B equals:", options:["A","B","φ","A - B"], ans:1, why:"If A is contained in B, the union is the larger set B."},
+      {q:"If A = {1,2} and B = {1,2,3}, which is true?", options:["B ⊂ A","A ⊂ B","A = B","3 ∈ A"], ans:1, why:"Every element of A is inside B."}
+    ],
+    win:"The Subset Shield is forged. You can now test containment between sets."
+  },
+  {
+    icon:"⚡", key:"Interval Key", title:"The Real-Line Laser Gate", concept:"Intervals as Subsets of R",
+    lines:[
+      ["⚡","Quantum Sage","The next gate is built on the real number line. It reads brackets like security codes."],
+      ["🧠","Venn Ranger","Round brackets exclude endpoints. Square brackets include endpoints."],
+      ["🛡️","Captain Set","One wrong bracket can lock the gate. Translate inequalities carefully."]
+    ],
+    training:"Intervals are subsets of real numbers. (a,b) excludes both endpoints, [a,b] includes both, [a,b) includes a but excludes b, and (a,b] excludes a but includes b.",
+    cards:[
+      ["Open","(a,b) means a < x < b."],
+      ["Closed","[a,b] means a ≤ x ≤ b."],
+      ["Half-open","[-4,6] includes both; (-4,6] excludes -4 and includes 6."]
+    ],
+    deep:[
+      ["What it really means","Intervals describe continuous parts of the real number line. Brackets tell whether boundary points are included."],
+      ["NCERT connection","NCERT introduces open, closed and half-open intervals as subsets of R."],
+      ["JEE angle","Intervals are essential for domains, inequalities, modulus, logarithm, square root conditions and calculus."]
+    ],
+    tip:"Intervals are essential for domain, range, inequalities, calculus and graphs in JEE.",
+    pyq:"PYQ-inspired: The solution of |x|<3 is (-3,3). The endpoints are excluded because the inequality is strict.",
+    type:"input",
+    q:[
+      {q:"Write {x : x ∈ R, -4 < x ≤ 6} as an interval.", ans:["(-4,6]","(-4, 6]"], why:"-4 is excluded and 6 is included, so the interval is (-4, 6]."},
+      {q:"Write {x : x ∈ R, 0 ≤ x < 7} as an interval.", ans:["[0,7)","[0, 7)"], why:"0 is included and 7 is excluded, so the interval is [0, 7)."},
+      {q:"Write [ -3, 5 ) in set-builder form using x only.", ans:["{x:-3≤x<5}","{x : -3 ≤ x < 5}","{x:-3<=x<5}","{x : -3 <= x < 5}"], why:"[-3,5) means -3 ≤ x < 5."},
+      {q:"JEE-style: Write the solution of |x| < 3 as an interval.", ans:["(-3,3)","(-3, 3)"], why:"|x| < 3 means -3 < x < 3."},
+      {q:"Write {x : x ∈ R, x ≥ 2} as an interval.", ans:["[2,∞)","[2, infinity)","[2,infinity)"], why:"x ≥ 2 includes 2 and all greater real numbers."}
+    ],
+    win:"The Real-Line Laser Gate opens. You can now translate inequalities into interval notation."
+  },
+  {
+    icon:"🎯", key:"Venn Key", title:"Venn Battle Arena", concept:"Union, Intersection and Difference",
+    lines:[
+      ["🎯","Venn Ranger","Enemy drones are hiding in regions: A only, B only, and the overlap."],
+      ["🛡️","Captain Set","Union means everything in A or B. Intersection means common area."],
+      ["⚡","Quantum Sage","Difference means remove the enemy set. This is where Venn diagrams become a weapon."]
+    ],
+    training:"A ∪ B contains elements in A or B or both. A ∩ B contains common elements. A - B contains elements in A but not in B.",
+    cards:[
+      ["Union","A ∪ B = all areas inside A or B."],
+      ["Intersection","A ∩ B = overlap only."],
+      ["Difference","A - B = A only, excluding overlap."]
+    ],
+    deep:[
+      ["What it really means","Venn diagrams turn set operations into visual regions. This helps you see exactly what is included and excluded."],
+      ["NCERT connection","NCERT uses Venn diagrams to explain union, intersection, difference and complement."],
+      ["JEE angle","For counting, n(A∪B)=n(A)+n(B)-n(A∩B). The overlap is subtracted because it was counted twice."]
+    ],
+    tip:"Venn diagrams help solve JEE counting problems quickly, especially with two or three sets.",
+    pyq:"PYQ-inspired: If n(A)=40, n(B)=35, n(A∩B)=15, then n(A∪B)=40+35-15=60. Venn overlap is subtracted once.",
+    type:"venn",
+    q:[
+      {q:"Select A ∩ B", ans:"both", why:"A ∩ B is the common overlapping region."},
+      {q:"Select A - B", ans:"left", why:"A - B means inside A but outside B."},
+      {q:"Select B - A", ans:"right", why:"B - A means inside B but outside A."},
+      {q:"Select A ∪ B", ans:"union", why:"A ∪ B means all regions inside A or B, including the overlap."},
+      {q:"JEE-style visual: Which region represents elements common to both A and B?", ans:"both", why:"Common elements lie in the overlap, i.e., A ∩ B."},
+      {q:"JEE-style visual: Which region represents elements in A but not in B?", ans:"left", why:"A - B is the A-only region."}
+    ],
+    win:"The Venn Arena is cleared. You can now visualize union, intersection and difference."
+  },
+  {
+    icon:"🏆", key:"Complement Key", title:"The Complement Reactor", concept:"Universal Set and Complement",
+    lines:[
+      ["🏆","Quantum Sage","Final mission: stabilize the Universal Reactor."],
+      ["🛡️","Captain Set","Complement means what is outside A but still inside U."],
+      ["🧠","Venn Ranger","Never forget the universal set. Without U, complement has no fixed boundary."]
+    ],
+    training:"If U is the universal set and A ⊂ U, then A′ = U - A = {x : x ∈ U and x ∉ A}.",
+    cards:[
+      ["Universal Set","U defines the boundary of the question."],
+      ["Complement","A′ means all elements of U that are not in A."],
+      ["Example","If U={1,...,10} and A={1,3,5,7,9}, then A′={2,4,6,8,10}."]
+    ],
+    deep:[
+      ["What it really means","Complement means everything outside A but still inside the universal set U."],
+      ["NCERT connection","NCERT defines A′ as U-A, so the universal set must be known."],
+      ["JEE angle","Complement method is powerful when direct counting is hard. In probability, P(not A)=1-P(A)."]
+    ],
+    tip:"Complement is used in probability, counting, inequalities and whenever direct calculation is difficult.",
+    pyq:"PYQ-inspired: If U has 50 elements and A has 18 elements, then A′ has 32 elements. Complement = total universe minus set.",
+    type:"mcq",
+    q:[
+      {q:"U = {1,2,3,4,5,6,7,8,9,10}, A = {1,3,5,7,9}. Find A′.", options:["{1,3,5,7,9}","{2,4,6,8,10}","{1,2,3,4,5}","φ"], ans:1, why:"A′ contains elements of U not in A: 2,4,6,8,10."},
+      {q:"If A′ = U - A, then A′ contains:", options:["Only elements of A","Elements in U but not in A","All real numbers always","Only empty set"], ans:1, why:"Complement is always relative to the universal set."},
+      {q:"If U = {a,b,c,d} and A = {a,d}, then A′ =", options:["{a,d}","{b,c}","{a,b,c,d}","φ"], ans:1, why:"b and c are in U but not in A."},
+      {q:"JEE-style: If n(U)=50 and n(A)=18, find n(A′).", options:["18","32","50","68"], ans:1, why:"n(A′)=n(U)-n(A)=50-18=32."},
+      {q:"If U={1,2,3,4,5} and A={2,4}, then A′ =", options:["{1,3,5}","{2,4}","{1,2,3,4,5}","φ"], ans:0, why:"Complement contains elements of U not in A."}
+    ],
+    win:"The Lost Venn Core is restored. You have completed the SetVerse chapter arc."
+  }
+];
+
+const practiceQuestions = [
+  ["Set Formula: Two-Set Cardinality","In a class, 40 students like Physics, 35 like Maths, and 15 like both. How many students like at least one of the two subjects?","Use n(A ∪ B) = n(A) + n(B) - n(A ∩ B). So 40 + 35 - 15 = 60."],
+  ["Complement Concept","Let U = {1,2,3,...,20} and A = {x : x is a multiple of 3}. Find n(A′).","Multiples of 3 are {3,6,9,12,15,18}, so n(A)=6. n(A′)=20-6=14."],
+  ["Union and Intersection","If A = {1,2,3,4,5}, B = {4,5,6,7}, find (A ∪ B) - (A ∩ B).","A ∪ B = {1,2,3,4,5,6,7}; A ∩ B = {4,5}; answer = {1,2,3,6,7}."],
+  ["Subset Counting","A set has 5 elements. How many subsets and proper subsets does it have?","Subsets = 2⁵ = 32. Proper subsets = 31."],
+  ["Interval Form","Convert {x : x ∈ R, -2 ≤ x < 5} into interval notation.","-2 is included and 5 is excluded. Answer: [-2,5)."],
+  ["Three-Set Survey","n(A)=30, n(B)=28, n(C)=26, n(A∩B)=12, n(B∩C)=10, n(C∩A)=8, n(A∩B∩C)=4. Find n(A∪B∪C).","30+28+26-12-10-8+4 = 58."],
+  ["Disjoint Sets","If A and B are disjoint, n(A)=7 and n(B)=9, find n(A∪B).","Since n(A∩B)=0, n(A∪B)=7+9=16."],
+  ["Power Set","If A={a,b,c}, how many elements are in P(A)?","A has 3 elements. Power set has 2³ = 8 elements."],
+  ["De Morgan's Law","If U={1,2,3,4,5,6}, A={1,2,3}, B={3,4,5}, find (A∪B)′.","A∪B={1,2,3,4,5}. Complement in U is {6}."],
+  ["Only One Set","In a group, 25 like A, 30 like B and 10 like both. How many like only A?","Only A = n(A)-n(A∩B)=25-10=15."],
+  ["At Least One","Out of 100 students, 45 play cricket, 35 football and 20 both. How many play neither?","At least one =45+35-20=60. Neither =100-60=40."],
+  ["Interval Intersection","Find [1,5] ∩ (3,8).","Common part is greater than 3 and up to 5, so (3,5]."],
+  ["Interval Union","Find (1,4] ∪ [4,7).","Since 4 is included in both connection point, union is (1,7)."],
+  ["Equal Sets","A={1,2,2,3}, B={3,2,1}. Are A and B equal?","Yes. Repetition and order do not change a set."],
+  ["Empty Set Trap","Find {x∈N : x²=2}.","No natural number has square 2, so the set is φ."],
+  ["Subset Identity","If A⊂B, find A∩B and A∪B.","A∩B=A and A∪B=B."],
+  ["Complement Count","If n(U)=80 and n(A′)=25, find n(A).","n(A)=n(U)-n(A′)=80-25=55."],
+  ["Three Set Formula","If n(A∪B∪C)=70, n(A)=25,n(B)=30,n(C)=28, pairwise intersections are 8,7,6, find n(A∩B∩C).","70=25+30+28-8-7-6+x, so x=8."],
+  ["Set Difference","If A={2,4,6,8,10}, B={4,8,12}, find A-B.","Remove common elements 4 and 8 from A. Answer: {2,6,10}."],
+  ["Roster from Condition","Write {x∈N : x divides 18} in roster form.","Positive divisors of 18 are {1,2,3,6,9,18}."]
+];
+
+let state = {episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};
+
+
+function openNameModal(){
+  document.getElementById("playerNameInput").value = state.studentName === "Cadet" ? "" : state.studentName;
+  document.getElementById("nameModal").classList.add("show");
+  setTimeout(()=>document.getElementById("playerNameInput").focus(),80);
+}
+function savePlayerName(){
+  const raw = document.getElementById("playerNameInput").value.trim();
+  state.studentName = raw || "Cadet";
+  document.getElementById("nameModal").classList.remove("show");
+  state.episode=0; state.line=0; state.q=0;
+  goToScreen("screen-story");
+}
+function friendLine(context){
+  const n = state.studentName || "Cadet";
+  const e = episodes[state.episode];
+  if(context==="story"){
+    return `Hi ${n}, we are in ${e.title}. Read the character dialogue first. No rush — click Continue Story when you feel ready.`;
+  }
+  if(context==="training"){
+    return `${n}, first understand the concept, then read the NCERT connection, then check the JEE angle. This is how toppers build clarity.`;
+  }
+  if(context==="challenge"){
+    return `${n}, this is your rescue challenge. Step 1: read the condition. Step 2: identify the set rule. Step 3: answer confidently.`;
+  }
+  return `Let's go, ${n}!`;
+}
+
+function goToScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  if(id==="screen-story") renderStory();
+  if(id==="screen-training") renderTraining();
+  if(id==="screen-map") renderMaps();
+  if(id==="screen-challenge") renderChallenge();
+  updateHud();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function updateHud(){
+  document.getElementById("xp").textContent=state.xp;
+  document.getElementById("episodeChip").textContent=(state.episode+1)+"/8";
+  document.getElementById("keys").textContent=state.keys.size;
+  document.getElementById("accuracy").textContent=state.attempts?Math.round(state.correct/state.attempts*100)+"%":"0%";
+  const energy = Math.max(20, 100 - Math.max(0, state.attempts - state.correct) * 8);
+  const en = document.getElementById("energy");
+  if(en) en.textContent = energy + "%";
+  const homeNote = document.getElementById("homeFriendNote");
+  if(homeNote) homeNote.textContent = `Hi ${state.studentName || "Cadet"}! Click Start Story, enter your name, and I will guide you like a friend through every step.`;
+}
+function renderMaps(){
+  const make = () => episodes.map((e,i)=>`
+    <div class="node ${i===state.episode?'active':''} ${state.keys.has(i)?'done':''}" onclick="state.episode=${i};state.line=0;state.q=0;goToScreen('screen-story')">
+      <div class="node-num">${state.keys.has(i)?"✓":i+1}</div>
+      <div><strong>${e.icon} ${e.title}</strong><br><span style="color:var(--muted);font-size:13px">${e.concept}</span></div>
+    </div>`).join("");
+  const m=document.getElementById("missionMap"); if(m) m.innerHTML=make();
+  const s=document.getElementById("sideMap"); if(s) s.innerHTML=make();
+}
+function renderStory(){
+  const e=episodes[state.episode], line=e.lines[state.line];
+  document.getElementById("episodeLabel").textContent="Episode "+(state.episode+1)+" of 8";
+  document.getElementById("sceneTitle").textContent=e.title;
+  document.getElementById("sceneIcon").textContent=e.icon;
+  document.getElementById("speakerAvatar").textContent=line[0];
+  document.getElementById("speechIcon").textContent=line[0];
+  document.getElementById("speakerName").textContent=line[1];
+  document.getElementById("speechSpeaker").textContent=line[1];
+  document.getElementById("speechText").textContent=line[2];
+  document.getElementById("speakerRole").textContent=e.concept;
+  const fg = document.getElementById("friendGuideStory");
+  if(fg) fg.textContent = friendLine("story");
+}
+function nextStoryLine(){
+  const e=episodes[state.episode];
+  if(state.line<e.lines.length-1){state.line++;renderStory();}
+  else goToScreen("screen-training");
+}
+function renderTraining(){
+  const e=episodes[state.episode];
+  document.getElementById("trainingEpisode").textContent="Training Chamber: "+e.key;
+  document.getElementById("trainingTitle").textContent=e.concept;
+  document.getElementById("trainingText").textContent=e.training;
+  document.getElementById("jeeTip").textContent=e.tip;
+  document.getElementById("storyPyq").textContent=e.pyq || "PYQ-inspired application will appear here.";
+  document.getElementById("trainingCards").innerHTML=e.cards.map(c=>`<div class="training-card"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join("");
+  document.getElementById("conceptDeep").innerHTML=(e.deep||[]).map(d=>`<div class="deep-card"><h3>${d[0]}</h3><p>${d[1]}</p></div>`).join("");
+  document.getElementById("episodeProgress").style.width=(state.q/(e.type==="drag"?1:e.q.length))*100+"%";
+  const fg = document.getElementById("friendGuideTraining");
+  if(fg) fg.textContent = friendLine("training");
+}
+function startChallenge(){state.q=0;state.answered=false;goToScreen("screen-challenge")}
+function restartEpisode(){state.q=0;state.answered=false;renderChallenge();updateHud()}
+function renderChallenge(){
+  renderMaps();
+  const e=episodes[state.episode];
+  document.getElementById("challengeEpisode").textContent="Boss Challenge: "+e.key;
+  document.getElementById("challengeTitle").textContent=e.title;
+  document.getElementById("nextBtn").style.display="none";
+  state.answered=false;
+  const area=document.getElementById("challengeArea");
+  if(e.type==="mcq"){
+    const item=e.q[state.q];
+    area.innerHTML=`<div class="question">${item.q}</div><p class="hint">Choose the correct command to unlock the next adventure gate.</p>
+      <div class="options">${item.options.map((o,i)=>`<div class="option" onclick="answerMCQ(${i})">${o}</div>`).join("")}</div><div id="feedback" class="feedback"></div>`;
+  } else if(e.type==="input"){
+    const item=e.q[state.q];
+    area.innerHTML=`<div class="question">${item.q}</div><p class="hint">Type the exact code to open the portal.</p>
+      <input id="answerInput" placeholder="Example: (-4,6]" onkeydown="if(event.key==='Enter')checkInput()"/>
+      <div class="controls"><button onclick="checkInput()">Submit</button></div><div id="feedback" class="feedback"></div>`;
+    setTimeout(()=>document.getElementById("answerInput").focus(),60);
+  } else if(e.type==="drag"){
+    area.innerHTML=`<div class="question">Sort the cosmic cards into the correct orbit.</div><p class="hint">Drag each cosmic artifact to the correct orbit.</p>
+      <div class="drag-board"><div class="bucket" data-bucket="finite" ondragover="allowDrop(event)" ondrop="dropToken(event)"><h3>Finite Galaxy</h3></div>
+      <div class="bucket" data-bucket="infinite" ondragover="allowDrop(event)" ondrop="dropToken(event)"><h3>Infinite Orbit</h3></div></div>
+      <div class="tokens">${e.tokens.map((t,i)=>`<div class="token" id="token${i}" draggable="true" data-correct="${t.bucket}" ondragstart="dragToken(event)">${t.text}</div>`).join("")}</div>
+      <div class="controls"><button onclick="checkDrag()">Check Sort</button></div><div id="feedback" class="feedback"></div>`;
+  } else if(e.type==="venn"){
+    const item=e.q[state.q];
+    area.innerHTML=`<div class="question">${item.q}</div><p class="hint">Click the correct Venn region.</p>
+      <div class="venn-wrap"><svg width="520" height="280" viewBox="0 0 520 280">
+        <rect x="20" y="20" width="480" height="230" rx="18" fill="rgba(255,255,255,.03)" stroke="rgba(0,234,255,.35)" />
+        <text x="36" y="48" fill="#ffe066" font-size="24" font-weight="800">U</text>
+        <circle cx="220" cy="140" r="82" fill="rgba(0,234,255,.13)" stroke="#00eaff" stroke-width="3"/>
+        <circle cx="300" cy="140" r="82" fill="rgba(255,61,242,.13)" stroke="#ff3df2" stroke-width="3"/>
+        <text x="155" y="72" fill="#00eaff" font-size="24" font-weight="900">A</text>
+        <text x="355" y="72" fill="#ff3df2" font-size="24" font-weight="900">B</text>
+        <path id="leftZone" class="zone" onclick="selectVenn('left')" d="M220 58 A82 82 0 1 0 220 222 A82 82 0 0 1 220 58 Z" fill="#00eaff"/>
+        <path id="rightZone" class="zone" onclick="selectVenn('right')" d="M300 58 A82 82 0 1 1 300 222 A82 82 0 0 0 300 58 Z" fill="#ff3df2"/>
+        <path id="bothZone" class="zone" onclick="selectVenn('both')" d="M260 70 C290 88 309 113 309 140 C309 167 290 192 260 210 C230 192 211 167 211 140 C211 113 230 88 260 70 Z" fill="#31ff9f"/>
+      </svg></div><div id="feedback" class="feedback"></div>`;
+  }
+  const fg = document.getElementById("friendGuideChallenge");
+  if(fg) fg.textContent = friendLine("challenge");
+  updateHud();
+}
+function fb(ok,text){
+  const f=document.getElementById("feedback");
+  f.className="feedback show";
+  f.innerHTML=`<strong style="color:${ok?'var(--green)':'var(--red)'}">${ok?'Correct — Knowledge Gate opened!':'Not correct — Quantum correction activated.'}</strong><br>${text}`;
+}
+function answerMCQ(i){
+  if(state.answered)return; state.answered=true; state.attempts++;
+  const item=episodes[state.episode].q[state.q]; const opts=[...document.querySelectorAll(".option")];
+  if(i===item.ans){opts[i].classList.add("correct");state.correct++;state.xp+=50;fb(true,item.why)}
+  else{opts[i].classList.add("wrong");opts[item.ans].classList.add("correct");fb(false,item.why)}
+  document.getElementById("nextBtn").style.display="inline-block"; updateHud();
+}
+function norm(s){return s.toLowerCase().replace(/\s/g,"").replace(/≤/g,"<=").replace(/∈/g,"in")}
+function checkInput(){
+  if(state.answered)return; state.answered=true; state.attempts++;
+  const item=episodes[state.episode].q[state.q]; const val=norm(document.getElementById("answerInput").value);
+  const ok=item.ans.some(a=>norm(a)===val);
+  if(ok){state.correct++;state.xp+=60} fb(ok,item.why);
+  document.getElementById("nextBtn").style.display="inline-block"; updateHud();
+}
+function dragToken(e){e.dataTransfer.setData("id",e.target.id)}
+function allowDrop(e){e.preventDefault()}
+function dropToken(e){e.preventDefault();const id=e.dataTransfer.getData("id");const token=document.getElementById(id);const bucket=e.target.closest(".bucket");if(bucket&&token)bucket.appendChild(token)}
+function checkDrag(){
+  if(state.answered)return;
+  const tokens=[...document.querySelectorAll(".token")];
+  if(!tokens.every(t=>t.closest(".bucket"))){fb(false,"Place every card first.");return}
+  state.answered=true;state.attempts++;
+  const ok=tokens.every(t=>t.closest(".bucket").dataset.bucket===t.dataset.correct);
+  if(ok){state.correct++;state.xp+=80} fb(ok,episodes[state.episode].training);
+  document.getElementById("nextBtn").style.display="inline-block"; updateHud();
+}
+function selectVenn(zone){
+  if(state.answered)return; state.answered=true; state.attempts++;
+  const item=episodes[state.episode].q[state.q];
+  const left=document.getElementById("leftZone"), right=document.getElementById("rightZone"), both=document.getElementById("bothZone");
+  const ok=item.ans==="union"?["left","right","both"].includes(zone):zone===item.ans;
+  if(item.ans==="union"){left.classList.add("selected");right.classList.add("selected");both.classList.add("selected")}
+  else{({left,right,both}[item.ans]).classList.add("selected")}
+  if(ok){state.correct++;state.xp+=60}
+  fb(ok,item.why); document.getElementById("nextBtn").style.display="inline-block"; updateHud();
+}
+function nextQuestion(){
+  const e=episodes[state.episode], total=e.type==="drag"?1:e.q.length;
+  state.q++;
+  if(state.q>=total){
+    state.keys.add(state.episode); state.lastCompleted=state.episode; confetti();
+    document.getElementById("missionModalTitle").textContent=e.key+" Unlocked";
+    document.getElementById("missionModalText").innerHTML=`<strong>${e.win}</strong><br><br>You earned this Knowledge Key by mastering <strong>${e.concept}</strong>.`;
+    document.getElementById("studentName").value = state.studentName || "Cadet";
+    document.getElementById("missionModal").classList.add("show");
+    state.pending=state.keys.size===episodes.length?"final":"next";
+    renderMaps(); updateHud(); return;
+  }
+  renderChallenge();
+}
+function continueAfterMission(){
+  document.getElementById("missionModal").classList.remove("show");
+  if(state.pending==="final"){finishGame();return}
+  state.episode=Math.min(episodes.length-1,state.lastCompleted+1); state.line=0; state.q=0; goToScreen("screen-story");
+}
+function finishGame(){
+  confetti();
+  const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;
+  document.getElementById("finalText").innerHTML=`The Lost Venn Core is restored. You earned <strong>${state.xp} XP</strong>, unlocked <strong>${state.keys.size}/8 Knowledge Keys</strong>, and scored <strong>${acc}% accuracy</strong>.`;
+  document.getElementById("championName").value = state.studentName || "Cadet";
+  document.getElementById("winModal").classList.add("show");
+}
+function renderPractice(){
+  document.getElementById("practiceList").innerHTML=practiceQuestions.map((p,i)=>`
+    <details><summary>Q${i+1}. ${p[0]} <span class="badge-tag">PYQ-Based</span></summary>
+    <div class="solution"><strong>Question:</strong> ${p[1]}<br><br><strong>Solution:</strong> ${p[2]}</div></details>`).join("");
+}
+function confetti(){
+  const colors=["#00eaff","#35ff9a","#ffe066","#ff3df2","#ff4d6d","#ff9f1c"];
+  for(let i=0;i<90;i++){
+    const d=document.createElement("div");d.className="confetti";d.style.left=Math.random()*100+"vw";
+    d.style.background=colors[Math.floor(Math.random()*colors.length)];d.style.animationDelay=Math.random()*0.35+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),2300)
+  }
+}
+function downloadCertificate(finalCert){
+  const canvas=document.getElementById("certCanvas"), ctx=canvas.getContext("2d"), w=canvas.width,h=canvas.height;
+  const name=finalCert?(document.getElementById("championName").value||state.studentName||"JEE Set Commander"):(document.getElementById("studentName").value||state.studentName||"JEE Space Cadet");
+  const title=finalCert?"SETVERSE CHAMPIONSHIP CERTIFICATE":"SETVERSE EPISODE CERTIFICATE";
+  const mission=finalCert?"JEE Set Commander - Chapter 1 Sets":episodes[state.lastCompleted].title+" - "+episodes[state.lastCompleted].key;
+  const acc=state.attempts?Math.round(state.correct/state.attempts*100):0;
+  const grd=ctx.createLinearGradient(0,0,w,h);grd.addColorStop(0,"#060918");grd.addColorStop(.48,"#0b2452");grd.addColorStop(1,"#19051f");ctx.fillStyle=grd;ctx.fillRect(0,0,w,h);
+  for(let i=0;i<180;i++){ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;ctx.beginPath();ctx.arc(Math.random()*w,Math.random()*h,Math.random()*2.2,0,Math.PI*2);ctx.fill()}
+  ctx.strokeStyle="#00eaff";ctx.lineWidth=10;ctx.strokeRect(50,50,w-100,h-100);ctx.strokeStyle="#ffe066";ctx.lineWidth=4;ctx.strokeRect(78,78,w-156,h-156);
+  ctx.textAlign="center";ctx.fillStyle="rgba(255,255,255,.08)";ctx.font="900 108px Arial";ctx.save();ctx.translate(w/2,h/2);ctx.rotate(-.18);ctx.fillText("Dr AI Academy",0,0);ctx.restore();
+  ctx.fillStyle="#ffe066";ctx.font="900 54px Arial";ctx.fillText("Dr AI Academy",w/2,170);ctx.fillStyle="#00eaff";ctx.font="900 42px Arial";ctx.fillText(title,w/2,245);
+  ctx.fillStyle="#eaf6ff";ctx.font="28px Arial";ctx.fillText("This certifies that",w/2,330);ctx.fillStyle="#fff";ctx.font="900 68px Arial";ctx.fillText(name,w/2,420);
+  ctx.fillStyle="#d9e9ff";ctx.font="30px Arial";ctx.fillText("has successfully completed",w/2,500);ctx.fillStyle="#35ff9a";ctx.font="900 42px Arial";ctx.fillText(mission,w/2,570);
+  ctx.fillStyle="#ffe066";ctx.font="900 30px Arial";ctx.fillText(`XP: ${state.xp}   |   Accuracy: ${acc}%`,w/2,705);
+  ctx.fillStyle="#d9e9ff";ctx.font="24px Arial";ctx.fillText("Copyright © Dr AI Academy",w/2,790);ctx.fillStyle="#00eaff";ctx.font="24px Arial";ctx.fillText("www.draiacademy.com  |  Follow @draiacademy",w/2,830);
+  const link=document.createElement("a");link.download=finalCert?"dr-ai-academy-setverse-championship.png":"dr-ai-academy-setverse-episode.png";link.href=canvas.toDataURL("image/png");link.click();
+}
+
+function chooseVoice(){
+  const voices = speechSynthesis.getVoices();
+  const preferred = voices.find(v => /Google UK English Female|Microsoft Sonia|Microsoft Aria|Natural|Female|English/i.test(v.name)) || voices.find(v => /en-/i.test(v.lang)) || voices[0];
+  return preferred;
+}
+function speakText(text, statusId){
+  if(!("speechSynthesis" in window)){
+    const st=document.getElementById(statusId||"voiceStatus"); if(st) st.textContent="Speech output is not supported in this browser.";
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = chooseVoice();
+  u.rate = 0.92;
+  u.pitch = 1.05;
+  u.volume = 1;
+  u.onstart=()=>{const st=document.getElementById(statusId||"voiceStatus"); if(st) st.textContent="Narrating with the most natural browser voice available...";}
+  u.onend=()=>{const st=document.getElementById(statusId||"voiceStatus"); if(st) st.textContent="Voice narration complete.";}
+  speechSynthesis.speak(u);
+}
+function resetGame(){state={episode:0,line:0,q:0,xp:0,attempts:0,correct:0,keys:new Set(),answered:false,lastCompleted:0,pending:null,studentName:"Cadet"};document.getElementById("winModal").classList.remove("show");goToScreen("screen-home");renderMaps();updateHud()}
+renderPractice();renderMaps();updateHud();
+</script>
+</body>
+</html>
